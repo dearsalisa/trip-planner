@@ -5,7 +5,7 @@ import * as firebase from 'firebase';
 const SlideShow = () => {
   return (
     <div>
-      <img className="slide_show" src="../images/view01.jpg"/>
+      <img className="slide_show" src={require('../images/view01.jpg')}/>
     </div>
   )
 }

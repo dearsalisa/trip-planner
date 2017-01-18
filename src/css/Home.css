@@ -3,6 +3,23 @@
 
 .slide_show {
 	width: 100%;
-	height: 15%;
-	margin: auto;
+	max-height: 400px;
+	overflow: hidden;
+    object-fit: cover;
+}
+
+/*---- content ----*/
+
+.topic {
+	margin-left: 2em;
+	margin-bottom: -0.2em;
+}
+
+hr {
+	width: 25em;
+	position: absolute;
+}
+
+h1 {
+	font-size: 2em;
 }
