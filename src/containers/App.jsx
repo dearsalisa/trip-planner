@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import '../css/App.css';
 import * as firebase from 'firebase';
 
@@ -38,7 +37,7 @@ class App extends Component {
       return (
         <div className="App">
           <h1>{this.state.speed}</h1>
-          <button onclick={writeUserData(1,"Salisa","eiei@hotmail.com")}>OK</button>
+          <button onClick={writeUserData(1,"Salisa","eiei@hotmail.com")}>OK</button>
         </div>
         );
     }
