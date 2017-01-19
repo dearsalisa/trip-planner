@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import * as firebase from 'firebase';
+// import firebaseApp from '../helpers/Firebase';
 
 class App extends Component {
 
-    // constructor() {
-    //   super();
-    //   this.state = {
-    //     speed: 100
-    //   };
-    // }
+    componentWillMount(){
+        // TODO: firebaseApp onAuthStateChange
+    }
 
     render() {
       return (
