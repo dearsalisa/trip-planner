@@ -42,8 +42,6 @@ class Home extends Component {
         <h1 className="topic">Popular Trip</h1>
         <hr />
 
-         <Button>Default</Button>
-
         <br/><br/><br/><br/>
 				<h1>{this.state.speed}</h1>
         <button onClick={writeUserData(1,"Salisa","eiei@hotmail.com")}>OK</button>

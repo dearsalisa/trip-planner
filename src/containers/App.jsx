@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import '../css/App.css';
-import * as firebase from 'firebase';
-// import firebaseApp from '../helpers/Firebase';
+import React, { Component } from 'react'
+import '../css/App.css'
+import * as firebase from 'firebase'
+import Header from '../components/Header'
 
 class App extends Component {
 
@@ -30,9 +30,10 @@ componentWillUnmount () {
     render() {
       return (
         <div className="App">
+          <Header />
+          <div>{ this.props.children }</div>
           <h1>{this.state.authed ? "YES" : "NO" }</h1>
           <div>{firebase.auth().currentUser == null ? "NULL" : firebase.auth().currentUser.email}</div>
-          <div>{ this.props.children }</div>
         </div>
         )
     }
