@@ -19,6 +19,7 @@ const startLoginUser = (dispatch) => {
 }
 
 const loginUserSuccess = (dispatch, user) => {
+	console.log("LOGIN SUCCESS")
 	dispatch({ type: "LOGIN_USER_SUCCESS", payload: user })
 }
 

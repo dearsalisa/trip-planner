@@ -26,7 +26,7 @@ Login = reduxForm({
 	form: 'adduser'
 })(Login)
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({UserReducer: state.UserReducer.get.data})
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(values) {
