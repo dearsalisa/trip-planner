@@ -1,5 +1,5 @@
-import * as UserReducer from '../actions'
+import * as doAuth from '../actions'
 
 export default {
-  ...UserReducer
+  ...doAuth
 }
