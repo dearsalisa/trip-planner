@@ -7,8 +7,8 @@ import {
   MenuItem
 } from 'react-bootstrap'
 import '../css/Header.css'
-//import { Link } from 'react-router'
-//import { LinkContainer } from 'react-router-bootstrap'
+import { Link } from 'react-router'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const Header = () => {
 
@@ -16,7 +16,7 @@ const Header = () => {
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Trip Planner</a>
+        <Link to='/home'>Trip Planner</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -33,7 +33,9 @@ const Header = () => {
         </NavDropdown>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="#">(Username)</NavItem>
+        <LinkContainer to='/profile'>
+          <NavItem eventKey={1} >dearsalisa</NavItem>
+        </LinkContainer>
         <NavItem eventKey={2} href="#">Logout</NavItem>
       </Nav>
     </Navbar.Collapse>

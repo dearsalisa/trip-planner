@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
 				}
 			}
 		case 'LOGIN_USER_SUCCESS':
-			//console.log(action.payload)
+			console.log(action.payload)
 			return {
 				...state,
 				get: {

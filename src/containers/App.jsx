@@ -32,8 +32,6 @@ componentWillUnmount () {
         <div className="App">
           <Header />
           <div>{ this.props.children }</div>
-          <h1>{this.state.authed ? "YES" : "NO" }</h1>
-          <div>{firebase.auth().currentUser == null ? "NULL" : firebase.auth().currentUser.email}</div>
         </div>
         )
     }

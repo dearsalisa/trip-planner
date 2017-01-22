@@ -1,0 +1,21 @@
+/*---- header ----*/
+
+.bg_userinfo {
+	background-image: url('../images/bg_header.jpg');
+	/*background-color: red;*/
+	width: 100%;
+	max-height: 400px;
+	background-position: center;
+	/*background-attachment: fixed;*/
+	background-repeat: no-repeat;
+    
+    padding: 5em;
+}
+
+.profile_pic {
+	max-width: 150px;
+	max-height: 150px;
+	border: solid;
+	border-width: 0.5em;
+	border-color: white;
+}
