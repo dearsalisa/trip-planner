@@ -1,4 +1,4 @@
-/*---- header ----*/
+/*---- user info ----*/
 
 .bg_userinfo {
 	background-image: url('../images/bg_header.jpg');
@@ -18,4 +18,47 @@
 	border: solid;
 	border-width: 0.5em;
 	border-color: white;
+}
+
+/*---- new trip ----*/
+
+.new_trip {
+	margin: 3em;
+}
+
+/*---- tab content ----*/
+
+.tab_header {
+	margin: 3em;
+}
+
+.tab_content {
+	background-color: #F0F0F0;
+	border: 1px solid #ddd;
+	border-top: none;
+	padding: 2em;
+}
+
+/*---- trip box ----*/
+
+.bg_box {
+	background-color: white;
+	margin-bottom: 2em;
+}
+
+/*---- trip pic ----*/
+
+.trip_pic {
+	width: 80%;
+	height: auto;
+	margin: 2em;
+}
+
+.trip_info {
+	margin: 1em;
+}
+
+.trip_name {
+	margin: 0.5em;
+	margin-top: 1.5em;
 }

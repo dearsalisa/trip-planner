@@ -8,7 +8,7 @@ const UserInfo = () => {
     	<center>
     		<img className="profile_pic" src={require('../images/profile_pic.jpg')}/>
     		<h3>dearsalisa</h3>
-    		
+    		<h4>dearsalisa@gmail.com</h4>
     	</center>
     </div>
   )
