@@ -58,6 +58,7 @@
     "firebase": "^3.6.5",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
+    "react-bootstrap-date-picker": "^4.0.0",
     "react-dom": "^15.4.2",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.1",
