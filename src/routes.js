@@ -10,6 +10,7 @@ import Home from './containers/Home'
 import App from './containers/App'
 import Login from './containers/Login'
 import Profile from './containers/Profile'
+import Timeline from './containers/Timeline'
 
 
 export default (store, history) => (
@@ -18,6 +19,7 @@ export default (store, history) => (
 			<route path='login' component={Login} />
 			<route path='home' component={Home} />
 			<route path='profile' component={Profile} />
+			<route path='timeline' component={Timeline} />
 			<Redirect from='*' to='/' />
 		</Route>
 	</Router>

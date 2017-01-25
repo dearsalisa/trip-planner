@@ -14,11 +14,11 @@ const DateTest = React.createClass({
       focused: false
     };
   },
-  // handleChange(value) {
-  //   this.setState({
-  //     date: value
-  //   });
-  // },
+  handleChange(value) {
+    this.setState({
+      date: value
+    });
+  },
   render() {
     const LabelISOString = new Date().toISOString();
     return (

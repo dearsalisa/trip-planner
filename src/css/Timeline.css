@@ -1,0 +1,13 @@
+/*---- trip info ----*/
+
+.trip_header {
+	background-image: url('../images/trip02.jpg');
+	/*background-color: red;*/
+	width: 100%;
+	max-height: 400px;
+	background-position: center;
+	/*background-attachment: fixed;*/
+	background-repeat: no-repeat;
+    color: white;
+    padding: 5em;
+}

@@ -17,7 +17,7 @@ const TripForm = ({ handleSubmit, submitting, reset }) => {
 			<Field name="trip_name" component={renderField} type="text" label='NAME'/>
 			<Field name="trip_detail" component={renderField} type="text" label='DETAIL'/>
 			<br /><br /> 
-			<DateTest />
+			<Field name="date" component={DateTest} type="text" label='DATE'/>
 			<div>
 		    	<Button type='submit' bsStyle="primary" disabled={submitting}>CREAT TRIP</Button>
 		    	{' '}
@@ -30,3 +30,4 @@ const TripForm = ({ handleSubmit, submitting, reset }) => {
 export default TripForm
 
 // onChange={this.handleChange} value={this.state.date}"
+// <DateTest />
