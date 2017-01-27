@@ -20,17 +20,19 @@ class Profile extends Component {
 
   render() {
     return (
-      <div>
+      <center className="bg" >
+      <div className="page">
+      
         <UserInfo />
-        <center>
+        
         <Button className="new_trip" bsStyle="primary" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
           <Glyphicon glyph="plus" /> NEW TRIP
         </Button>
         <Panel className="trip_form" collapsible expanded={this.state.open}>
           <TripForm {...this.props} />
         </Panel>
-        </center>
-
+        
+        <div className="content">
         <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
           <Tab className="tab_content" eventKey={1} title="MY TRIP">
             <TripBox className="trip_box" />
@@ -38,7 +40,9 @@ class Profile extends Component {
           </Tab>
           <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
         </Tabs>
-      </div>
+        </div>
+
+      </div></center>
     )
   }
 

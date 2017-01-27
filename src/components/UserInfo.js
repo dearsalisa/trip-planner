@@ -5,11 +5,9 @@ import * as firebase from 'firebase';
 const UserInfo = () => {
   return (
     <div className="bg_userinfo">
-    	<center>
-    		<img className="profile_pic" src={require('../images/profile_pic.jpg')}/>
-    		<h3>dearsalisa</h3>
-    		<h4>dearsalisa@gmail.com</h4>
-    	</center>
+		<img className="profile_pic" src={require('../images/profile_pic.jpg')}/>
+		<h3>dearsalisa</h3>
+		<h4>dearsalisa@gmail.com</h4>
     </div>
   )
 }

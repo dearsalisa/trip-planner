@@ -14,10 +14,12 @@ class Timeline extends Component {
 
   render() {
     return (
-      <div>
+      <center className="bg">
+      <div className="page">
         <TripInfo />
         <h1>timeline</h1>
       </div>
+      </center>
     )
   }
 

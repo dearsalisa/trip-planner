@@ -34,7 +34,9 @@ class Home extends Component {
     }
 
   	return (
-  		<div>
+  		<center className="bg">
+        <div className="page">
+        <div className="home_content">
         <SlideShow />
         <h1 className="topic">Reccommend</h1>
         <hr />
@@ -45,7 +47,9 @@ class Home extends Component {
         <br/><br/><br/><br/>
 				<h1>{this.state.speed}</h1>
         <button onClick={writeUserData(1,"Salisa","eiei@hotmail.com")}>OK</button>
-			</div>
+        </div>
+        </div>
+			</center>
   	)
   }
 }

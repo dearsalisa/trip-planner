@@ -1,14 +1,13 @@
+
 /*---- user info ----*/
 
 .bg_userinfo {
 	background-image: url('../images/bg_header.jpg');
-	/*background-color: red;*/
-	width: 100%;
+	max-width: 1000px;
 	max-height: 400px;
 	background-position: center;
-	/*background-attachment: fixed;*/
 	background-repeat: no-repeat;
-    
+    text-align: center;
     padding: 5em;
 }
 
@@ -40,15 +39,21 @@
 
 /*---- tab content ----*/
 
+.content {
+	max-width: 1000px;
+	padding-bottom: 2em;
+}
+
 .tab_header {
 	margin: 3em;
 }
 
 .tab_content {
-	background-color: #F0F0F0;
+	background-color: #ddd;
 	border: 1px solid #ddd;
 	border-top: none;
 	padding: 2em;
+	padding-bottom: 0;
 }
 
 /*---- trip box ----*/
@@ -56,6 +61,7 @@
 .bg_box {
 	background-color: white;
 	margin-bottom: 2em;
+	text-align: left; 
 }
 
 /*---- trip pic ----*/

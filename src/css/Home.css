@@ -1,5 +1,11 @@
-
+.home_content {
+	text-align: left;
+}
 /*---- slide show ----*/
+
+.carousel {
+	width: 1000px;
+}
 
 .slide_show {
 	width: 100%;
