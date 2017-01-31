@@ -18,7 +18,7 @@
 
 .topic {
 	margin-left: 2em;
-	margin-bottom: -0.2em;
+	margin-bottom: -0.4em;
 }
 
 hr {
@@ -28,4 +28,23 @@ hr {
 
 h1 {
 	font-size: 2em;
+	margin-top: 2em;
+}
+
+
+
+
+.show-grid {
+	text-align: center;
+	margin: 4em;
+}
+
+.home_pic {
+	width: 200px;
+	height: 120px;
+}
+
+.login_pic {
+	width: 400px;
+	margin: 2em;
 }

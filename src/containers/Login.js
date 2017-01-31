@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm, formValueSelector } from 'redux-form'
 import { doAuth } from '../actions/doAuth'
 import  LoginForm  from '../components/LoginForm'
+import '../css/Home.css'
 
 //const { doAuth } = actions
 
@@ -18,11 +19,12 @@ class Login extends Component {
 	render(){
 		return (
 			<div>
-				<div className="page-header">
-				  <h1>Add User</h1>
-				</div>
+				<center>
+				<img className="login_pic" src={require('../images/login.jpg')}/>
+				<h2>SIGN IN</h2>
 				<LoginForm {...this.props} />
 				<h1>{this.props.currentUser.email}</h1>
+				</center>
 			</div>
 		)
 	}

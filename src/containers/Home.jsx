@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../css/Home.css'
 import * as firebase from 'firebase'
 import SlideShow from '../components/SlideShow'
-import { Button } from 'react-bootstrap'
+import { Button, Row, Col } from 'react-bootstrap'
 
 class Home extends Component {
 
@@ -41,8 +41,44 @@ class Home extends Component {
         <h1 className="topic">Reccommend</h1>
         <hr />
 
+        <Row className="show-grid">
+          <Col xs={6} md={4}>
+            <img className="home_pic" src={require('../images/home01.jpg')}/>
+            <h3>TRIP NAME</h3>
+            <h4>description</h4>
+          </Col>
+          <Col xs={6} md={4}>
+            <img className="home_pic" src={require('../images/home02.jpg')}/>
+            <h3>TRIP NAME</h3>
+            <h4>description</h4>
+          </Col>
+          <Col xsHidden md={4}>
+            <img className="home_pic" src={require('../images/home03.jpg')}/>
+            <h3>TRIP NAME</h3>
+            <h4>description</h4>
+          </Col>
+        </Row>
+
         <h1 className="topic">Popular Trip</h1>
         <hr />
+
+        <Row className="show-grid">
+          <Col xs={6} md={4}>
+            <img className="home_pic" src={require('../images/home04.jpg')}/>
+            <h3>TRIP NAME</h3>
+            <h4>description</h4>
+          </Col>
+          <Col xs={6} md={4}>
+            <img className="home_pic" src={require('../images/home05.jpg')}/>
+            <h3>TRIP NAME</h3>
+            <h4>description</h4>
+          </Col>
+          <Col xsHidden md={4}>
+            <img className="home_pic" src={require('../images/home06.jpg')}/>
+            <h3>TRIP NAME</h3>
+            <h4>description</h4>
+          </Col>
+        </Row>
 
         <br/><br/><br/><br/>
 				<h1>{this.state.speed}</h1>
