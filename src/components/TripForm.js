@@ -4,26 +4,25 @@ import { Field } from 'redux-form'
 import DateTest from '../components/DateTest'
 
 const renderField = ({ input, label, type }) => (
-  <div>
-    <label>{label}</label>{' '}
+	<div>
+	<label>{label}</label>{' '}
 	<input {...input} type={type} /> {' '}
-  </div>
+	</div>
 )
 
 const TripForm = ({ handleSubmit, submitting, reset }) => {
-
 	return (
-	    <form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
+		<form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
 			<Field name="trip_name" component={renderField} type="text" label='NAME'/>
 			<Field name="trip_detail" component={renderField} type="text" label='DETAIL'/>
 			<br /><br /> 
 			<Field name="date" component={DateTest} type="text" label='DATE'/>
 			<div>
-		    	<Button type='submit' bsStyle="primary" disabled={submitting}>CREAT TRIP</Button>
-		    	{' '}
-		    	<Button type='reset' bsStyle="danger" disabled={submitting} onClick={reset}>CANCLE</Button>
-		    </div>
-	    </form>
+				<Button type='submit' bsStyle="primary" disabled={submitting}>CREAT TRIP</Button>
+				{' '}
+				<Button type='reset' bsStyle="danger" disabled={submitting} onClick={reset}>CANCLE</Button>
+			</div>
+		</form>
 	)
 }
 

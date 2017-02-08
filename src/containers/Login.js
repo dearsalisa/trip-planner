@@ -9,12 +9,12 @@ import '../css/Home.css'
 
 class Login extends Component {
 
-    state = {}
+	state = {}
 
-    //componentDidMount() {
-    // // // 	this.prop.doAuth()
-    // 	console.log(this.props.currentUser)
-    // }
+	//componentDidMount() {
+	// // // 	this.prop.doAuth()
+	// 	console.log(this.props.currentUser)
+	// }
 
 	render(){
 		return (
@@ -39,9 +39,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(values) {
-    dispatch(doAuth(values))
-  }
+	onSubmit(values) {
+		dispatch(doAuth(values))
+	}
 })
 
 Login = connect(

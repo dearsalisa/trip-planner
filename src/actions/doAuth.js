@@ -4,17 +4,17 @@ import { push } from 'react-router-redux'
 export const doAuth = ({ email, password }) => {
 	console.log(email,password);
 	return (dispatch) => {
-		startLoginUser(dispatch)
-		firebase.auth().signInWithEmailAndPassword(email, password)
-			.then((user) => {
-				loginUserSuccess(dispatch, user)
-				dispatch(push(`/home`))
-			})
-			.catch(() => {
-				firebase.auth().createUserWithEmailAndPassword(email, password)
-					.then((user) => loginUserSuccess(dispatch, user))
-					.catch(() => loginUserFail(dispatch))
-			})
+	startLoginUser(dispatch)
+	firebase.auth().signInWithEmailAndPassword(email, password)
+		.then((user) => {
+			loginUserSuccess(dispatch, user)
+			dispatch(push(`/home`))
+		})
+		.catch(() => {
+			firebase.auth().createUserWithEmailAndPassword(email, password)
+				.then((user) => loginUserSuccess(dispatch, user))
+				.catch(() => loginUserFail(dispatch))
+		})
 	}
 }
 

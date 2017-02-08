@@ -45,7 +45,6 @@ class Profile extends Component {
       </div></center>
     )
   }
-
 }
 
 Profile = reduxForm({

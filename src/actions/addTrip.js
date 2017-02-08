@@ -5,12 +5,12 @@ export const addTrip = ({ trip_name, trip_detail, date }) => {
 	console.log(trip_name, trip_detail, date);
 	return (dispatch) => {
 		firebase.database().ref('test').set({
-        name: trip_name,
-        detail: trip_detail
-      })
+			name: trip_name,
+			detail: trip_detail
+		})
 		.then(() => {
-				dispatch(push(`/timeline`))
-			})
+			dispatch(push(`/timeline`))
+		})
 	}
 }
 
