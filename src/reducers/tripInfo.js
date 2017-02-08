@@ -24,14 +24,14 @@ export default (state = initialState, action) => {
 				}
 			}
 		case 'ADD_TRIP_SUCCESS':
-			console.log(action.payload)
+			// console.log(action.payload)
 			return {
 				...state,
 				get: {
 					...state.get,
 					isFinished: true,
-					status: 'Success',
-					data: action.payload,
+					status: 'Success'
+					// data: action.payload,
 				}
 			}
 		case 'ADD_TRIP_FAIL':
@@ -41,6 +41,20 @@ export default (state = initialState, action) => {
 					...state.get,
 					isFinished: false,
 					status: 'Error'
+				}
+			}
+		case 'GET_TRIP_SUCCESS':
+		// for(var key in action.payload) {
+		// 	console.log(action.payload[key])
+		// }
+		console.log(action.payload)
+			return {
+				...state,
+				get: {
+					...state.get,
+					isFinished: true,
+					status: 'Success',
+					data: action.payload,
 				}
 			}
 		default:

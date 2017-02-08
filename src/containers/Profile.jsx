@@ -9,6 +9,8 @@ import TripForm from '../components/TripForm'
 import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
 import { addTrip } from '../actions/addTrip'
 
+import { getTrips } from '../actions/getTrips'
+
 class Profile extends Component {
 
   constructor(...args) {
@@ -18,31 +20,43 @@ class Profile extends Component {
     };
   }
 
+  componentWillMount(){
+    this.props.getTrips()
+  }
+
   render() {
+
+    var item = this.props.tripInfo
+    var triprow = Object.keys(item).map(function(key, index) {
+      console.log(key)
+      return(
+        <TripBox className="trip_box" key={key} name={item[key].name} detail={item[key].detail} />
+      )
+    });
+
     return (
       <center className="bg" >
-      <div className="page">
-      
-        <UserInfo />
+        <div className="page">
         
-        <Button className="new_trip" bsStyle="primary" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
-          <Glyphicon glyph="plus" /> NEW TRIP
-        </Button>
-        <Panel className="trip_form" collapsible expanded={this.state.open}>
-          <TripForm {...this.props} />
-        </Panel>
-        
-        <div className="content">
-        <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
-          <Tab className="tab_content" eventKey={1} title="MY TRIP">
-            <TripBox className="trip_box" />
-            <TripBox className="trip_box" />
-          </Tab>
-          <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
-        </Tabs>
+          <UserInfo />
+          
+          <Button className="new_trip" bsStyle="primary" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
+            <Glyphicon glyph="plus" /> NEW TRIP
+          </Button>
+          <Panel className="trip_form" collapsible expanded={this.state.open}>
+            <TripForm {...this.props} />
+          </Panel>
+          
+          <div className="content">
+          <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
+            <Tab className="tab_content" eventKey={1} title="MY TRIP">
+              {triprow}
+            </Tab>
+            <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
+          </Tabs>
+          </div>
         </div>
-
-      </div></center>
+      </center>
     )
   }
 }
@@ -56,6 +70,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  getTrips() {
+    dispatch(getTrips())
+  },
   onSubmit(values) {
     dispatch(addTrip(values))
   }
