@@ -26,12 +26,14 @@ class Profile extends Component {
 
   render() {
 
-    var item = this.props.tripInfo
+    var item = this.props.allTrips
     var triprow = Object.keys(item).map(function(key, index) {
-      console.log(key)
-      return(
-        <TripBox className="trip_box" key={key} name={item[key].name} detail={item[key].detail} />
-      )
+      //console.log(key)
+      if(item[key] !== undefined) {
+        return(
+          <TripBox className="trip_box" key={key} tripKey={key} name={item[key].name} detail={item[key].detail} />
+        )
+      }
     });
 
     return (
@@ -66,7 +68,7 @@ Profile = reduxForm({
 })(Profile)
 
 const mapStateToProps = (state) => ({
-  tripInfo: state.tripInfo.get.data
+  allTrips: state.allTrips.get.data
 })
 
 const mapDispatchToProps = (dispatch) => ({

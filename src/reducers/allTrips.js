@@ -14,17 +14,8 @@ const initialState = {
 export default (state = initialState, action) => {
 	let data, index
 	switch(action.type) {
-		case 'ADD_TRIP':
-			return {
-				...state,
-				get: {
-					...state.get,
-					isFinished: false,
-					status: 'Loading'
-				}
-			}
-		case 'ADD_TRIP_SUCCESS':
-			//console.log(action.payload)
+		case 'GET_TRIP_SUCCESS':
+		//console.log(action.payload)
 			return {
 				...state,
 				get: {
@@ -32,15 +23,6 @@ export default (state = initialState, action) => {
 					isFinished: true,
 					status: 'Success',
 					data: action.payload
-				}
-			}
-		case 'ADD_TRIP_FAIL':
-			return {
-				...state,
-				get: {
-					...state.get,
-					isFinished: false,
-					status: 'Error'
 				}
 			}
 		default:

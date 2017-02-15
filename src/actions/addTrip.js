@@ -1,14 +1,19 @@
 import firebase from 'firebase'
 import { push } from 'react-router-redux'
 
-export const addTrip = ({ trip_name, trip_detail, date }) => {
-	console.log(trip_name, trip_detail, date);
+var today = new Date().toISOString();
+export const addTrip = ({ trip_name, trip_detail, start=today, end=today }) => {
+	console.log(trip_name, trip_detail, start, end);
 	return (dispatch) => {
-		firebase.database().ref('Trips').push({
+		var fb = firebase.database().ref('Trips')
+		var newTrip = fb.push()
+		fb.push({
 			name: trip_name,
 			detail: trip_detail
 		})
-		.then((trip) => {
+		.then(() => {
+			var trip = [newTrip.key, trip_name, trip_detail, start, end]
+			//console.log(trip)
 			addTripSuccess(dispatch, trip)
 			dispatch(push(`/timeline`))
 		})

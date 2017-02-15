@@ -25,9 +25,9 @@ const DateTest = React.createClass({
 			<div>
 				<FormGroup controlId="change_handler">
 					<ControlLabel>STARE DATE</ControlLabel>
-					<DatePicker placeholder="STARE DATE" value={this.state.date} id="change_handler_example" />
+					<DatePicker placeholder="STARE DATE" value={this.state.date} id="start-datepicker" onChange={this.handleChange}/>
 					<ControlLabel>END DATE</ControlLabel>
-					<DatePicker placeholder="END DATE" value={this.state.date} id="change_handler_example" />
+					<DatePicker placeholder="END DATE" value={this.state.date} id="end-datepicker" onChange={this.handleChange} />
 				</FormGroup>
 			</div>
 		)

@@ -3,21 +3,35 @@ import { connect } from 'react-redux'
 import '../css/Timeline.css'
 import * as firebase from 'firebase'
 import { reduxForm, formValueSelector } from 'redux-form'
-import UserInfo from '../components/UserInfo'
-import TripBox from '../components/TripBox'
-import TripForm from '../components/TripForm'
+import TimelineForm from '../components/TimelineForm'
 import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
-import { addTrip } from '../actions/addTrip'
+//import { addTrip } from '../actions/addTrip'
 import TripInfo from '../components/TripInfo'
 
 class Timeline extends Component {
 
   render() {
+    //console.log(this.props.tripInfo)
+    var oneDay = 24*60*60*1000;
+    var firstDate = new Date(this.props.tripInfo[3]);
+    var secondDate = new Date(this.props.tripInfo[4]);
+    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+
+    var rows = [];
+    for(var i=1; i<=5; i++){
+        rows.push(
+          <div key={i}>
+            <h1>Day {i}</h1>
+            <TimelineForm />
+          </div>
+        );
+    }
+
     return (
       <center className="bg">
       <div className="page">
-        <TripInfo />
-        <h1>timeline</h1>
+        <TripInfo tripInfo={this.props.tripInfo} />
+        {rows}
       </div>
       </center>
     )
@@ -25,23 +39,23 @@ class Timeline extends Component {
 
 }
 
-// Profile = reduxForm({
-//   form: 'addtrip'
-// })(Profile)
+Timeline = reduxForm({
+  form: 'addtimeline'
+})(Timeline)
 
-// const mapStateToProps = (state) => ({
-//   tripInfo: state.tripInfo.get.data
-// })
+const mapStateToProps = (state) => ({
+  tripInfo: state.tripInfo.get.data
+})
 
-// const mapDispatchToProps = (dispatch) => ({
-//   onSubmit(values) {
-//     dispatch(addTrip(values))
-//   }
-// })
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(values) {
+    dispatch()
+  }
+})
 
-// Profile = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Profile)
+Timeline = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Timeline)
 
 export default Timeline

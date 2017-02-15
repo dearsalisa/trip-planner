@@ -11,7 +11,7 @@ import App from './containers/App'
 import Login from './containers/Login'
 import Profile from './containers/Profile'
 import Timeline from './containers/Timeline'
-
+import Tripview from './containers/Tripview'
 
 export default (store, history) => (
 	<Router history={syncHistoryWithStore(history, store)}>
@@ -20,6 +20,7 @@ export default (store, history) => (
 			<route path='home' component={Home} />
 			<route path='profile' component={Profile} />
 			<route path='timeline' component={Timeline} />
+			<route path='tripview/:tripKey' component={Tripview} />
 			<Redirect from='*' to='/' />
 		</Route>
 	</Router>

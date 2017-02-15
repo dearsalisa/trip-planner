@@ -1,12 +1,19 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { Field } from 'redux-form'
-import DateTest from '../components/DateTest'
+import DatePicker from 'react-bootstrap-date-picker';
 
 const renderField = ({ input, label, type }) => (
 	<div>
 	<label>{label}</label>{' '}
 	<input {...input} type={type} /> {' '}
+	</div>
+)
+
+var today = new Date().toISOString()
+const datePicker = ({ input, label, type, defaultValue }) => (
+	<div>
+		<DatePicker {...input} value={ input.value? input.value : today} />
 	</div>
 )
 
@@ -16,7 +23,8 @@ const TripForm = ({ handleSubmit, submitting, reset }) => {
 			<Field name="trip_name" component={renderField} type="text" label='NAME'/>
 			<Field name="trip_detail" component={renderField} type="text" label='DETAIL'/>
 			<br /><br /> 
-			<Field name="date" component={DateTest} type="text" label='DATE'/>
+			<Field name="start" component={datePicker} type="date" label='START'/>
+			<Field name="end" component={datePicker} type="date" label='END'/>
 			<div>
 				<Button type='submit' bsStyle="primary" disabled={submitting}>CREAT TRIP</Button>
 				{' '}
@@ -28,5 +36,6 @@ const TripForm = ({ handleSubmit, submitting, reset }) => {
 
 export default TripForm
 
-// onChange={this.handleChange} value={this.state.date}"
-// <DateTest />
+//<Field name="date" component={DateTest} type="text" label='DATE'/>
+
+//placeholder="STARE DATE" value={this.state.date} id="start-datepicker" onChange={this.handleChange}
