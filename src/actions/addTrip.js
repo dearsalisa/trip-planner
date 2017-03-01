@@ -3,17 +3,16 @@ import { push } from 'react-router-redux'
 
 var today = new Date().toISOString();
 export const addTrip = ({ trip_name, trip_detail, start=today, end=today }) => {
-	console.log(trip_name, trip_detail, start, end);
+	//console.log(trip_name, trip_detail, start, end);
 	return (dispatch) => {
 		var fb = firebase.database().ref('Trips')
-		var newTrip = fb.push()
-		fb.push({
+		var newTrip = fb.push({
 			name: trip_name,
 			detail: trip_detail
 		})
-		.then(() => {
+		.then((newTrip) => {
 			var trip = [newTrip.key, trip_name, trip_detail, start, end]
-			//console.log(trip)
+			//console.log(newTrip.key)
 			addTripSuccess(dispatch, trip)
 			dispatch(push(`/timeline`))
 		})

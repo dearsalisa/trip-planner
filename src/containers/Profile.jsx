@@ -8,7 +8,6 @@ import TripBox from '../components/TripBox'
 import TripForm from '../components/TripForm'
 import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
 import { addTrip } from '../actions/addTrip'
-
 import { getTrips } from '../actions/getTrips'
 
 class Profile extends Component {

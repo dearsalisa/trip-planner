@@ -13,8 +13,8 @@ const renderField = ({ input, label, type }) => (
 const TimelineForm = ({ handleSubmit, submitting, reset }) => {
 	return (
 		<form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
-			<Field name="trip_name" component={renderField} type="text" label='TIME'/>
-			<Field name="trip_detail" component={renderField} type="text" label='NAME'/>
+			<Field name="time" component={renderField} type="text" label='TIME'/>
+			<Field name="name" component={renderField} type="text" label='NAME'/>
 			<div>
 				<Button type='submit' bsStyle="primary" disabled={submitting}>ADD</Button>
 			</div>

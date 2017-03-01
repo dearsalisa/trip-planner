@@ -6,6 +6,7 @@ import currentUser from './currentUser'
 import tripInfo from './tripInfo'
 import allTrips from './allTrips'
 import tripbyId from './tripbyId'
+import timeline from './timeline'
 
 export default combineReducers({
 	routing: routerReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
 	currentUser,
 	tripInfo,
 	allTrips,
-	tripbyId
+	tripbyId,
+	timeline
 })
