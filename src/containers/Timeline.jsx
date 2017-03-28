@@ -4,8 +4,9 @@ import '../css/Timeline.css'
 import * as firebase from 'firebase'
 //import { reduxForm, formValueSelector } from 'redux-form'
 import TimelineForm from '../components/TimelineForm'
-import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
+import { Button, Glyphicon, Tabs, Tab, Panel, Col, FormGroup, ControlLabel, FormControl, option } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
+import Edit from '../components/Edit'
 import { addTimeline } from '../actions/addTimeline'
 import { getTimeline } from '../actions/getTimeline'
 
@@ -21,18 +22,25 @@ class Timeline extends Component {
     var newDate = {day: newInput, travel: []}
     this.state.trip.push(newDate)
     this.setState({trip: this.state.trip})
-    console.log(this.state.trip)
+    //console.log(this.state.trip)
   }
 
   addTravel(input, event) {
     event.preventDefault();
-    console.log(input.day)
-    var nameInput = this.refs.name.value;
-    var newList = {name: nameInput, time: "11 AM"}
+    console.log(input.day);
+    
+    var x = "name"+input.day
+    var nameInput = this.refs[x].value;
+    
+    var y = "time"+input.day
+    var timeInput = this.refs[y].value;
+    
+    var newList = {name: nameInput, time: timeInput}
+    
     this.state.trip[input.day-1].travel.push(newList)
     this.setState({trip: this.state.trip})
-    this.refs.name.value = "";
-    console.log(this.state.trip)
+    this.refs[x].value = "";
+    //console.log(this.state.trip)
   }
 
   render() {
@@ -42,24 +50,41 @@ class Timeline extends Component {
       <center className="bg">
       <div className="page">
         <TripInfo tripInfo={this.props.tripInfo} />
-
-        <button onClick={ () => this.appendInput() }>ADD</button>
-
-        {
-          this.state.trip.map(input => 
-            <div key={input.day}>
-              <h1>Day {input.day}</h1>
-              {
-                this.state.trip[input.day-1].travel.map(aaa => <div key={input.day+aaa.name}>{aaa.time} --- {aaa.name}</div>)
-              }
-              <form onSubmit={this.addTravel.bind(this, input)} >
-                <input placeholder="name" ref="name" />
-                <button>Add</button>
-              </form>
-            </div>
-          )
-        }
-
+        <Col className="left_box" md={4}>TRIP</Col>
+        <Col className="right_box" md={8}>
+          {
+            this.state.trip.map(input => 
+              <div key={input.day}>
+                <h2 className="day" >Day {input.day}</h2>
+                {
+                  this.state.trip[input.day-1].travel.map(aaa => 
+                    <div className="event_form" key={input.day+aaa.name}>
+                      
+                      <h4><b>{aaa.time}</b><Edit /></h4>
+                      <h4>{aaa.name}</h4>
+                    </div>
+                  )
+                }
+                <form className="timeline_form" onSubmit={this.addTravel.bind(this, input)} >
+                  <div className="time" >
+                    <label>Time</label>
+                    <select  ref={"time"+input.day} placeholder="select time">
+                      <option value="9:00">9:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="12:00">12:00</option>
+                    </select>
+                  </div>
+                  <input placeholder="name" ref={"name"+input.day} />
+                  <button>Add</button>
+                </form>
+              </div>
+            )
+          }
+          <center>
+            <Button className="add_day" bsStyle="primary" onClick={ () => this.appendInput() }>ADD DAY</Button>
+          </center>
+        </Col>
       </div>
       </center>
     )

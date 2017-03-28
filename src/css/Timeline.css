@@ -11,3 +11,65 @@
     color: white;
     padding: 5em;
 }
+
+/* content layout */
+
+.left_box {
+	background-color: #D0D0D0;
+	height: 200px;
+}
+
+.right_box {
+	background-color: #F0F0F0;
+	text-align: left;
+	padding-bottom: 5em;
+}
+
+.right_box.col-md-8 {
+	min-height: 500px;
+}
+
+.left_box.col-md-4 {
+	min-height: 300px;
+}
+
+/* add day button */
+
+.add_day {
+	margin: 2em;
+}
+
+/* text */
+
+.day {
+	background-color: #D8D8D8;
+	width: 120px;
+	padding: 0.25em;
+	text-align: center;
+	margin-bottom: 0;
+}
+
+.time {
+	width: 100px;
+}
+
+.edit {
+	font-size: 0.75em;
+	display: inline-block;
+	margin-left: 1em;
+}
+
+.timeline_form {
+	background-color: #E8E8E8;
+	padding: 0.5em 1em 1.5em 1em; 
+	margin: 0;
+}
+
+.event_form {
+	background-color: #E8E8E8;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+h4 {
+	padding: 0;
+}
