@@ -38,16 +38,16 @@ class Profile extends Component {
     return (
       <center className="bg" >
         <div className="page">
-        
-          <UserInfo />
-          
+
+          <UserInfo {...this.props.user}/>
+
           <Button className="new_trip" bsStyle="primary" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
             <Glyphicon glyph="plus" /> NEW TRIP
           </Button>
           <Panel className="trip_form" collapsible expanded={this.state.open}>
             <TripForm {...this.props} />
           </Panel>
-          
+
           <div className="content">
           <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
             <Tab className="tab_content" eventKey={1} title="MY TRIP">
@@ -67,7 +67,8 @@ Profile = reduxForm({
 })(Profile)
 
 const mapStateToProps = (state) => ({
-  allTrips: state.allTrips.get.data
+  allTrips: state.allTrips.get.data,
+  user: state.auth.user
 })
 
 const mapDispatchToProps = (dispatch) => ({

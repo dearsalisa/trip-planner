@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import '../css/Profile.css';
 import * as firebase from 'firebase';
 
-const UserInfo = () => {
+const UserInfo = (user) => {
 	return (
 		<div className="bg_userinfo">
-			<img className="profile_pic" src={require('../images/profile_pic.jpg')}/>
-			<h3>dearsalisa</h3>
-			<h4>dearsalisa@gmail.com</h4>
+			<img className="profile_pic" src={user.photoURL}/>
+			<h3>{user.displayName}</h3>
+			<h4>{user.email == null ? "" : user.emil}</h4>
 		</div>
 	)
 }

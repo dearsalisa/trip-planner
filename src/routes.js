@@ -16,7 +16,6 @@ import { isLogin } from './actions/authAction'
 
 export default (store, history) => (
 	<Router history={syncHistoryWithStore(history, store)}>
-		{console.log(store.getState().auth.isUserSignedIn)}
 		<route path='/login' component={Login} />
 			<Route path='/' component={App}  onEnter = { (nextState, replace, callback) => {
 						store.dispatch(isLogin()).then( (data) => {

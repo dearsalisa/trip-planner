@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import { push } from 'react-router-redux'
 
 export function isLogin() {
   return (dispatch) => {
@@ -15,4 +16,31 @@ export function isLogin() {
     	})
     })
   }
+}
+
+export function fbSignIn() {
+    return (dispatch) => {
+      dispatch({type:"LOGIN_IN_PROGRESS"})
+
+      const provider = new firebase.auth.FacebookAuthProvider();
+
+      firebase.auth().signInWithPopup(provider)
+      .then((result) => {
+        const { user: { uid, displayName, photoURL, email } } = result;
+
+        firebase.database().ref(`users/${ uid }`).set({
+          displayName,
+          photoURL,
+          email,
+          lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
+        });
+
+        console.log(result)
+        dispatch({type: "LOGIN_USER_SUCCESS",user: result.user.providerData[0]});
+        dispatch(push("/home"))
+      })
+      .catch((error) => {
+        dispatch({type: "LOGIN_USER_FAIL"})
+      });
+    }
 }

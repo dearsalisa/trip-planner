@@ -3,7 +3,7 @@ const initialState = {
     isInProgress: false,
     hasError: false,
     errorMessage: '',
-    uid: 0
+    user: {}
 };
 
 const auth = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const auth = (state = initialState, action) => {
     case "LOGINED":
       return {
         ...state,
-        uid: action.user.uid,
+        user: action.user,
         isInProgress: false,
         isUserSignedIn: true
       }
@@ -31,10 +31,22 @@ const auth = (state = initialState, action) => {
         isUserSignedIn: false
       }
     case "LOGIN_USER_SUCCESS":
-    return {
-      ...state,
-      isUserSignedIn: true
-    }
+      return {
+        ...state,
+        user: action.user,
+        isInProgress: false,
+        isUserSignedIn: true
+      }
+    case "LOGIN_IN_PROGRESS":
+      return {
+        ...state,
+        isInProgress: true
+      }
+    case "LOGIN_USER_FAIL":
+      return {
+        ...state,
+        isInProgress: false,
+      }
     default:
       return {...state}
   }
