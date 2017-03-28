@@ -7,11 +7,12 @@ import tripInfo from './tripInfo'
 import allTrips from './allTrips'
 import tripbyId from './tripbyId'
 import timeline from './timeline'
+import authReducer from './auth'
 
 export default combineReducers({
 	routing: routerReducer,
 	form: formReducer,
-	
+	auth: authReducer,
 	currentUser,
 	tripInfo,
 	allTrips,
