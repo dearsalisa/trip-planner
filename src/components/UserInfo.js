@@ -7,7 +7,7 @@ const UserInfo = (user) => {
 		<div className="bg_userinfo">
 			<img className="profile_pic" src={user.photoURL}/>
 			<h3>{user.displayName}</h3>
-			<h4>{user.email == null ? "" : user.emil}</h4>
+			<h4>{user.email == null ? "" : user.email}</h4>
 		</div>
 	)
 }

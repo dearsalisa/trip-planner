@@ -44,3 +44,18 @@ export function fbSignIn() {
       });
     }
 }
+
+export function fbSignOut() {
+    return (dispatch) => {
+      //dispatch({type:"LOGIN_OUT_PROGRESS"})
+
+      firebase.auth().signOut()
+      .then(() => {
+        //dispatch({type: "LOGOUT_USER_SUCCESS"});
+        dispatch(push("/login"))
+      })
+      .catch((error) => {
+        //dispatch({type: "LOGOUT_USER_FAIL"})
+      });
+    }
+}
