@@ -38,21 +38,27 @@ class Home extends Component {
 				<div className="page">
 				<div className="home_content">
 				<SlideShow />
+				<br/><br/>
 				<h1 className="topic">Reccommend</h1>
 				<hr />
 
 				<Row className="show-grid">
-					<Col xs={6} md={4}>
+					<Col xs={6} md={3}>
 						<img className="home_pic" src={require('../images/home01.jpg')}/>
 						<h3>TRIP NAME</h3>
 						<h4>description</h4>
 					</Col>
-					<Col xs={6} md={4}>
+					<Col xs={6} md={3}>
 						<img className="home_pic" src={require('../images/home02.jpg')}/>
 						<h3>TRIP NAME</h3>
 						<h4>description</h4>
 					</Col>
-					<Col xsHidden md={4}>
+					<Col xs={6} md={3}>
+						<img className="home_pic" src={require('../images/home03.jpg')}/>
+						<h3>TRIP NAME</h3>
+						<h4>description</h4>
+					</Col>
+					<Col xs={6} md={3}>
 						<img className="home_pic" src={require('../images/home03.jpg')}/>
 						<h3>TRIP NAME</h3>
 						<h4>description</h4>
@@ -63,26 +69,28 @@ class Home extends Component {
 				<hr />
 
 				<Row className="show-grid">
-					<Col xs={6} md={4}>
+					<Col xs={6} md={3}>
 						<img className="home_pic" src={require('../images/home04.jpg')}/>
 						<h3>TRIP NAME</h3>
 						<h4>description</h4>
 					</Col>
-					<Col xs={6} md={4}>
+					<Col xs={6} md={3}>
 						<img className="home_pic" src={require('../images/home05.jpg')}/>
 						<h3>TRIP NAME</h3>
 						<h4>description</h4>
 					</Col>
-					<Col xsHidden md={4}>
+					<Col xs={6} md={3}>
 						<img className="home_pic" src={require('../images/home06.jpg')}/>
+						<h3>TRIP NAME</h3>
+						<h4>description</h4>
+					</Col>
+					<Col xs={6} md={3}>
+						<img className="home_pic" src={require('../images/home03.jpg')}/>
 						<h3>TRIP NAME</h3>
 						<h4>description</h4>
 					</Col>
 				</Row>
 
-				<br/><br/><br/><br/>
-				<h1>{this.state.speed}</h1>
-				<button onClick={writeUserData(1,"Salisa","eiei@hotmail.com")}>OK</button>
 				</div>
 				</div>
 			</center>
