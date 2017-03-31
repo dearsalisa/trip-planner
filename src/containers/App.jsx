@@ -16,16 +16,4 @@ class App extends Component {
 	}
 }
 
-// const mapStateToProps = (state) => ({
-//   user: state.auth.user
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-// })
-
-// App = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(App)
-
 export default App;

@@ -28,16 +28,19 @@ export function fbSignIn() {
       .then((result) => {
         const { user: { uid, displayName, photoURL, email } } = result;
 
-        firebase.database().ref(`users/${ uid }`).set({
-          displayName,
-          photoURL,
-          email,
-          lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
-        });
+        firebase.database().ref(`users/${ uid }`).once("value").then( (snapshot) => {
+          if(!snapshot.hasChild("displayName")) {
+            firebase.database().ref(`users/${ uid }`).set({
+              displayName,
+              photoURL,
+              email,
+              lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
+            });
+          }
 
-        console.log(result)
-        dispatch({type: "LOGIN_USER_SUCCESS",user: result.user.providerData[0]});
-        dispatch(push("/home"))
+          dispatch({type: "LOGIN_USER_SUCCESS",user: result.user.providerData[0], tips: snapshot.child('trips').val()});
+          dispatch(push("/home"))
+        })
       })
       .catch((error) => {
         dispatch({type: "LOGIN_USER_FAIL"})
@@ -47,15 +50,15 @@ export function fbSignIn() {
 
 export function fbSignOut() {
     return (dispatch) => {
-      //dispatch({type:"LOGIN_OUT_PROGRESS"})
+      dispatch({type:"LOGIN_OUT_PROGRESS"})
 
       firebase.auth().signOut()
       .then(() => {
-        //dispatch({type: "LOGOUT_USER_SUCCESS"});
+        dispatch({type: "LOGOUT_USER_SUCCESS"});
         dispatch(push("/login"))
       })
       .catch((error) => {
-        //dispatch({type: "LOGOUT_USER_FAIL"})
+        dispatch({type: "LOGOUT_USER_FAIL"})
       });
     }
 }

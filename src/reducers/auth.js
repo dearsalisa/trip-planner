@@ -47,6 +47,11 @@ const auth = (state = initialState, action) => {
         ...state,
         isInProgress: false,
       }
+    case "LOGOUT_USER_SUCCESS":
+      return {
+        ...state,
+        isUserSignedIn: false
+      }
     default:
       return {...state}
   }
