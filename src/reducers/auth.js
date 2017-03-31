@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const auth = (state = initialState, action) => {
-  console.log("auth:" + action.type)
   switch (action.type) {
     case "CHECKING_LOGIN_STATUS":
       if(state.isUserSignedIn) {
