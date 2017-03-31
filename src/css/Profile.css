@@ -1,0 +1,82 @@
+
+/*---- user info ----*/
+
+.bg_userinfo {
+	background-image: url('../images/bg_header.jpg');
+	max-width: 1000px;
+	max-height: 400px;
+	background-position: center;
+	background-repeat: no-repeat;
+    text-align: center;
+    padding: 5em;
+}
+
+.profile_pic {
+	max-width: 150px;
+	max-height: 150px;
+	border: solid;
+	border-width: 0.5em;
+	border-color: white;
+}
+
+/*---- new trip ----*/
+
+.new_trip {
+	margin: 3em;
+	border: none;
+}
+
+.trip_form.panel.panel-default {
+	width: 50%;
+	background-color: #F0F0F0;
+	border: none;
+	margin: 2em;
+}
+
+.form {
+	padding: 2em;
+}
+
+/*---- tab content ----*/
+
+.content {
+	max-width: 1000px;
+	padding-bottom: 2em;
+}
+
+.tab_header {
+	margin: 3em;
+}
+
+.tab_content {
+	background-color: #ddd;
+	border: 1px solid #ddd;
+	border-top: none;
+	padding: 2em;
+	padding-bottom: 0;
+}
+
+/*---- trip box ----*/
+
+.bg_box {
+	background-color: white;
+	margin-bottom: 2em;
+	text-align: left; 
+}
+
+/*---- trip pic ----*/
+
+.trip_pic {
+	width: 80%;
+	height: auto;
+	margin: 2em;
+}
+
+.trip_info {
+	margin: 1em;
+}
+
+.trip_name {
+	margin: 0.5em;
+	margin-top: 1.5em;
+}

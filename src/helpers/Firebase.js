@@ -1,12 +1,4 @@
-import React from 'react'
-import { render } from 'react-dom'
-
-
 import firebase from 'firebase'
-
-import Root from './Root'
-
-const rootEl = document.getElementById('root')
 
 var config = {
     apiKey: "AIzaSyBClQ0-3LBYGgTE4Z5O_eWustSoikQ9HFQ",
@@ -16,11 +8,4 @@ var config = {
     messagingSenderId: "87235016745"
 }
 
-firebase.initializeApp(config)
-
-
-
-render(
-	<Root />,
-	rootEl
-)
+export default firebase.initializeApp(config)

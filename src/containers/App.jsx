@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
-import '../css/App.css';
-import * as firebase from 'firebase';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import '../css/App.css'
+import * as firebase from 'firebase'
+import Header from '../components/Header'
 
 class App extends Component {
 
-    // constructor() {
-    //   super();
-    //   this.state = {
-    //     speed: 100
-    //   };
-    // }
-
-    render() {
-      return (
-        <div className="App">
-          <div>{ this.props.children }</div>
-        </div>
-        )
-    }
+	render() {
+		return (
+			<div className="App">
+				<Header />
+				<div>{ this.props.children }</div>
+			</div>
+			)
+	}
 }
 
 export default App;

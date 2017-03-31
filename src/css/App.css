@@ -23,3 +23,16 @@
   to { transform: rotate(360deg); }
 }
 */
+
+body, html {
+  background-color: #eaece5;
+}
+
+.bg {
+  background-color: #eaece5;
+}
+
+.page {
+  background-color: white;
+  width: 1000px;
+}

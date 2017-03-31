@@ -1,5 +1,12 @@
-
+.home_content {
+	text-align: left;
+	padding-bottom: 5em;
+}
 /*---- slide show ----*/
+
+.carousel {
+	width: 1000px;
+}
 
 .slide_show {
 	width: 100%;
@@ -12,7 +19,7 @@
 
 .topic {
 	margin-left: 2em;
-	margin-bottom: -0.2em;
+	margin-bottom: -0.4em;
 }
 
 hr {
@@ -22,4 +29,25 @@ hr {
 
 h1 {
 	font-size: 2em;
+	margin-top: 2em;
+}
+
+
+
+
+.show-grid {
+	text-align: center;
+	margin: 4em;
+	padding-left: 5em;
+	padding-right: 5em;
+}
+
+.home_pic {
+	width: 200px;
+	height: 120px;
+}
+
+.login_pic {
+	width: 400px;
+	margin: 2em;
 }
