@@ -1,5 +1,13 @@
 import firebase from 'firebase'
-import { push } from 'react-router-redux'
+
+const addTripSuccess = (dispatch, trip) => {
+	console.log("ADD TRIP SUCCESS")
+	dispatch({ type: "ADD_TRIP_SUCCESS", newTrip: trip })
+}
+
+const addTripFail = (dispatch) => {
+	dispatch({ type: "ADD_TRIP_FAIL" })
+}
 
 export const addTrip = ({ trip_name, trip_detail, user }) => {
 	return (dispatch) => {
@@ -23,13 +31,4 @@ export const addTrip = ({ trip_name, trip_detail, user }) => {
       addTripFail(dispatch)
     })
 	}
-}
-
-const addTripSuccess = (dispatch, trip) => {
-	console.log("ADD TRIP SUCCESS")
-	dispatch({ type: "ADD_TRIP_SUCCESS", newTrip: trip })
-}
-
-const addTripFail = (dispatch) => {
-	dispatch({ type: "ADD_TRIP_FAIL" })
 }

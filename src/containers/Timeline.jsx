@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Timeline.css'
-import * as firebase from 'firebase'
-//import { reduxForm, formValueSelector } from 'redux-form'
-import TimelineForm from '../components/TimelineForm'
-import { Button, Glyphicon, Tabs, Tab, Panel, Col, FormGroup, ControlLabel, FormControl, option } from 'react-bootstrap'
+//import { Button, Glyphicon, Tabs, Tab, Panel, Col, FormGroup, ControlLabel, FormControl, option } from 'react-bootstrap'
+import { Button, Col } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
-import { addTimeline } from '../actions/addTimeline'
-import { getTimeline } from '../actions/getTimeline'
+//import { addTimeline } from '../actions/addTimeline'
+//import { getTimeline } from '../actions/getTimeline'
 
 class Timeline extends Component {
 
@@ -28,15 +26,15 @@ class Timeline extends Component {
   addTravel(input, event) {
     event.preventDefault();
     console.log(input.day);
-    
+
     var x = "name"+input.day
     var nameInput = this.refs[x].value;
-    
+
     var y = "time"+input.day
     var timeInput = this.refs[y].value;
-    
+
     var newList = {name: nameInput, time: timeInput}
-    
+
     this.state.trip[input.day-1].travel.push(newList)
     this.setState({trip: this.state.trip})
     this.refs[x].value = "";
@@ -53,13 +51,13 @@ class Timeline extends Component {
         <Col className="left_box" md={4}>TRIP</Col>
         <Col className="right_box" md={8}>
           {
-            this.state.trip.map(input => 
+            this.state.trip.map(input =>
               <div key={input.day}>
                 <h2 className="day" >Day {input.day}</h2>
                 {
-                  this.state.trip[input.day-1].travel.map(aaa => 
+                  this.state.trip[input.day-1].travel.map(aaa =>
                     <div className="event_form" key={input.day+aaa.name}>
-                      
+
                       <h4><b>{aaa.time}</b><Edit /></h4>
                       <h4>{aaa.name}</h4>
                     </div>

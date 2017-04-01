@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../css/Timeline.css';
-import * as firebase from 'firebase';
 
 const TripInfo = ({tripInfo}) => {
 	//console.log(data)
