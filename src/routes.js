@@ -2,7 +2,6 @@ import React from 'react'
 import {
 	Router,
 	Route,
-	IndexRoute,
 	Redirect
 } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
@@ -17,7 +16,7 @@ import { isLogin } from './actions/authAction'
 export default (store, history) => (
 	<Router history={syncHistoryWithStore(history, store)}>
 		<route path='/login' component={Login} />
-			<Route path='/' component={App}  onEnter = { (nextState, replace, callback) => {
+			<Route path='/' component={App}  onEnter={ (nextState, replace, callback) => {
 						store.dispatch(isLogin()).then( (data) => {
 							callback()
 						}).catch( () => {

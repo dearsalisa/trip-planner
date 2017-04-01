@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Popover, Tooltip, Button, Modal, OverlayTrigger } from 'react-bootstrap'
+import React from 'react';
+//import React, { Component } from 'react';
+import { Button, Modal } from 'react-bootstrap'
 import '../css/Timeline.css'
 
 const Edit = React.createClass({

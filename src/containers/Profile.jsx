@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Profile.css'
-import * as firebase from 'firebase'
-import { reduxForm, formValueSelector } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import UserInfo from '../components/UserInfo'
 import TripBox from '../components/TripBox'
 import TripForm from '../components/TripForm'
 import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
-import { getTrips } from '../actions/getTrips'
 
 class Profile extends Component {
 
@@ -19,7 +17,6 @@ class Profile extends Component {
   }
 
   componentWillMount(){
-    this.props.getTrips()
   }
 
   render() {
@@ -27,9 +24,12 @@ class Profile extends Component {
     var triprow = Object.keys(item).map(function(key, index) {
       if(item[key] !== undefined) {
         return(
-          <TripBox className="trip_box" key={key} tripKey={key} name={item[key].name} detail={item[key].detail} />
+          <div>
+            <TripBox className="trip_box" key={key} tripKey={key} name={item[key].name} detail={item[key].detail} />
+          </div>
         )
       }
+      return("")
     });
 
     return (
@@ -69,9 +69,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTrips() {
-    dispatch(getTrips())
-  }
+
 })
 
 Profile = connect(
