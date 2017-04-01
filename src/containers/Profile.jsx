@@ -7,7 +7,6 @@ import UserInfo from '../components/UserInfo'
 import TripBox from '../components/TripBox'
 import TripForm from '../components/TripForm'
 import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
-import { addTrip } from '../actions/addTrip'
 import { getTrips } from '../actions/getTrips'
 
 class Profile extends Component {
@@ -24,10 +23,8 @@ class Profile extends Component {
   }
 
   render() {
-
-    var item = this.props.allTrips
+    var item = this.props.trips.allTrips
     var triprow = Object.keys(item).map(function(key, index) {
-      //console.log(key)
       if(item[key] !== undefined) {
         return(
           <TripBox className="trip_box" key={key} tripKey={key} name={item[key].name} detail={item[key].detail} />
@@ -67,16 +64,13 @@ Profile = reduxForm({
 })(Profile)
 
 const mapStateToProps = (state) => ({
-  allTrips: state.allTrips.get.data,
+  trips: state.trips,
   user: state.auth.user
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getTrips() {
     dispatch(getTrips())
-  },
-  onSubmit(values) {
-    dispatch(addTrip(values))
   }
 })
 

@@ -7,8 +7,11 @@ export function isLogin() {
       dispatch({type:"CHECKING_LOGIN_STATUS"});
       firebase.auth().onAuthStateChanged((user) => {
     		if (user) {
-          dispatch({type:"LOGINED",user: user.providerData[0]})
-          resolve()
+          firebase.database().ref(`users/${ user.uid }`).once("value").then( (snapshot) => {
+            user.trip = snapshot.child("trips").val()
+            dispatch({type:"LOGINED",user: user})
+            resolve()
+          })
     		} else {
     			dispatch({type:"NOT_LOGIN"})
           reject("NOT_LOGIN")
@@ -37,8 +40,8 @@ export function fbSignIn() {
               lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
             });
           }
-
-          dispatch({type: "LOGIN_USER_SUCCESS",user: result.user.providerData[0], tips: snapshot.child('trips').val()});
+          result.trip = snapshot.child('trips').val()
+          dispatch({type: "LOGIN_USER_SUCCESS",user: result});
           dispatch(push("/home"))
         })
       })
