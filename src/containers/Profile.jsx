@@ -9,29 +9,27 @@ import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
 
 class Profile extends Component {
 
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
     this.state = {
       open: false
     };
   }
 
-  componentWillMount(){
-  }
-
   render() {
     var item = this.props.trips.allTrips
-    var triprow = Object.keys(item).map(function(key, index) {
-      if(item[key] !== undefined) {
-        return(
-          <div>
-            <TripBox className="trip_box" key={key} tripKey={key} name={item[key].name} detail={item[key].detail} />
-          </div>
-        )
-      }
-      return("")
-    });
-
+    if(item != null) {
+      var triprow = Object.keys(item).map(function(key, index) {
+        if(item[key] !== undefined) {
+          return(
+            <div>
+              <TripBox className="trip_box" key={key} tripKey={key} name={item[key].name} detail={item[key].detail} />
+            </div>
+          )
+        }
+        return("")
+      });
+    }
     return (
       <center className="bg" >
         <div className="page">
