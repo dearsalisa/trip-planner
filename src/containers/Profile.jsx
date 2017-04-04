@@ -18,7 +18,7 @@ class Profile extends Component {
 
   render() {
     var item = this.props.user.trip
-    var trip = this.props.trips.allTrips
+    var trip = this.props.trips
     if(item !== null) {
       var triprow = Object.keys(item).map(function(key, index) {
         var tripId = item[key]
@@ -62,7 +62,7 @@ Profile = reduxForm({
 })(Profile)
 
 const mapStateToProps = (state) => ({
-  trips: state.trips,
+  trips: state.trips.allTrips,
   user: state.auth.user
 })
 
