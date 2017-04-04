@@ -32,3 +32,12 @@ export const addTrip = ({ trip_name, trip_detail, user }) => {
     })
 	}
 }
+
+export const listenAllTrips = () => {
+	return (dispatch) => {
+		dispatch({ type: "LISTEN_ALL_TRIPS"})
+		firebase.database().ref('trips').on('value',function(dataSnapshot){
+			dispatch({ type: "TRIPS_CHANGE", trips: dataSnapshot.val()})
+		})
+	}
+}
