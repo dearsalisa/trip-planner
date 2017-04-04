@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fbSignIn } from '../actions/authAction'
-import '../css/Home.css'
+import '../css/Login.css'
 
 class Login extends Component {
 
 	render(){
 		const { onSignInClick } = this.props;
 		return (
-			<div>
-				<center>
-				<img className="login_pic" role="presentation" src={require('../images/login.jpg')}/>
-				<h2>SIGN IN</h2>
-				<button onClick={ onSignInClick }>Facebook Login</button>
-				</center>
+			<div className="login_bg">
+				<button className="login_button" onClick={ onSignInClick }></button>
 			</div>
 		)
 	}
