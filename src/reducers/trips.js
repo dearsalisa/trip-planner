@@ -17,6 +17,8 @@ const trips = (state = initialState, action) => {
         ...state,
         allTrips: action.trips
       }
+    case "UPDATE_TRIP_SUCCESS":
+      return state
     default:
       return state
   }

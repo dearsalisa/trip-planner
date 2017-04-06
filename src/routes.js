@@ -27,7 +27,7 @@ export default (store, history) => (
 				}>
 				<route path='home' component={Home} />
 				<route path='profile' component={Profile} />
-				<route path='timeline' component={Timeline} />
+				<route path=':tripKey/edit/timeline' component={Timeline} />
 				<route path='tripview/:tripKey' component={Tripview} />
 				<Redirect from='*' to='/' />
 		</Route>

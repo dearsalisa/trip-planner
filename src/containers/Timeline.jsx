@@ -5,6 +5,7 @@ import '../css/Timeline.css'
 import { Button, Col } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
+import { updateTrip } from '../actions/tripAction'
 //import { addTimeline } from '../actions/addTimeline'
 //import { getTimeline } from '../actions/getTimeline'
 
@@ -12,15 +13,24 @@ class Timeline extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { trip: [] };
+    this.state = { trip: {} };
+  }
+
+  componentWillReceiveProps(newProps) {
+      var trip = newProps.tripInfo.allTrips[this.props.routeParams.tripKey]
+      this.setState({ trip: trip })
   }
 
   appendInput() {
-    var newInput = `${this.state.trip.length + 1}`
+    if(this.state.trip.timeline === undefined) {
+      this.state.trip.timeline = []
+    }
+    var newInput = `${this.state.trip.timeline.length + 1}`
     var newDate = {day: newInput, travel: []}
-    this.state.trip.push(newDate)
-    this.setState({trip: this.state.trip})
-    //console.log(this.state.trip)
+    this.state.trip.timeline.push(newDate)
+    this.setState({ trip: this.state.trip })
+    console.log(this.state.trip)
+    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
   addTravel(input, event) {
@@ -35,33 +45,36 @@ class Timeline extends Component {
 
     var newList = {name: nameInput, time: timeInput}
 
-    this.state.trip[input.day-1].travel.push(newList)
+    if(this.state.trip.timeline[input.day-1].travel === undefined) {
+      this.state.trip.timeline[input.day-1].travel = []
+    }
+    this.state.trip.timeline[input.day-1].travel.push(newList)
     this.setState({trip: this.state.trip})
     this.refs[x].value = "";
     //console.log(this.state.trip)
   }
 
   render() {
-    //console.log(this.state.trip)
-
+    console.log(this.props)
     return (
       <center className="bg">
       <div className="page">
-        <TripInfo tripInfo={this.props.tripInfo} />
+        <TripInfo tripInfo={this.state.trip} />
         <Col className="left_box" md={4}>TRIP</Col>
         <Col className="right_box" md={8}>
           {
-            this.state.trip.map(input =>
+            this.state.trip.timeline !== undefined ? this.state.trip.timeline.map(input =>
               <div key={input.day}>
                 <h2 className="day" >Day {input.day}</h2>
                 {
-                  this.state.trip[input.day-1].travel.map(aaa =>
+                  this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
+                  this.state.trip.timeline[parseInt(input.day)-1].travel.map(aaa =>
                     <div className="event_form" key={input.day+aaa.name}>
 
                       <h4><b>{aaa.time}</b><Edit /></h4>
                       <h4>{aaa.name}</h4>
                     </div>
-                  )
+                  ) : ""
                 }
                 <form className="timeline_form" onSubmit={this.addTravel.bind(this, input)} >
                   <div className="time" >
@@ -77,7 +90,7 @@ class Timeline extends Component {
                   <button>Add</button>
                 </form>
               </div>
-            )
+            ) : ""
           }
           <center>
             <Button className="add_day" bsStyle="primary" onClick={ () => this.appendInput() }>ADD DAY</Button>
@@ -91,13 +104,13 @@ class Timeline extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  tripInfo: state.tripInfo.get.data,
-  timeline: state.timeline.get.data
+  tripInfo: state.trips
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTimeline(mykey) {
-    //dispatch(getTimeline(mykey))
+  onUpdateTrip(trip, key) {
+    console.log(trip)
+    dispatch(updateTrip({trip: trip, trip_id: key}))
   },
   onSubmit(values) {
     console.log(values)
