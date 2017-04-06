@@ -3,12 +3,14 @@
 
 .bg_userinfo {
 	background-image: url('../images/bg_header.jpg');
+	/*background-color: #505050	;*/
+	color: white;
 	max-width: 1000px;
 	max-height: 400px;
 	background-position: center;
 	background-repeat: no-repeat;
-    text-align: center;
-    padding: 5em;
+  text-align: center;
+  padding: 5em;
 }
 
 .profile_pic {
@@ -16,7 +18,7 @@
 	max-height: 150px;
 	border: solid;
 	border-width: 0.5em;
-	border-color: white;
+	border-color: #DCDCDC;
 }
 
 /*---- new trip ----*/
@@ -61,7 +63,7 @@
 .bg_box {
 	background-color: white;
 	margin-bottom: 2em;
-	text-align: left; 
+	text-align: left;
 }
 
 /*---- trip pic ----*/

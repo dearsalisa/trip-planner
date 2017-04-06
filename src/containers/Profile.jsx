@@ -17,14 +17,14 @@ class Profile extends Component {
   }
 
   render() {
-    var item = this.props.trips.allTrips
-    if(item != null) {
+    var item = this.props.user.trip
+    var trip = this.props.trips
+    if(item !== null) {
       var triprow = Object.keys(item).map(function(key, index) {
-        if(item[key] !== undefined) {
+        var tripId = item[key]
+        if(tripId !== undefined && trip[tripId] !== undefined) {
           return(
-            <div>
-              <TripBox className="trip_box" key={key} tripKey={key} name={item[key].name} detail={item[key].detail} />
-            </div>
+            <TripBox className="trip_box" key={key} tripKey={tripId} trip={trip[tripId]} />
           )
         }
         return("")
@@ -62,7 +62,7 @@ Profile = reduxForm({
 })(Profile)
 
 const mapStateToProps = (state) => ({
-  trips: state.trips,
+  trips: state.trips.allTrips,
   user: state.auth.user
 })
 

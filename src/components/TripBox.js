@@ -3,7 +3,7 @@ import '../css/Profile.css';
 import { Col, Row  } from 'react-bootstrap'
 import { Link } from 'react-router'
 
-const TripBox = ({tripKey, name, detail}) => {
+const TripBox = ({tripKey, trip}) => {
 	return (
 		<div className="bg_box">
 			<Row>
@@ -11,10 +11,10 @@ const TripBox = ({tripKey, name, detail}) => {
 					<img className="trip_pic" role="presentation" src={require('../images/trip01.jpg')}/>
 				</Col>
 				<Col xs={8} md={8}>
-					<Link to={`/tripview/${tripKey}`}>
-						<h2 className="trip_name"><b>{name}</b></h2>
+					<Link to={`/tripview/${trip.tripKey}`}>
+						<h2 className="trip_name"><b>{trip.name}</b></h2>
 					</Link>
-					<h4 className="trip_info">{detail}</h4>
+					<h4 className="trip_info">{trip.detail}</h4>
 				</Col>
 			</Row>
 		</div>
