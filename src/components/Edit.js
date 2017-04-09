@@ -21,6 +21,7 @@ class Edit extends Component {
       index : this.props.index,
       day : this.props.day
     })
+    this.close()
   }
 
   close() {
@@ -46,7 +47,7 @@ class Edit extends Component {
               <div className="time" >
                 <label>Time</label>
                 <select  ref="time" placeholder="select time" defaultValue={this.props.item.time}>
-                  <option value="9:00">9:00</option>
+                  <option value="09:00">09:00</option>
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>

@@ -79,29 +79,31 @@ class Timeline extends Component {
                 <h2 className="day" >Day {input.day}</h2>
                 {
                   this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
-                  this.state.trip.timeline[parseInt(input.day)-1].travel.map((item,index) =>
-                    <div className="event_form" key={input.day+item.name}>
-                      <h4>
-                        <b>{item.time}</b>
-                        <Edit {
-                          ...{
-                            item: item,
-                            day: input.day,
-                            index: index,
-                            callBack: this.updateTravel
-                          }
-                        } />
-                      <a onClick={this.removeTravel.bind(this, input.day, index)}> (x) </a>
-                      </h4>
-                      <h4>{item.name}</h4>
-                    </div>
+                  this.state.trip.timeline[parseInt(input.day)-1].travel
+                    .sort( (i,j) => { return i.time > j.time})
+                    .map((item,index) =>
+                      <div className="event_form" key={input.day+item.name}>
+                        <h4>
+                          <b>{item.time}</b>
+                          <Edit {
+                            ...{
+                              item: item,
+                              day: input.day,
+                              index: index,
+                              callBack: this.updateTravel
+                            }
+                          } />
+                        <a onClick={this.removeTravel.bind(this, input.day, index)}> (x) </a>
+                        </h4>
+                        <h4>{item.name}</h4>
+                      </div>
                   ) : ""
                 }
                 <form className="timeline_form" onSubmit={this.addTravel.bind(this, input)} >
                   <div className="time">
                     <label>Time</label>
                     <select  ref={"time"+input.day} placeholder="select time">
-                      <option value="9:00">9:00</option>
+                      <option value="09:00">09:00</option>
                       <option value="10:00">10:00</option>
                       <option value="11:00">11:00</option>
                       <option value="12:00">12:00</option>
