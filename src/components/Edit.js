@@ -1,51 +1,68 @@
-import React from 'react';
-//import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap'
 import '../css/Timeline.css'
 
-const Edit = React.createClass({
-  getInitialState() {
-    return { showModal: false };
-  },
+class Edit extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      showModal: false
+    };
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
+    this.save = this.save.bind(this)
+  }
+
+  save() {
+    this.props.callBack({
+      time : this.refs.time.value,
+      name : this.refs.name.value,
+      index : this.props.index,
+      day : this.props.day
+    })
+  }
 
   close() {
     this.setState({ showModal: false });
-  },
+  }
 
   open() {
+    console.log("open")
     this.setState({ showModal: true });
-  },
+  }
 
   render() {
+    //console.log(this.props)
     return (
       <div className="edit">
         <a onClick={this.open} >edit</a>
-
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
             <Modal.Title>Edit</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className="timeline_form">
+            <form>
               <div className="time" >
                 <label>Time</label>
-                <select  ref="time" placeholder="select time">
+                <select  ref="time" placeholder="select time" defaultValue={this.props.item.time}>
                   <option value="9:00">9:00</option>
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
                 </select>
               </div>
-              <input placeholder="name" ref="name" />
+              <input placeholder="name" ref="name" defaultValue={this.props.item.name} />
             </form>
           </Modal.Body>
           <Modal.Footer>
+            <Button onClick={this.save}>Save</Button>
             <Button onClick={this.close}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>
     );
   }
-});
+}
 
 export default Edit

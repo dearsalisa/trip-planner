@@ -6,14 +6,13 @@ import { Button, Col } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
-//import { addTimeline } from '../actions/addTimeline'
-//import { getTimeline } from '../actions/getTimeline'
 
 class Timeline extends Component {
 
   constructor(props) {
     super(props);
     this.state = { trip: {} };
+    this.updateTravel = this.updateTravel.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
@@ -29,7 +28,7 @@ class Timeline extends Component {
     var newDate = {day: newInput, travel: []}
     this.state.trip.timeline.push(newDate)
     this.setState({ trip: this.state.trip })
-    console.log(this.state.trip)
+    //console.log(this.state.trip)
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
@@ -51,11 +50,19 @@ class Timeline extends Component {
     this.state.trip.timeline[input.day-1].travel.push(newList)
     this.setState({trip: this.state.trip})
     this.refs[x].value = "";
+    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
     //console.log(this.state.trip)
   }
 
+  updateTravel(e) {
+    console.log(e)
+    var updateList = {name: e.name, time: e.time}
+    this.state.trip.timeline[e.day-1].travel[e.index] = updateList
+    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+  }
+
   render() {
-    console.log(this.props)
+    console.log(this.state)
     return (
       <center className="bg">
       <div className="page">
@@ -68,16 +75,22 @@ class Timeline extends Component {
                 <h2 className="day" >Day {input.day}</h2>
                 {
                   this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
-                  this.state.trip.timeline[parseInt(input.day)-1].travel.map(aaa =>
-                    <div className="event_form" key={input.day+aaa.name}>
-
-                      <h4><b>{aaa.time}</b><Edit /></h4>
-                      <h4>{aaa.name}</h4>
+                  this.state.trip.timeline[parseInt(input.day)-1].travel.map((item,index) =>
+                    <div className="event_form" key={input.day+item.name}>
+                      <h4><b>{item.time}</b><Edit {
+                        ...{
+                          item: item,
+                          day: input.day,
+                          index: index,
+                          callBack: this.updateTravel
+                        }
+                      } /></h4>
+                      <h4>{item.name}</h4>
                     </div>
                   ) : ""
                 }
                 <form className="timeline_form" onSubmit={this.addTravel.bind(this, input)} >
-                  <div className="time" >
+                  <div className="time">
                     <label>Time</label>
                     <select  ref={"time"+input.day} placeholder="select time">
                       <option value="9:00">9:00</option>
@@ -109,11 +122,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onUpdateTrip(trip, key) {
-    console.log(trip)
+    //console.log(trip)
     dispatch(updateTrip({trip: trip, trip_id: key}))
   },
   onSubmit(values) {
-    console.log(values)
+    //console.log(values)
     //dispatch(addTimeline(values))
   }
 })
