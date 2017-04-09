@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Timeline.css'
-//import { Button, Glyphicon, Tabs, Tab, Panel, Col, FormGroup, ControlLabel, FormControl, option } from 'react-bootstrap'
 import { Button, Col } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
@@ -13,6 +12,7 @@ class Timeline extends Component {
     super(props);
     this.state = { trip: {} };
     this.updateTravel = this.updateTravel.bind(this)
+    // this.removeTravel = this.removeTravel.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
@@ -28,7 +28,6 @@ class Timeline extends Component {
     var newDate = {day: newInput, travel: []}
     this.state.trip.timeline.push(newDate)
     this.setState({ trip: this.state.trip })
-    //console.log(this.state.trip)
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
@@ -51,13 +50,18 @@ class Timeline extends Component {
     this.setState({trip: this.state.trip})
     this.refs[x].value = "";
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
-    //console.log(this.state.trip)
   }
 
   updateTravel(e) {
     console.log(e)
     var updateList = {name: e.name, time: e.time}
     this.state.trip.timeline[e.day-1].travel[e.index] = updateList
+    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+  }
+
+  removeTravel(day, index) {
+    delete this.state.trip.timeline[day-1].travel[index]
+    console.log(this.state.trip.timeline[day-1].travel);
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
@@ -77,14 +81,18 @@ class Timeline extends Component {
                   this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
                   this.state.trip.timeline[parseInt(input.day)-1].travel.map((item,index) =>
                     <div className="event_form" key={input.day+item.name}>
-                      <h4><b>{item.time}</b><Edit {
-                        ...{
-                          item: item,
-                          day: input.day,
-                          index: index,
-                          callBack: this.updateTravel
-                        }
-                      } /></h4>
+                      <h4>
+                        <b>{item.time}</b>
+                        <Edit {
+                          ...{
+                            item: item,
+                            day: input.day,
+                            index: index,
+                            callBack: this.updateTravel
+                          }
+                        } />
+                      <a onClick={this.removeTravel.bind(this, input.day, index)}> (x) </a>
+                      </h4>
                       <h4>{item.name}</h4>
                     </div>
                   ) : ""
@@ -113,7 +121,6 @@ class Timeline extends Component {
       </center>
     )
   }
-
 }
 
 const mapStateToProps = (state) => ({
@@ -122,12 +129,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onUpdateTrip(trip, key) {
-    //console.log(trip)
     dispatch(updateTrip({trip: trip, trip_id: key}))
-  },
-  onSubmit(values) {
-    //console.log(values)
-    //dispatch(addTimeline(values))
   }
 })
 
@@ -137,5 +139,3 @@ Timeline = connect(
 )(Timeline)
 
 export default Timeline
-
-// <button onClick= {() => this.addTravel(input.day, "eiei") }> Add Travel </button>
