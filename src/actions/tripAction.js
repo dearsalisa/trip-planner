@@ -33,6 +33,17 @@ export const addTrip = ({ trip_name, trip_detail, user }) => {
 	}
 }
 
+export const updateTrip = ({ trip, trip_id }) => {
+	return (dispatch) => {
+		console.log(trip)
+		console.log(trip_id)
+		var fb = firebase.database().ref(`trips/${trip_id}`)
+		fb.set(trip).then( (newTrip) => {
+			dispatch({ type: "UPDATE_TRIP_SUCCESS", trip: trip, key: trip_id })
+		})
+	}
+}
+
 export const listenAllTrips = () => {
 	return (dispatch) => {
 		dispatch({ type: "LISTEN_ALL_TRIPS"})
