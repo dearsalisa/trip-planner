@@ -29,7 +29,6 @@ class Edit extends Component {
   }
 
   open() {
-    console.log("open")
     this.setState({ showModal: true });
   }
 

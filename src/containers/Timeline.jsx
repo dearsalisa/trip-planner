@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Timeline.css'
-import { Button, Col } from 'react-bootstrap'
+import { Button, Col, Modal } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
@@ -10,9 +10,23 @@ class Timeline extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { trip: {} };
+    this.state = {
+      showModal: false,
+      addingDay: -1,
+      trip: {}
+    };
     this.updateTravel = this.updateTravel.bind(this)
-    // this.removeTravel = this.removeTravel.bind(this)
+    this.addTravel = this.addTravel.bind(this)
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
+  }
+
+  close() {
+    this.setState({ showModal: false, addingDay: -1 });
+  }
+
+  open(day) {
+    this.setState({ showModal: true, addingDay: day });
   }
 
   componentWillReceiveProps(newProps) {
@@ -21,39 +35,35 @@ class Timeline extends Component {
   }
 
   appendInput() {
-    if(this.state.trip.timeline === undefined) {
-      this.state.trip.timeline = []
+    var timeline = this.state.trip.timeline
+    if(timeline === undefined) {
+      timeline = []
     }
-    var newInput = `${this.state.trip.timeline.length + 1}`
+    var newInput = `${timeline.length + 1}`
     var newDate = {day: newInput, travel: []}
-    this.state.trip.timeline.push(newDate)
+    timeline.push(newDate)
     this.setState({ trip: this.state.trip })
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
-  addTravel(input, event) {
-    event.preventDefault();
-    console.log(input.day);
-
-    var x = "name"+input.day
-    var nameInput = this.refs[x].value;
-
-    var y = "time"+input.day
-    var timeInput = this.refs[y].value;
-
-    var newList = {name: nameInput, time: timeInput}
-
-    if(this.state.trip.timeline[input.day-1].travel === undefined) {
-      this.state.trip.timeline[input.day-1].travel = []
+  addTravel() {
+    var day = this.state.addingDay
+    var newList = {
+      name: this.refs.name.value,
+      time: this.refs.time.value
     }
-    this.state.trip.timeline[input.day-1].travel.push(newList)
+    var timeline = this.state.trip.timeline
+    if(timeline[day-1].travel === undefined) {
+      timeline[day-1].travel = []
+    }
+    timeline[day-1].travel.push(newList)
     this.setState({trip: this.state.trip})
-    this.refs[x].value = "";
+    this.refs.name.value = "";
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+    this.close()
   }
 
   updateTravel(e) {
-    console.log(e)
     var updateList = {name: e.name, time: e.time}
     this.state.trip.timeline[e.day-1].travel[e.index] = updateList
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
@@ -61,12 +71,22 @@ class Timeline extends Component {
 
   removeTravel(day, index) {
     delete this.state.trip.timeline[day-1].travel[index]
-    console.log(this.state.trip.timeline[day-1].travel);
+    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+  }
+
+  removeDay(day) {
+    delete this.state.trip.timeline[day-1]
+    this.state.trip.timeline = this.state.trip.timeline
+    .filter( (x) => {return x != undefined})
+    .map( (x,index) => {
+      x.day = index+1
+      return x
+    })
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
   render() {
-    console.log(this.state)
+    //console.log(this.state)
     return (
       <center className="bg">
       <div className="page">
@@ -74,9 +94,12 @@ class Timeline extends Component {
         <Col className="left_box" md={4}>TRIP</Col>
         <Col className="right_box" md={8}>
           {
-            this.state.trip.timeline !== undefined ? this.state.trip.timeline.map(input =>
+            this.state.trip.timeline !== undefined ?
+            this.state.trip.timeline.map(input =>
               <div key={input.day}>
-                <h2 className="day" >Day {input.day}</h2>
+                <h3 className="day" >Day {input.day}
+                  <a onClick={this.removeDay.bind(this, input.day)}> (x) </a>
+                </h3>
                 {
                   this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
                   this.state.trip.timeline[parseInt(input.day)-1].travel
@@ -99,19 +122,33 @@ class Timeline extends Component {
                       </div>
                   ) : ""
                 }
-                <form className="timeline_form" onSubmit={this.addTravel.bind(this, input)} >
-                  <div className="time">
-                    <label>Time</label>
-                    <select  ref={"time"+input.day} placeholder="select time">
-                      <option value="09:00">09:00</option>
-                      <option value="10:00">10:00</option>
-                      <option value="11:00">11:00</option>
-                      <option value="12:00">12:00</option>
-                    </select>
-                  </div>
-                  <input placeholder="name" ref={"name"+input.day} />
-                  <button>Add</button>
-                </form>
+
+                <div>
+                  <button onClick={ () => this.open(input.day)} > Add </button>
+                  <Modal show={this.state.showModal} onHide={this.close}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Add TimeLine {input.day} </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <form className="timeline_form">
+                        <div className="time">
+                          <label>Time</label>
+                          <select  ref="time" placeholder="select time">
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                          </select>
+                        </div>
+                        <input placeholder="name" ref="name" />
+                      </form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button onClick={this.addTravel}>Add</Button>
+                      <Button onClick={this.close}>Close</Button>
+                    </Modal.Footer>
+                  </Modal>
+                </div>
               </div>
             ) : ""
           }
