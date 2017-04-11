@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Timeline.css'
-import { Button, Col, Modal } from 'react-bootstrap'
+import { Button, Col, Modal, FieldGroup, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
@@ -49,7 +49,8 @@ class Timeline extends Component {
     var day = this.state.addingDay
     var newList = {
       name: this.refs.name.value,
-      time: this.refs.time.value
+      time: this.refs.time.value,
+      detail: this.refs.detail.value
     }
     var timeline = this.state.trip.timeline
     if(timeline[day-1].travel === undefined) {
@@ -57,13 +58,14 @@ class Timeline extends Component {
     }
     timeline[day-1].travel.push(newList)
     this.setState({trip: this.state.trip})
-    this.refs.name.value = "";
+    this.refs.name.value = ""
+    this.refs.detail.value = "";
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
     this.close()
   }
 
   updateTravel(e) {
-    var updateList = {name: e.name, time: e.time}
+    var updateList = {name: e.name, time: e.time, detail: e.detail}
     this.state.trip.timeline[e.day-1].travel[e.index] = updateList
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
@@ -85,6 +87,7 @@ class Timeline extends Component {
   }
 
   render() {
+    console.log(this.state.trip);
     return (
       <center className="bg">
       <div className="page">
@@ -117,6 +120,7 @@ class Timeline extends Component {
                         <a onClick={this.removeTravel.bind(this, input.day, index)}> (x) </a>
                         </h4>
                         <h4>{item.name}</h4>
+                        <h5>{item.detail}</h5>
                       </div>
                   ) : ""
                 }
@@ -130,7 +134,7 @@ class Timeline extends Component {
                     <Modal.Body>
                       <form className="timeline_form">
                         <div className="time">
-                          <label>Time</label>
+                          <label>Time</label><br />
                           <select  ref="time" placeholder="select time">
                             <option value="09:00">09:00</option>
                             <option value="10:00">10:00</option>
@@ -138,7 +142,12 @@ class Timeline extends Component {
                             <option value="12:00">12:00</option>
                           </select>
                         </div>
-                        <input placeholder="name" ref="name" />
+                        <label>Name</label><br />
+                        <input placeholder="name" ref="name" /><br />
+                        <label>Comment</label><br />
+                        <textarea ref="detail" rows="5"></textarea><br />
+                        <label>Select a file to upload </label>
+                        <input type="file" id="myFile" size="50" />
                       </form>
                     </Modal.Body>
                     <Modal.Footer>

@@ -52,7 +52,12 @@ class Edit extends Component {
                   <option value="12:00">12:00</option>
                 </select>
               </div>
-              <input placeholder="name" ref="name" defaultValue={this.props.item.name} />
+              <label>Name</label><br />
+              <input placeholder="name" ref="name" defaultValue={this.props.item.name} /><br />
+              <label>Comment</label><br />
+              <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
+              <label>Select a file to upload </label>
+              <input type="file" id="myFile" size="50" />
             </form>
           </Modal.Body>
           <Modal.Footer>
