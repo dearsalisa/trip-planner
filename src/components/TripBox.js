@@ -11,7 +11,7 @@ const TripBox = ({tripKey, trip}) => {
 					<img className="trip_pic" role="presentation" src={require('../images/trip01.jpg')}/>
 				</Col>
 				<Col xs={8} md={8}>
-					<Link to={`/tripview/${trip.tripKey}`}>
+					<Link to={`/${tripKey}/edit/timeline`}>
 						<h2 className="trip_name"><b>{trip.name}</b></h2>
 					</Link>
 					<h4 className="trip_info">{trip.detail}</h4>

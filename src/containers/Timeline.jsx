@@ -35,13 +35,12 @@ class Timeline extends Component {
   }
 
   appendInput() {
-    var timeline = this.state.trip.timeline
-    if(timeline === undefined) {
-      timeline = []
+    if(this.state.trip.timeline === undefined) {
+      this.state.trip.timeline = []
     }
-    var newInput = `${timeline.length + 1}`
+    var newInput = `${this.state.trip.timeline.length + 1}`
     var newDate = {day: newInput, travel: []}
-    timeline.push(newDate)
+    this.state.trip.timeline.push(newDate)
     this.setState({ trip: this.state.trip })
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
@@ -77,7 +76,7 @@ class Timeline extends Component {
   removeDay(day) {
     delete this.state.trip.timeline[day-1]
     this.state.trip.timeline = this.state.trip.timeline
-    .filter( (x) => {return x != undefined})
+    .filter( (x) => {return x !== undefined})
     .map( (x,index) => {
       x.day = index+1
       return x
@@ -86,7 +85,6 @@ class Timeline extends Component {
   }
 
   render() {
-    //console.log(this.state)
     return (
       <center className="bg">
       <div className="page">
