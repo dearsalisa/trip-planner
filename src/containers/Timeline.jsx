@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Timeline.css'
-import { Button, Col, Modal, FieldGroup, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap'
+import { Button, Col, Modal } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'

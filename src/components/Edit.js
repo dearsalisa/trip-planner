@@ -18,6 +18,7 @@ class Edit extends Component {
     this.props.callBack({
       time : this.refs.time.value,
       name : this.refs.name.value,
+      detail : this.refs.detail.value,
       index : this.props.index,
       day : this.props.day
     })
