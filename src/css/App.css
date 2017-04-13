@@ -28,8 +28,7 @@
 
 @font-face {
     font-family: myFont;
-    /*src: url(../fonts/CSPraJad.otf);*/
-    scr: "PT Sans",sans-serif;
+    src: url(../fonts/CSPraJad.otf);
 }
 
 body, html {
