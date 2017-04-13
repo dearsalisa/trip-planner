@@ -16,7 +16,7 @@ class Header extends Component {
 	render(){
 		const { onSignOutClick} = this.props;
 	  return(
-		  <Navbar inverse collapseOnSelect>
+		  <Navbar inverse collapseOnSelect className="header">
 		    <Navbar.Header>
 		      <Navbar.Brand>
 		        <Link to='/home'>Trip Planner</Link>

@@ -24,15 +24,26 @@
 }
 */
 
+
+
+@font-face {
+    font-family: myFont;
+    /*src: url(../fonts/CSPraJad.otf);*/
+    scr: "PT Sans",sans-serif;
+}
+
 body, html {
-  background-color: #eaece5;
+  background-color: #D2D7D3;
+  font-family: myFont;
 }
 
 .bg {
-  background-color: #eaece5;
+  background-color: #D2D7D3;
+  font-family: myFont;
 }
 
 .page {
-  background-color: white;
-  width: 1000px;
+  background-color: #D2D7D3;
+  font-family: myFont;
+  width: 1200px;
 }

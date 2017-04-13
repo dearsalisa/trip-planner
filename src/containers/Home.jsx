@@ -15,11 +15,13 @@ class Home extends Component {
 					return(
 						<div key={key}>
 							<Col xs={6} md={3}>
-								<img className="home_pic" role="presentation" src={require('../images/home01.jpg')}/>
-								<Link to={`/tripview/${key}`}>
-									<h3 className="trip_name"><b>{item[key].name}</b></h3>
-								</Link>
-								<h4>{item[key].detail}</h4>
+								<div  className="box">
+									<img className="home_pic" role="presentation" src={require('../images/home03.jpg')}/>
+									<Link to={`/tripview/${key}`}>
+										<h4><b>{item[key].name}</b></h4>
+									</Link>
+									<h5 className="text">{item[key].detail}</h5>
+								</div>
 							</Col>
 						</div>
 					)
@@ -31,17 +33,11 @@ class Home extends Component {
 		return (
 			<center className="bg">
 				<div className="page">
-					<div className="home_content">
-						<SlideShow />
-						<br/><br/>
-
-						<h1 className="topic">ALL TRIPS</h1>
-						<hr />
-						<Row className="show-grid">
-							{triprow}
-						</Row>
-
-					</div>
+					<SlideShow />
+					<h1 className="topic"><b>ALL TRIPS</b></h1>
+					<Row className="show-grid">
+						{triprow}
+					</Row>
 				</div>
 			</center>
 		)
