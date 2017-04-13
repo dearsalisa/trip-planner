@@ -14,13 +14,13 @@ class Home extends Component {
 				if(item[key] !== undefined) {
 					return(
 						<div key={key}>
-							<Col xs={6} md={3}>
+							<Col xs={4} md={3}>
 								<div  className="box">
 									<img className="home_pic" role="presentation" src={require('../images/home03.jpg')}/>
-									<Link to={`/tripview/${key}`}>
-										<h4><b>{item[key].name}</b></h4>
+									<Link className="link_trip" to={`/${key}/view`}>
+										<p className="trip_name"><b>{item[key].name}</b></p>
 									</Link>
-									<h5 className="text">{item[key].detail}</h5>
+									<p className="text">{item[key].detail}</p>
 								</div>
 							</Col>
 						</div>
@@ -34,7 +34,7 @@ class Home extends Component {
 			<center className="bg">
 				<div className="page">
 					<SlideShow />
-					<h1 className="topic"><b>ALL TRIPS</b></h1>
+					<h1 className="topic"><b><hr/> ALL TRIPS <hr/></b></h1>
 					<Row className="show-grid">
 						{triprow}
 					</Row>

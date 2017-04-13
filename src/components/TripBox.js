@@ -12,9 +12,9 @@ const TripBox = ({tripKey, trip}) => {
 				</Col>
 				<Col xs={8} md={8}>
 					<Link to={`/${tripKey}/edit/timeline`}>
-						<h2 className="trip_name"><b>{trip.name}</b></h2>
+						<h4 className="trip_name"><b>{trip.name}</b></h4>
 					</Link>
-					<h4 className="trip_info">{trip.detail}</h4>
+					<h5 className="trip_info">{trip.detail}</h5>
 				</Col>
 			</Row>
 		</div>
