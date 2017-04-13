@@ -19,6 +19,7 @@ class Edit extends Component {
       time : this.refs.time.value,
       name : this.refs.name.value,
       detail : this.refs.detail.value,
+      image : this.refs.myFile.files[0],
       index : this.props.index,
       day : this.props.day
     })
@@ -58,7 +59,7 @@ class Edit extends Component {
               <label>Comment</label><br />
               <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
               <label>Select a file to upload </label>
-              <input type="file" id="myFile" size="50" />
+              <input type="file" ref="myFile" size="50" />
             </form>
           </Modal.Body>
           <Modal.Footer>
