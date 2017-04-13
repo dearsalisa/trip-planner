@@ -8,9 +8,10 @@ class Tripview extends Component {
 
   constructor(props) {
     super(props);
+    var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
     this.state = {
-      trip: {}
-    };
+      trip: trip == undefined ? {} : trip
+    }
   }
 
   componentWillReceiveProps(newProps) {
