@@ -5,6 +5,7 @@ import { Button, Col, Modal } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
+import { uploadImage } from '../actions/firebaseAction'
 
 class Timeline extends Component {
 
@@ -19,6 +20,7 @@ class Timeline extends Component {
     };
 
     this.updateTravel = this.updateTravel.bind(this)
+    this.uploadImage = this.uploadImage.bind(this)
     this.addTravel = this.addTravel.bind(this)
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
@@ -48,29 +50,48 @@ class Timeline extends Component {
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
+  uploadImage(image, obj, after) {
+    if(image != undefined) {
+      this.props.onUploadImage(image).then((imageURL) => {
+        obj.image = imageURL
+        after(obj)
+      })
+    } else {
+      after(obj)
+    }
+  }
+
   addTravel() {
-    var day = this.state.addingDay
     var newList = {
       name: this.refs.name.value,
       time: this.refs.time.value,
       detail: this.refs.detail.value
     }
-    var timeline = this.state.trip.timeline
-    if(timeline[day-1].travel === undefined) {
-      timeline[day-1].travel = []
-    }
-    timeline[day-1].travel.push(newList)
-    this.setState({trip: this.state.trip})
-    this.refs.name.value = ""
-    this.refs.detail.value = "";
-    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
-    this.close()
+
+    this.uploadImage(this.refs.myFile.files[0], newList, (obj) => {
+      var day = this.state.addingDay
+
+      var timeline = this.state.trip.timeline
+      if(timeline[day-1].travel === undefined) {
+        timeline[day-1].travel = []
+      }
+      timeline[day-1].travel.push(obj)
+      this.setState({trip: this.state.trip})
+      this.refs.name.value = ""
+      this.refs.detail.value = "";
+      this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+      this.close()
+    })
+
   }
 
   updateTravel(e) {
     var updateList = {name: e.name, time: e.time, detail: e.detail}
-    this.state.trip.timeline[e.day-1].travel[e.index] = updateList
-    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+
+    this.uploadImage(e.image, updateList, (obj) => {
+      this.state.trip.timeline[e.day-1].travel[e.index] = obj
+      this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+    })
   }
 
   removeTravel(day, index) {
@@ -149,7 +170,7 @@ class Timeline extends Component {
                         <label>Comment</label><br />
                         <textarea ref="detail" rows="5"></textarea><br />
                         <label>Select a file to upload </label>
-                        <input type="file" id="myFile" size="50" />
+                        <input type="file" ref="myFile" size="50" />
                       </form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -178,6 +199,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onUpdateTrip(trip, key) {
     dispatch(updateTrip({trip: trip, trip_id: key}))
+  },
+
+  onUploadImage(file) {
+    return dispatch(uploadImage({file: file}))
   }
 })
 
