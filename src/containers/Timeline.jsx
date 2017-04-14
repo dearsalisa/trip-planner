@@ -10,11 +10,14 @@ class Timeline extends Component {
 
   constructor(props) {
     super(props);
+
+    var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
     this.state = {
       showModal: false,
       addingDay: -1,
-      trip: {}
+      trip: trip == undefined ? {} : trip
     };
+
     this.updateTravel = this.updateTravel.bind(this)
     this.addTravel = this.addTravel.bind(this)
     this.close = this.close.bind(this)
@@ -87,7 +90,6 @@ class Timeline extends Component {
   }
 
   render() {
-    console.log(this.state.trip);
     return (
       <center className="bg">
       <div className="page">
