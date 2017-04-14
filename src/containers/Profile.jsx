@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form'
 import UserInfo from '../components/UserInfo'
 import TripBox from '../components/TripBox'
 import TripForm from '../components/TripForm'
-import { Button, Glyphicon, Tabs, Tab, Panel } from 'react-bootstrap'
+import { Button, Glyphicon, Tabs, Tab, Panel, Col } from 'react-bootstrap'
 
 class Profile extends Component {
 
@@ -24,7 +24,9 @@ class Profile extends Component {
         var tripId = item[key]
         if(tripId !== undefined && trip[tripId] !== undefined) {
           return(
-            <TripBox className="trip_box" key={key} tripKey={tripId} trip={trip[tripId]} />
+            <Col sm={6} key={key} >
+              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} />
+            </Col>
           )
         }
         return("")
@@ -33,24 +35,23 @@ class Profile extends Component {
     return (
       <center className="bg" >
         <div className="page">
-
           <UserInfo {...this.props.user}/>
 
-          <Button className="new_trip" bsStyle="primary" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
-            <Glyphicon glyph="plus" /> NEW TRIP
+          <Button className="new_trip" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
+            <Glyphicon glyph="plus" /> CREATE NEW TRIP
           </Button>
           <Panel className="trip_form" collapsible expanded={this.state.open}>
             <TripForm {...this.props} />
           </Panel>
-
-          <div className="content">
-          <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
-            <Tab className="tab_content" eventKey={1} title="MY TRIP">
-              {triprow}
-            </Tab>
-            <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
-          </Tabs>
-          </div>
+          <br/><br/><br/><br/>
+            <div className="content">
+              <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
+                <Tab className="tab_content" eventKey={1} title="MY TRIP">
+                  {triprow}
+                </Tab>
+                <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
+              </Tabs>
+            </div>
         </div>
       </center>
     )

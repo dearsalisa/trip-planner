@@ -3,7 +3,6 @@
 
 .bg_userinfo {
 	background-image: url('../images/bg_header.jpg');
-	/*background-color: #505050	;*/
 	color: white;
 	max-width: 1200px;
 	max-height: 300px;
@@ -23,9 +22,15 @@
 
 /*---- new trip ----*/
 
-.new_trip {
-	margin: 3em;
-	border: none;
+.new_trip.btn-default.active, .new_trip.btn-default:active, .new_trip.open>.dropdown-toggle.btn-default {
+	background-color: #ECECEC;
+	border-radius: 0;
+	box-shadow: none;
+	margin-top: 2.5em;
+	width: 15em;
+	position: absolute;
+	margin-left: 18em;
+	padding: 1em;
 }
 
 .trip_form.panel.panel-default {
@@ -42,43 +47,64 @@
 /*---- tab content ----*/
 
 .content {
-	max-width: 1000px;
+	max-width: 1200px;
 	padding-bottom: 2em;
 }
 
-.tab_header {
-	margin: 3em;
+.nav-tabs {
+	border: none;
+}
+
+.nav-tabs>li>a, .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	font-size: 1.3em;
+	font-weight: bold;
 }
 
 .tab_content {
-	background-color: #ddd;
+	/*background-color: #fff;*/
 	border: 1px solid #ddd;
 	border-top: none;
 	padding: 2em;
 	padding-bottom: 0;
+	height: 500px;
 }
 
 /*---- trip box ----*/
 
 .bg_box {
-	background-color: white;
+	/*background-color: white;*/
 	margin-bottom: 2em;
-	text-align: left;
+	height: 100px;
 }
 
 /*---- trip pic ----*/
 
 .trip_pic {
-	width: 80%;
+	width: 90%;
 	height: auto;
-	margin: 2em;
-}
-
-.trip_info {
 	margin: 1em;
 }
 
+.col-md-4.col-xs-4, .col-md-8.col-xs-8 {
+	padding: 0;
+}
+
 .trip_name {
-	margin: 0.5em;
+	margin: 1em;
 	margin-top: 1.5em;
+	text-align: left;
+}
+
+.text {
+	margin: 1em;
+	text-align: left;
+	font-size: 0.9em;
+	color: gray;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	line-height: 18px;     /* fallback */
+	max-height: 54px;      /* fallback */
+	-webkit-line-clamp: 4; /* number of lines to show */
+	-webkit-box-orient: vertical;
 }

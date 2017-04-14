@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Home.css'
 import SlideShow from '../components/SlideShow'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Thumbnail, Grid, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 class Home extends Component {
@@ -15,13 +15,12 @@ class Home extends Component {
 					return(
 						<div key={key}>
 							<Col xs={4} md={3}>
-								<div  className="box">
-									<img className="home_pic" role="presentation" src={require('../images/home03.jpg')}/>
+								<Thumbnail className="box" src={require('../images/home03.jpg')} alt="242x200">
 									<Link className="link_trip" to={`/${key}/view`}>
-										<p className="trip_name"><b>{item[key].name}</b></p>
+										<h4><b>{item[key].name}</b></h4>
 									</Link>
 									<p className="text">{item[key].detail}</p>
-								</div>
+								</Thumbnail>
 							</Col>
 						</div>
 					)
@@ -35,9 +34,11 @@ class Home extends Component {
 				<div className="page">
 					<SlideShow />
 					<h1 className="topic"><b><hr/> ALL TRIPS <hr/></b></h1>
-					<Row className="show-grid">
+					<Grid>
+     				<Row>
 						{triprow}
-					</Row>
+						</Row>
+					</Grid>
 				</div>
 			</center>
 		)

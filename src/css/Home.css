@@ -20,25 +20,11 @@
 /*---- content ----*/
 
 .box {
-	background-color: white;
-	text-align: left;
 	height: 320px;
-	padding: 0;
-	margin-bottom: 2em;
 }
 
 .box:hover {
 	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-p.trip_name {
-	color: #16A085;
-	font-size: 1.2em;
-	margin: 0 1em 0.2em 0.7em;
-}
-
-.trip_name:hover {
-	color: #3A539B;
 }
 
 .link_trip:hover {
@@ -49,12 +35,6 @@ p.trip_name {
 	margin: 4em;
 	padding-left: 5em;
 	padding-right: 5em;
-}
-
-.home_pic {
-	width: 100%;
-	height: 150px;
-	margin-bottom: 1em;
 }
 
 .text {
