@@ -11,7 +11,7 @@ class Tripview extends Component {
     super(props);
     var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
     this.state = {
-      trip: trip == undefined ? {} : trip
+      trip: trip === undefined ? {} : trip
     }
     this.likeAction = this.likeAction.bind(this)
     this.isLike = this.isLike.bind(this)
@@ -72,7 +72,10 @@ class Tripview extends Component {
                           <div className="event_form" key={input.day+item.name}>
                             <h4><b>{item.time}</b></h4>
                             <h4>{item.name}</h4>
-                            <img className="pic" role="presentation" src={require('../images/home01.jpg')}/>
+                            {
+                              item.image !== undefined ?
+                              <img className="pic" role="presentation" src={item.image}/> : ""
+                            }
                             <h5>{item.detail}</h5>
                           </div>
                       ) : <div className="event_form"><h5>no event</h5></div>

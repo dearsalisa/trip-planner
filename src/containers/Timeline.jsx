@@ -16,7 +16,7 @@ class Timeline extends Component {
     this.state = {
       showModal: false,
       addingDay: -1,
-      trip: trip == undefined ? {} : trip
+      trip: trip === undefined ? {} : trip
     };
 
     this.updateTravel = this.updateTravel.bind(this)
@@ -51,7 +51,7 @@ class Timeline extends Component {
   }
 
   uploadImage(image, obj, after) {
-    if(image != undefined) {
+    if(image !== undefined) {
       this.props.onUploadImage(image).then((imageURL) => {
         obj.image = imageURL
         after(obj)
@@ -143,6 +143,10 @@ class Timeline extends Component {
                         <a onClick={this.removeTravel.bind(this, input.day, index)}> (x) </a>
                         </h4>
                         <h4>{item.name}</h4>
+                        {
+                          item.image !== undefined ?
+                          <img className="pic" role="presentation" src={item.image}/> : ""
+                        }
                         <h5>{item.detail}</h5>
                       </div>
                   ) : ""

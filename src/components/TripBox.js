@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Profile.css';
-import { Col, Row, Media  } from 'react-bootstrap'
+import { Media  } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 const TripBox = ({tripKey, trip, isEdit}) => {
@@ -8,7 +8,7 @@ const TripBox = ({tripKey, trip, isEdit}) => {
 		<div className="bg_box">
 			<Media>
 			 <Media.Left>
-					<img width={150} height={100} src={require('../images/trip01.jpg')} alt="Image"/>
+					<img width={150} height={100} role="presentation" src={require('../images/trip01.jpg')}/>
 				</Media.Left>
 				<Media.Body>
 					<Media.Heading>
@@ -17,7 +17,6 @@ const TripBox = ({tripKey, trip, isEdit}) => {
 					<p className="text">{trip.detail}</p>
 				</Media.Body>
 			</Media>
-
 		</div>
 	)
 }

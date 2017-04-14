@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Home.css'
 import SlideShow from '../components/SlideShow'
-import { Row, Col, Thumbnail, Grid, Button } from 'react-bootstrap'
+import { Row, Col, Thumbnail, Grid } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 class Home extends Component {
