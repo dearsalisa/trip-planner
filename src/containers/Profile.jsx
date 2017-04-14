@@ -11,21 +11,33 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
+    var userId = props.routeParams.userId
+    var user = userId === undefined ? props.user : (props.allUsers[userId] !== undefined ? props.allUsers[userId] : {})
     this.state = {
-      open: false
+      open: false,
+      user: user
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    var userId = newProps.routeParams.userId
+    var user = userId === undefined ? newProps.user : (newProps.allUsers[userId] !== undefined ? newProps.allUsers[userId] : {})
+    this.setState({user: user})
+  }
+
   render() {
-    var item = this.props.user.trip
+    console.log(this.state.user)
+    var item = this.state.user.trips
     var trip = this.props.trips
-    if(item !== null) {
+    var isEdit = !(this.props.routeParams.userId !== undefined)
+    if(item !== null && item !== undefined) {
       var triprow = Object.keys(item).map(function(key, index) {
         var tripId = item[key]
         if(tripId !== undefined && trip[tripId] !== undefined) {
+          console.log(trip[tripId])
           return(
             <Col sm={6} key={key} >
-              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} />
+              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } />
             </Col>
           )
         }
@@ -35,7 +47,7 @@ class Profile extends Component {
     return (
       <center className="bg" >
         <div className="page">
-          <UserInfo {...this.props.user}/>
+          <UserInfo {...this.state.user}/>
 
           <Button className="new_trip" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
             <Glyphicon glyph="plus" /> CREATE NEW TRIP
@@ -64,7 +76,8 @@ Profile = reduxForm({
 
 const mapStateToProps = (state) => ({
   trips: state.trips.allTrips,
-  user: state.auth.user
+  user: state.auth.user,
+  allUsers: state.auth.allUsers
 })
 
 const mapDispatchToProps = (dispatch) => ({

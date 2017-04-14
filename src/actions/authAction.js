@@ -8,8 +8,7 @@ export function isLogin() {
       firebase.auth().onAuthStateChanged((user) => {
     		if (user) {
           firebase.database().ref(`users/${ user.uid }`).once("value").then( (snapshot) => {
-            user.trip = snapshot.child("trips").val()
-            dispatch({type:"LOGINED",user: user})
+            dispatch({type:"LOGINED",user: snapshot.val()})
             resolve()
           })
     		} else {
@@ -64,4 +63,14 @@ export function fbSignOut() {
         dispatch({type: "LOGOUT_USER_FAIL"})
       });
     }
+}
+
+export function getAllUser() {
+  return (dispatch) => {
+		dispatch({ type: "LOAD_ALL_USER"})
+		firebase.database().ref('users').once("value").then( (dataSnapshot) => {
+      console.log(dataSnapshot.val())
+			dispatch({ type: "DONE_ALL_USER", users: dataSnapshot.val()})
+		})
+	}
 }

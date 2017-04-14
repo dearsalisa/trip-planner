@@ -3,7 +3,8 @@ const initialState = {
     isInProgress: false,
     hasError: false,
     errorMessage: '',
-    user: {}
+    user: {},
+    allUsers: {}
 };
 
 const auth = (state = initialState, action) => {
@@ -50,6 +51,12 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         isUserSignedIn: false
+      }
+    case "DONE_ALL_USER":
+    console.log(action.users)
+      return {
+        ...state,
+        allUsers: action.users
       }
     default:
       return {...state}

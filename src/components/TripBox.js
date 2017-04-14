@@ -3,7 +3,7 @@ import '../css/Profile.css';
 import { Col, Row, Media  } from 'react-bootstrap'
 import { Link } from 'react-router'
 
-const TripBox = ({tripKey, trip}) => {
+const TripBox = ({tripKey, trip, isEdit}) => {
 	return (
 		<div className="bg_box">
 			<Media>
@@ -12,7 +12,7 @@ const TripBox = ({tripKey, trip}) => {
 				</Media.Left>
 				<Media.Body>
 					<Media.Heading>
-						<Link to={`/${tripKey}/edit/timeline`}>{trip.name}</Link>
+						<Link to={ isEdit ? `/${tripKey}/edit/timeline`: `/${tripKey}/view`}>{trip.name}</Link>
 					</Media.Heading>
 					<p className="text">{trip.detail}</p>
 				</Media.Body>

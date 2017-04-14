@@ -27,6 +27,7 @@ export default (store, history) => (
 				}>
 				<route path='home' component={Home} />
 				<route path='profile' component={Profile} />
+				<route path="user/:userId" component={Profile} />
 				<route path=':tripKey/edit/timeline' component={Timeline} />
 				<route path=':tripKey/view' component={Tripview} />
 				<Redirect from='*' to='/' />
