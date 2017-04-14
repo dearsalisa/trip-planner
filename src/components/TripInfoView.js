@@ -5,7 +5,7 @@ import { Button, Glyphicon } from 'react-bootstrap'
 const TripInfoView = ({tripInfo}) => {
 	return (
 		<div className="trip_header">
-			<center>
+			<center className="trip_detail">
 				<h2>{tripInfo.name}</h2>
 				<h4>{tripInfo.detail}</h4>
 				<Button className="view_btn" bsSize="large" >
