@@ -1,22 +1,23 @@
 import React from 'react';
 import '../css/Profile.css';
-import { Col, Row  } from 'react-bootstrap'
+import { Col, Row, Media  } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 const TripBox = ({tripKey, trip}) => {
 	return (
 		<div className="bg_box">
-			<Row>
-				<Col xs={4} md={4}>
-					<img className="trip_pic" role="presentation" src={require('../images/trip01.jpg')}/>
-				</Col>
-				<Col xs={8} md={8}>
-					<Link to={`/${tripKey}/edit/timeline`}>
-						<h2 className="trip_name"><b>{trip.name}</b></h2>
-					</Link>
-					<h4 className="trip_info">{trip.detail}</h4>
-				</Col>
-			</Row>
+			<Media>
+			 <Media.Left>
+					<img width={150} height={100} src={require('../images/trip01.jpg')} alt="Image"/>
+				</Media.Left>
+				<Media.Body>
+					<Media.Heading>
+						<Link to={`/${tripKey}/edit/timeline`}>{trip.name}</Link>
+					</Media.Heading>
+					<p className="text">{trip.detail}</p>
+				</Media.Body>
+			</Media>
+
 		</div>
 	)
 }

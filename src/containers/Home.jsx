@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Home.css'
 import SlideShow from '../components/SlideShow'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Thumbnail, Grid, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 class Home extends Component {
@@ -14,12 +14,13 @@ class Home extends Component {
 				if(item[key] !== undefined) {
 					return(
 						<div key={key}>
-							<Col xs={6} md={3}>
-								<img className="home_pic" role="presentation" src={require('../images/home01.jpg')}/>
-								<Link to={`/tripview/${key}`}>
-									<h3 className="trip_name"><b>{item[key].name}</b></h3>
-								</Link>
-								<h4>{item[key].detail}</h4>
+							<Col xs={4} md={3}>
+								<Thumbnail className="box" src={require('../images/home03.jpg')} alt="242x200">
+									<Link className="link_trip" to={`/${key}/view`}>
+										<h4><b>{item[key].name}</b></h4>
+									</Link>
+									<p className="text">{item[key].detail}</p>
+								</Thumbnail>
 							</Col>
 						</div>
 					)
@@ -31,17 +32,13 @@ class Home extends Component {
 		return (
 			<center className="bg">
 				<div className="page">
-					<div className="home_content">
-						<SlideShow />
-						<br/><br/>
-
-						<h1 className="topic">ALL TRIPS</h1>
-						<hr />
-						<Row className="show-grid">
-							{triprow}
+					<SlideShow />
+					<h1 className="topic"><b><hr/> ALL TRIPS <hr/></b></h1>
+					<Grid>
+     				<Row>
+						{triprow}
 						</Row>
-
-					</div>
+					</Grid>
 				</div>
 			</center>
 		)

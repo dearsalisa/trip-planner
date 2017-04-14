@@ -24,15 +24,25 @@
 }
 */
 
+
+
+@font-face {
+    font-family: myFont;
+    src: url(../fonts/arial.ttf);
+}
+
 body, html {
-  background-color: #eaece5;
+  background-color: #ECECEC;
+  font-family: myFont;
 }
 
 .bg {
-  background-color: #eaece5;
+  background-color: #ECECEC;
+  font-family: myFont;
 }
 
 .page {
-  background-color: white;
-  width: 1000px;
+  background-color: #ECECEC;
+  font-family: myFont;
+  width: 1200px;
 }

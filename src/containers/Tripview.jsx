@@ -24,6 +24,17 @@ class Tripview extends Component {
       <center className="bg">
         <div className="page">
           <TripInfo tripInfo={this.state.trip} />
+
+            <Button className="view_btn" bsSize="large" >
+              <Glyphicon className="heart-empty" glyph="heart-empty" /> LIKE
+            </Button>
+            <Button className="view_btn" bsSize="large" >
+              <Glyphicon className="duplicate" glyph="duplicate" /> DUPLICATE
+            </Button>
+            <Button className="view_btn" bsSize="large" >
+              <Glyphicon className="share" glyph="share-alt" /> SHARE
+            </Button>
+
             <Col className="left_box" md={4}>TRIP</Col>
             <Col className="right_box" md={8}>
               {
@@ -39,7 +50,7 @@ class Tripview extends Component {
                           <div className="event_form" key={input.day+item.name}>
                             <h4><b>{item.time}</b></h4>
                             <h4>{item.name}</h4>
-                            <img className="home_pic" role="presentation" src={require('../images/home01.jpg')}/>
+                            <img className="pic" role="presentation" src={require('../images/home01.jpg')}/>
                             <h5>{item.detail}</h5>
                           </div>
                       ) : <div className="event_form"><h5>no event</h5></div>
