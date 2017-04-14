@@ -1,0 +1,26 @@
+.view_btn.btn-default, .view_btn.btn-default:hover {
+	background-color: Transparent;
+	border: solid 1px black;
+	color: black;
+	width: 10em;
+	margin: 1em 1em 0 1em;
+}
+
+.heart-empty {
+	color: red;
+	margin-right: 1em;
+}
+
+.share {
+	color: blue;
+	margin-right: 1em;
+}
+
+.duplicate {
+  color: green;
+  margin-right: 1em;
+}
+
+.pic {
+  width: 100px;
+}

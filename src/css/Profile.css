@@ -5,19 +5,29 @@
 	background-image: url('../images/bg_header.jpg');
 	color: white;
 	max-width: 1200px;
-	max-height: 300px;
+	max-height: 400px;
 	background-position: center;
 	background-repeat: no-repeat;
   text-align: center;
-  padding: 5em;
+  padding: 3em;
 }
 
-.profile_pic {
-	max-width: 150px;
-	max-height: 150px;
-	border: solid;
-	border-width: 0.5em;
-	border-color: #DCDCDC;
+.profile_btn.btn-default, .profile_btn.btn-default:hover {
+	background-color: Transparent;
+	border: solid 1px white;
+	color: white;
+	width: 10em;
+	margin: 1em 1em 0 1em;
+}
+
+.heart {
+	color: red;
+	margin-right: 1em;
+}
+
+.calendar {
+	color: gray;
+	margin-right: 1em;
 }
 
 /*---- new trip ----*/
@@ -72,31 +82,13 @@
 /*---- trip box ----*/
 
 .bg_box {
-	/*background-color: white;*/
+	text-align: left;
 	margin-bottom: 2em;
 	height: 100px;
 }
 
-/*---- trip pic ----*/
-
-.trip_pic {
-	width: 90%;
-	height: auto;
-	margin: 1em;
-}
-
-.col-md-4.col-xs-4, .col-md-8.col-xs-8 {
-	padding: 0;
-}
-
-.trip_name {
-	margin: 1em;
-	margin-top: 1.5em;
-	text-align: left;
-}
-
 .text {
-	margin: 1em;
+	margin: 0;
 	text-align: left;
 	font-size: 0.9em;
 	color: gray;
