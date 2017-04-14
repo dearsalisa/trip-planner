@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import '../css/Tripview.css'
 import TripInfo from '../components/TripInfo'
 import { Button, Glyphicon, Col } from 'react-bootstrap'
+import { likeTrip, unLikeTrip } from '../actions/tripAction'
 
 class Tripview extends Component {
 
@@ -12,11 +13,32 @@ class Tripview extends Component {
     this.state = {
       trip: trip == undefined ? {} : trip
     }
+    this.likeAction = this.likeAction.bind(this)
+    this.isLike = this.isLike.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
       var trip = newProps.tripInfo.allTrips[this.props.routeParams.tripKey]
       this.setState({ trip: trip })
+  }
+
+  isLike() {
+    var trip = this.state.trip.like
+    if(trip === undefined) return false
+    var likes = Object.keys(trip).map( (key) => {
+      return trip[key]
+    })
+    return likes.length > 0
+  }
+
+  likeAction() {
+      var key = this.props.routeParams.tripKey
+
+      if(this.isLike()) {
+        this.props.onUnLikeTrip(key, this.props.user.uid)
+      } else {
+        this.props.onLikeTrip(key, this.props.user.uid)
+      }
   }
 
   render() {
@@ -25,7 +47,7 @@ class Tripview extends Component {
         <div className="page">
           <TripInfo tripInfo={this.state.trip} />
 
-            <Button className="view_btn" bsSize="large" >
+            <Button className="view_btn" bsSize="large" onClick={ () => this.likeAction() } >
               <Glyphicon className="heart-empty" glyph="heart-empty" /> LIKE
             </Button>
             <Button className="view_btn" bsSize="large" >
@@ -66,10 +88,17 @@ class Tripview extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    tripInfo: state.trips
+    tripInfo: state.trips,
+    user: state.auth.user
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  onLikeTrip(trip_id, user_id) {
+    dispatch(likeTrip({trip_id: trip_id, user_id: user_id}))
+  },
+  onUnLikeTrip(trip_id, user_id) {
+    dispatch(unLikeTrip({trip_id: trip_id, user_id: user_id}))
+  }
 })
 
 Tripview = connect(

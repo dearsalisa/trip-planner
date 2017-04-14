@@ -48,7 +48,36 @@ export const listenAllTrips = () => {
 	return (dispatch) => {
 		dispatch({ type: "LISTEN_ALL_TRIPS"})
 		firebase.database().ref('trips').on('value',function(dataSnapshot){
+			console.log("TRIPS_CHANGE")
 			dispatch({ type: "TRIPS_CHANGE", trips: dataSnapshot.val()})
 		})
+	}
+}
+
+export const likeTrip = ({trip_id, user_id}) => {
+	return (dispatch) => {
+		firebase.database().ref(`trips/${trip_id}/like`).push(user_id)
+		firebase.database().ref(`users/${user_id}/like`).push(trip_id)
+	}
+}
+
+export const unLikeTrip = ({trip_id, user_id}) => {
+	return (dispatch) => {
+		firebase.database().ref(`trips/${trip_id}/like`).once('value').then(function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				if(childSnapshot.val() === user_id) {
+					firebase.database().ref(`trips/${trip_id}/like`).child(childSnapshot.key).remove()
+				}
+			})
+		})
+
+		firebase.database().ref(`users/${user_id}/like`).once('value').then(function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				if(childSnapshot.val() === trip_id) {
+					firebase.database().ref(`users/${user_id}/like`).child(childSnapshot.key).remove()
+				}
+			})
+		})
+
 	}
 }
