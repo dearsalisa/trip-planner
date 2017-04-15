@@ -30,11 +30,11 @@ class Profile extends Component {
     var item = this.state.user.trips
     var trip = this.props.trips
     var isEdit = !(this.props.routeParams.userId !== undefined)
+
     if(item !== null && item !== undefined) {
       var triprow = Object.keys(item).map(function(key, index) {
         var tripId = item[key]
         if(tripId !== undefined && trip[tripId] !== undefined) {
-          console.log(trip[tripId])
           return(
             <Col sm={6} key={key} >
               <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } />
@@ -44,6 +44,22 @@ class Profile extends Component {
         return("")
       });
     }
+
+    item = this.state.user.like
+    if(item !== null && item !== undefined) {
+      var likerow = Object.keys(item).map(function(key, index) {
+        var tripId = item[key]
+        if(tripId !== undefined && trip[tripId] !== undefined) {
+          return(
+            <Col sm={6} key={key} >
+              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } />
+            </Col>
+          )
+        }
+        return("")
+      });
+    }
+
     return (
       <center className="bg" >
         <div className="page">
@@ -60,8 +76,12 @@ class Profile extends Component {
                 <Tab className="tab_content" eventKey={1} title="TRIPS">
                   {triprow}
                 </Tab>
-                <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
-                <Tab className="tab_content" eventKey={3} title="LIKES">LIKES</Tab>
+                <Tab className="tab_content" eventKey={2} title="STORE">
+                  STORE
+                </Tab>
+                <Tab className="tab_content" eventKey={3} title="LIKES">
+                  {likerow}
+                </Tab>
               </Tabs>
             </div>
         </div>
