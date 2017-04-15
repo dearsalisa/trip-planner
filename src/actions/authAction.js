@@ -8,7 +8,9 @@ export function isLogin() {
       firebase.auth().onAuthStateChanged((user) => {
     		if (user) {
           firebase.database().ref(`users/${ user.uid }`).once("value").then( (snapshot) => {
-            dispatch({type:"LOGINED",user: snapshot.val()})
+            var obj_user = snapshot.val()
+            obj_user.uid = user.uid
+            dispatch({type:"LOGINED",user: obj_user})
             resolve()
           })
     		} else {
@@ -40,6 +42,8 @@ export function fbSignIn() {
             });
           }
           result.trip = snapshot.child('trips').val()
+          result.like = snapshot.child("like").val()
+          result.uid = uid
           dispatch({type: "LOGIN_USER_SUCCESS",user: result});
           dispatch(push("/home"))
         })
