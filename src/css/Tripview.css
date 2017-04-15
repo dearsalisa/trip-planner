@@ -40,9 +40,10 @@
 	margin: 1em 1em 0 1em;
 }
 
-.heart-empty {
+.heart {
 	color: red;
 	margin-right: 1em;
+	font-size: 1em;
 }
 
 .share {
