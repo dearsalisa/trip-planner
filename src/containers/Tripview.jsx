@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Tripview.css'
-import TripInfo from '../components/TripInfo'
+import TripInfoView from '../components/TripInfoView'
 import { Button, Glyphicon, Col } from 'react-bootstrap'
 import { likeTrip, unLikeTrip } from '../actions/tripAction'
 
@@ -11,7 +11,7 @@ class Tripview extends Component {
     super(props);
     var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
     this.state = {
-      trip: trip == undefined ? {} : trip
+      trip: trip === undefined ? {} : trip
     }
     this.likeAction = this.likeAction.bind(this)
     this.isLike = this.isLike.bind(this)
@@ -45,18 +45,7 @@ class Tripview extends Component {
     return (
       <center className="bg">
         <div className="page">
-          <TripInfo tripInfo={this.state.trip} />
-
-            <Button className="view_btn" bsSize="large" onClick={ () => this.likeAction() } >
-              <Glyphicon className="heart-empty" glyph="heart-empty" /> LIKE
-            </Button>
-            <Button className="view_btn" bsSize="large" >
-              <Glyphicon className="duplicate" glyph="duplicate" /> DUPLICATE
-            </Button>
-            <Button className="view_btn" bsSize="large" >
-              <Glyphicon className="share" glyph="share-alt" /> SHARE
-            </Button>
-
+          <TripInfoView tripInfo={this.state.trip} />
             <Col className="left_box" md={4}>TRIP</Col>
             <Col className="right_box" md={8}>
               {
@@ -69,10 +58,12 @@ class Tripview extends Component {
                       this.state.trip.timeline[parseInt(input.day)-1].travel
                         .sort( (i,j) => { return i.time > j.time})
                         .map((item,index) =>
-                          <div className="event_form" key={input.day+item.name}>
-                            <h4><b>{item.time}</b></h4>
-                            <h4>{item.name}</h4>
-                            <img className="pic" role="presentation" src={require('../images/home01.jpg')}/>
+                          <div className="event_box" key={input.day+item.name}>
+                            <h4><b>{item.time}</b> {item.name} </h4>
+                            {
+                              item.image !== undefined ?
+                              <img className="pic" role="presentation" src={item.image}/> : ""
+                            }
                             <h5>{item.detail}</h5>
                           </div>
                       ) : <div className="event_form"><h5>no event</h5></div>

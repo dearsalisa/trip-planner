@@ -20,16 +20,6 @@
 	margin: 1em 1em 0 1em;
 }
 
-.heart {
-	color: red;
-	margin-right: 1em;
-}
-
-.calendar {
-	color: gray;
-	margin-right: 1em;
-}
-
 /*---- new trip ----*/
 
 .new_trip.btn-default.active, .new_trip.btn-default:active, .new_trip.open>.dropdown-toggle.btn-default {
@@ -65,13 +55,22 @@
 	border: none;
 }
 
-.nav-tabs>li>a, .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+.nav.nav-tabs>li.active>a, .nav.nav-tabs>li.active>a:focus, .nav.nav-tabs>li.active>a:hover {
 	font-size: 1.3em;
 	font-weight: bold;
+	padding: 1em 3em 1em 3em;
+	background-color: #F2F1EF;
+}
+
+.nav.nav-tabs>li>a {
+	font-size: 1.3em;
+	font-weight: bold;
+	padding: 1em 3em 1em 3em;
+	border: 1px solid #ddd;
 }
 
 .tab_content {
-	/*background-color: #fff;*/
+	background-color: #F2F1EF;
 	border: 1px solid #ddd;
 	border-top: none;
 	padding: 2em;
@@ -83,6 +82,7 @@
 
 .bg_box {
 	text-align: left;
+	margin: 1em;
 	margin-bottom: 2em;
 	height: 100px;
 }

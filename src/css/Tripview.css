@@ -1,7 +1,41 @@
+/*---- header : show trip info & like/share button ----*/
+
+.trip_header {
+	position: relative;
+  background: black;
+  overflow: hidden;
+	max-width: 1200px;
+	height: 300px;
+	padding: 5em;
+}
+
+.trip_header:before {
+	content: ' ';
+	display: block;
+  position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+  opacity: 0.5;
+	background-image: url('../images/trip02.jpg');
+	text-align: center;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.trip_detail {
+	z-index: 2;
+	color: white;
+	position: relative;
+}
+
 .view_btn.btn-default, .view_btn.btn-default:hover {
-	background-color: Transparent;
-	border: solid 1px black;
-	color: black;
+	background-color: #ECECEC;
+	border: solid 1px #333;
+	border: none;
+	color: #333;
 	width: 10em;
 	margin: 1em 1em 0 1em;
 }
@@ -17,8 +51,19 @@
 }
 
 .duplicate {
-  color: green;
+  color: gray;
   margin-right: 1em;
+}
+
+/*----- content -----*/
+
+.event_box {
+	background-color: #E8E8E8;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+.event_box:hover {
+	background-color: #DADFE1;
 }
 
 .pic {

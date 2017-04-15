@@ -48,7 +48,6 @@ class Profile extends Component {
       <center className="bg" >
         <div className="page">
           <UserInfo {...this.state.user}/>
-
           <Button className="new_trip" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
             <Glyphicon glyph="plus" /> CREATE NEW TRIP
           </Button>
@@ -58,10 +57,11 @@ class Profile extends Component {
           <br/><br/><br/><br/>
             <div className="content">
               <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
-                <Tab className="tab_content" eventKey={1} title="MY TRIP">
+                <Tab className="tab_content" eventKey={1} title="TRIPS">
                   {triprow}
                 </Tab>
                 <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
+                <Tab className="tab_content" eventKey={3} title="LIKES">LIKES</Tab>
               </Tabs>
             </div>
         </div>

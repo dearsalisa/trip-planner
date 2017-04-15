@@ -1,50 +1,114 @@
-/*---- trip info ----*/
+/*----header : show trip info ----*/
 
 .trip_header {
-	background-image: url('../images/trip02.jpg');
+	position: relative;
+  background: black;
+  overflow: hidden;
 	max-width: 1200px;
 	height: 300px;
+	padding: 5em;
+}
+
+.trip_header:before {
+	content: ' ';
+	display: block;
+  position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+  opacity: 0.5;
+	background-image: url('../images/trip02.jpg');
+	text-align: center;
 	background-position: center;
 	background-repeat: no-repeat;
-  color: black;
-  padding: 5em;
+}
+
+.trip_detail {
+	z-index: 2;
+	color: white;
+	position: relative;
 }
 
 /* content layout */
 
-.left_box {
-	background-color: #D0D0D0;
+.left_box.col-md-4 {
+	background-color: none;
 	height: 200px;
 }
 
-.right_box {
-	background-color: #F0F0F0;
+.right_box.col-md-8 {
+	background-color: none;
 	text-align: left;
 	padding-bottom: 5em;
-}
-
-.right_box.col-md-8 {
 	min-height: 500px;
-}
-
-.left_box.col-md-4 {
-	min-height: 300px;
 }
 
 /* add day button */
 
-.add_day {
+.add_day.btn-default {
 	margin: 2em;
+	background-color: #ECECEC;
+	border-style: none;
+	border-radius: 0;
+	border: solid 1px #444;
+	padding: 1em 3em 1em 3em;
 }
 
-/* text */
+.add_event {
+	background-color: #E8E8E8;
+	text-align: center;
+	padding: 0 2em 2em 2em;
+}
+
+.add_event_btn.btn-default {
+	background-color: #ECECEC;
+	border-style: none;
+	border-radius: 0;
+	border: solid 1px #444;
+	padding: 1em 3em 1em 3em;
+}
+
+.add_event_btn.btn-default:hover {
+	background-color: #E8E8E8;
+}
+
+/* all about timeline */
+
+.event_box {
+	background-color: #E8E8E8;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+.event_box:hover {
+	background-color: #DADFE1;
+}
 
 .day {
-	background-color: #D8D8D8;
+	background-color: #D2D7D3;
 	width: 120px;
 	padding: 0.25em;
 	text-align: center;
 	margin-bottom: 0;
+}
+
+.remove {
+	font-size: 0.75em;
+	margin-left: 1em;
+}
+
+.remove:hover {
+	color: red;
+}
+
+.glyph_edit {
+	font-size: 1em;
+	margin-left: 45em;
+}
+
+.glyph_edit:hover {
+	color: green;
 }
 
 .time {
@@ -62,7 +126,6 @@
 	margin: 0;
 }
 
-.event_form {
-	background-color: #E8E8E8;
-	padding: 0.5em 1em 0.5em 1em;
+.pic {
+  width: 100px;
 }
