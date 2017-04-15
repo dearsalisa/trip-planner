@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Modal, Glyphicon } from 'react-bootstrap'
 import '../css/Timeline.css'
 
 class Edit extends Component {
@@ -38,7 +38,9 @@ class Edit extends Component {
     //console.log(this.props)
     return (
       <div className="edit">
-        <a onClick={this.open} >edit</a>
+        <span onClick={this.open} >
+          <Glyphicon className="glyph_edit" glyph="edit" />
+        </span>
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
             <Modal.Title>Edit</Modal.Title>

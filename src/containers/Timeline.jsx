@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Timeline.css'
-import { Button, Col, Modal } from 'react-bootstrap'
+import { Button, Col, Modal, Glyphicon } from 'react-bootstrap'
 import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
@@ -115,21 +115,25 @@ class Timeline extends Component {
       <center className="bg">
       <div className="page">
         <TripInfo tripInfo={this.state.trip} />
-        <Col className="left_box" md={4}>TRIP</Col>
+        <Col className="left_box" md={4}>
+          <br />TRIP TRIP TRIP<br />
+        </Col>
         <Col className="right_box" md={8}>
           {
             this.state.trip.timeline !== undefined ?
             this.state.trip.timeline.map(input =>
               <div key={input.day}>
                 <h3 className="day" >Day {input.day}
-                  <a onClick={this.removeDay.bind(this, input.day)}> (x) </a>
+                  <span onClick={this.removeDay.bind(this, input.day)}>
+                    <Glyphicon className="remove" glyph="remove" />
+                  </span>
                 </h3>
                 {
                   this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
                   this.state.trip.timeline[parseInt(input.day)-1].travel
                     .sort( (i,j) => { return i.time > j.time})
                     .map((item,index) =>
-                      <div className="event_form" key={input.day+item.name}>
+                      <div className="event_box" key={input.day+item.name}>
                         <h4>
                           <b>{item.time}</b>
                           <Edit {
@@ -140,7 +144,9 @@ class Timeline extends Component {
                               callBack: this.updateTravel
                             }
                           } />
-                        <a onClick={this.removeTravel.bind(this, input.day, index)}> (x) </a>
+                          <span onClick={this.removeTravel.bind(this, input.day, index)}>
+                            <Glyphicon className="remove" glyph="remove" />
+                          </span>
                         </h4>
                         <h4>{item.name}</h4>
                         {
@@ -153,7 +159,9 @@ class Timeline extends Component {
                 }
 
                 <div>
-                  <button onClick={ () => this.open(input.day)} > Add </button>
+                  <div className="add_event">
+                    <Button className="add_event_btn" onClick={ () => this.open(input.day)} > ADD NEW EVENT </Button>
+                  </div>
                   <Modal show={this.state.showModal} onHide={this.close}>
                     <Modal.Header closeButton>
                       <Modal.Title>Add TimeLine {input.day} </Modal.Title>
@@ -187,7 +195,7 @@ class Timeline extends Component {
             ) : ""
           }
           <center>
-            <Button className="add_day" bsStyle="primary" onClick={ () => this.appendInput() }>ADD DAY</Button>
+            <Button className="add_day" onClick={ () => this.appendInput() }>ADD DAY</Button>
           </center>
         </Col>
       </div>

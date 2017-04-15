@@ -1,4 +1,4 @@
-/*---- trip info ----*/
+/*---- header : show trip info & like/share button ----*/
 
 .trip_header {
 	position: relative;
@@ -53,6 +53,17 @@
 .duplicate {
   color: gray;
   margin-right: 1em;
+}
+
+/*----- content -----*/
+
+.event_box {
+	background-color: #E8E8E8;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+.event_box:hover {
+	background-color: #DADFE1;
 }
 
 .pic {

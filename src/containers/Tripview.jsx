@@ -58,9 +58,8 @@ class Tripview extends Component {
                       this.state.trip.timeline[parseInt(input.day)-1].travel
                         .sort( (i,j) => { return i.time > j.time})
                         .map((item,index) =>
-                          <div className="event_form" key={input.day+item.name}>
-                            <h4><b>{item.time}</b></h4>
-                            <h4>{item.name}</h4>
+                          <div className="event_box" key={input.day+item.name}>
+                            <h4><b>{item.time}</b> {item.name} </h4>
                             {
                               item.image !== undefined ?
                               <img className="pic" role="presentation" src={item.image}/> : ""
