@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import '../css/Tripview.css';
-import { Button, Glyphicon } from 'react-bootstrap'
+import { Button, Glyphicon, Modal } from 'react-bootstrap'
 import { likeTrip, unLikeTrip } from '../actions/tripAction'
 
 class TripViewInfo extends Component {
 
 	constructor(props) {
 		super(props);
-
+		this.state = {
+      showModal: false
+    };
+		this.close = this.close.bind(this)
+		this.open = this.open.bind(this)
 		this.likeAction = this.likeAction.bind(this)
 		this.isLike = this.isLike.bind(this)
+	}
+
+	close() {
+		this.setState({ showModal: false, addingDay: -1 });
+	}
+
+	open() {
+		this.setState({ showModal: true });
 	}
 
 	isLike() {
@@ -37,16 +49,28 @@ class TripViewInfo extends Component {
 				<center className="trip_detail">
 					<h2>{this.props.trip.name}</h2>
 					<h4>{this.props.trip.detail}</h4>
-					<Button className="view_btn" bsSize="large" onClick={() => this.likeAction()}>
+					<Button className="view_btn" bsSize="large" onClick={() => this.likeAction()} active>
 						{
 							(this.isLike())?  <div><Glyphicon className="heart" glyph="heart" /> LIKE</div>
 						: <div><Glyphicon className="heart" glyph="heart-empty" /> LIKE</div>
 						}
 					</Button>
-					<Button className="view_btn" bsSize="large" >
+					<Button className="view_btn" bsSize="large" onClick={ () => this.open()} active>
 						<Glyphicon className="duplicate" glyph="duplicate" /> DUPLICATE
 					</Button>
-					<Button className="view_btn" bsSize="large" >
+					<Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>DUPLICATE</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>keep it to my store ?</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button>OK</Button>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+					<Button className="view_btn" bsSize="large" active>
 						<Glyphicon className="share" glyph="share-alt" /> SHARE
 					</Button>
 				</center>

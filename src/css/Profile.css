@@ -109,4 +109,5 @@
 
 .remove_trip:hover {
 	color: red;
+	cursor: pointer;
 }

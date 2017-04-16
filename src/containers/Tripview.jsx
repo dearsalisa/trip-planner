@@ -10,14 +10,25 @@ class Tripview extends Component {
     super(props);
     var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
     this.state = {
+      showModal: false,
       trip: trip === undefined ? {} : trip,
       trip_id: props.routeParams.tripKey
     }
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
       var trip = newProps.tripInfo.allTrips[this.props.routeParams.tripKey]
       this.setState({ trip: trip })
+  }
+
+  close() {
+    this.setState({ showModal: false, addingDay: -1 });
+  }
+
+  open() {
+    this.setState({ showModal: true });
   }
 
   render() {

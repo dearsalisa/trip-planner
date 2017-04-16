@@ -15,13 +15,18 @@ class Profile extends Component {
     var userId = props.routeParams.userId
     var user = userId === undefined ? props.user : (props.allUsers[userId] !== undefined ? props.allUsers[userId] : {})
     this.state = {
-      open: false,
       showModal: false,
       user: user
     };
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
     this.addTravel = this.addTravel.bind(this)
+  }
+
+  componentWillReceiveProps(newProps) {
+    var userId = newProps.routeParams.userId
+    var user = userId === undefined ? newProps.user : (newProps.allUsers[userId] !== undefined ? newProps.allUsers[userId] : {})
+    this.setState({user: user})
   }
 
   close() {
@@ -35,12 +40,6 @@ class Profile extends Component {
   addTravel() {
     this.props.onSubmitTrip(this.refs.name.value, this.refs.detail.value, this.props.user.uid)
     this.close()
-  }
-
-  componentWillReceiveProps(newProps) {
-    var userId = newProps.routeParams.userId
-    var user = userId === undefined ? newProps.user : (newProps.allUsers[userId] !== undefined ? newProps.allUsers[userId] : {})
-    this.setState({user: user})
   }
 
   render() {
