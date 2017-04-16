@@ -5,7 +5,8 @@ import { reduxForm } from 'redux-form'
 import UserInfo from '../components/UserInfo'
 import TripBox from '../components/TripBox'
 import TripForm from '../components/TripForm'
-import { Button, Glyphicon, Tabs, Tab, Panel, Col } from 'react-bootstrap'
+import { Button, Glyphicon, Tabs, Tab, Modal, Col } from 'react-bootstrap'
+import { addTrip } from '../actions/tripAction'
 
 class Profile extends Component {
 
@@ -15,8 +16,25 @@ class Profile extends Component {
     var user = userId === undefined ? props.user : (props.allUsers[userId] !== undefined ? props.allUsers[userId] : {})
     this.state = {
       open: false,
+      showModal: false,
       user: user
     };
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
+    this.addTravel = this.addTravel.bind(this)
+  }
+
+  close() {
+    this.setState({ showModal: false, addingDay: -1 });
+  }
+
+  open() {
+    this.setState({ showModal: true });
+  }
+
+  addTravel() {
+    this.props.onSubmitTrip(this.refs.name.value, this.refs.detail.value, this.props.user.uid)
+    this.close()
   }
 
   componentWillReceiveProps(newProps) {
@@ -64,12 +82,27 @@ class Profile extends Component {
       <center className="bg" >
         <div className="page">
           <UserInfo {...this.state.user}/>
-          <Button className="new_trip" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
+          <Button className="new_trip" bsSize="large" onClick={ () => this.open()} active>
             <Glyphicon glyph="plus" /> CREATE NEW TRIP
           </Button>
-          <Panel className="trip_form" collapsible expanded={this.state.open}>
-            <TripForm {...this.props} />
-          </Panel>
+          <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>NEW TRIP</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form className="timeline_form">
+                <label>Name </label>
+                <input placeholder="name" ref="name" /><br />
+                <label>Detail </label>
+                <input placeholder="detail" ref="detail" /><br />
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.addTravel}>Save</Button>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+
           <br/><br/><br/><br/>
             <div className="content">
               <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
@@ -101,7 +134,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+  onSubmitTrip(name, detail, user) {
+    dispatch(addTrip({name: name, detail: detail, user: user}))
+  }
 })
 
 Profile = connect(

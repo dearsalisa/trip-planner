@@ -42,7 +42,7 @@ class Tripview extends Component {
                               <h4><span className="circle"></span><b>{item.time}</b> {item.name} </h4>
                             </div>
                             <div className="square">
-                              <div className="trip_detail">
+                              <div className="trip_text">
                                 {
                                   item.image !== undefined ?
                                   <img className="pic" role="presentation" src={item.image}/>: ""
