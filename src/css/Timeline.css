@@ -59,7 +59,7 @@
 .add_event {
 	background-color: #E8E8E8;
 	text-align: center;
-	padding: 0 2em 2em 2em;
+	padding: 2em;
 }
 
 .add_event_btn.btn-default {

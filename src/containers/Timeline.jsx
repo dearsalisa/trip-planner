@@ -160,7 +160,7 @@ class Timeline extends Component {
 
                 <div>
                   <div className="add_event">
-                    <Button className="add_event_btn" onClick={ () => this.open(input.day)} > ADD NEW EVENT </Button>
+                    <Button className="add_event_btn" onClick={ () => this.open(input.day)} > NEW EVENT </Button>
                   </div>
                   <Modal show={this.state.showModal} onHide={this.close}>
                     <Modal.Header closeButton>
