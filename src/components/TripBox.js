@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Profile.css';
-import { Media  } from 'react-bootstrap'
+import { Media, Glyphicon  } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 const TripBox = ({tripKey, trip, isEdit}) => {
@@ -13,6 +13,7 @@ const TripBox = ({tripKey, trip, isEdit}) => {
 				<Media.Body>
 					<Media.Heading>
 						<Link to={ isEdit ? `/${tripKey}/edit/timeline`: `/${tripKey}/view`}>{trip.name}</Link>
+						<Glyphicon className="remove_trip" glyph="trash" />
 					</Media.Heading>
 					<p className="text">{trip.detail}</p>
 				</Media.Body>
