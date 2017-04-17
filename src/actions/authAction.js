@@ -73,7 +73,6 @@ export function getAllUser() {
   return (dispatch) => {
 		dispatch({ type: "LOAD_ALL_USER"})
 		firebase.database().ref('users').once("value").then( (dataSnapshot) => {
-      console.log(dataSnapshot.val())
 			dispatch({ type: "DONE_ALL_USER", users: dataSnapshot.val()})
 		})
 	}

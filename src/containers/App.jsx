@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../css/App.css'
 import Header from '../components/Header'
 import { connect } from 'react-redux'
-import { listenAllTrips } from '../actions/tripAction'
+import { listenAllTrips, listenMyTrips } from '../actions/tripAction'
 import { getAllUser } from '../actions/authAction'
 
 class App extends Component {
@@ -10,6 +10,7 @@ class App extends Component {
 	componentWillMount(){
 		this.props.listenAllTrips()
 		this.props.loadAllUser()
+		this.props.listenMyTrips(this.props.user.uid)
 	}
 
 	render() {
@@ -24,6 +25,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   isListenAllTrips: state.trips.isListenAllTrips,
+	user: state.auth.user
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -32,6 +34,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	loadAllUser() {
 		dispatch(getAllUser())
+	},
+	listenMyTrips(user_id) {
+		dispatch(listenMyTrips({user_id: user_id}))
 	}
 })
 
