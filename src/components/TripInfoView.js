@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import '../css/Tripview.css';
 import { Button, Glyphicon, Modal } from 'react-bootstrap'
-import { likeTrip, unLikeTrip } from '../actions/tripAction'
+import { duplicateTrip, likeTrip, unLikeTrip } from '../actions/tripAction'
 
 class TripViewInfo extends Component {
 
@@ -43,6 +43,11 @@ class TripViewInfo extends Component {
       }
   }
 
+	duplicateAction() {
+		this.props.trip.id = this.props.trip_id
+		this.props.onDuplicateTrip(this.props.trip, this.props.user.uid)
+	}
+
 	render() {
 		return (
 			<div className="trip_header">
@@ -55,7 +60,11 @@ class TripViewInfo extends Component {
 						: <div><Glyphicon className="heart" glyph="heart-empty" /> LIKE</div>
 						}
 					</Button>
+<<<<<<< HEAD
 					<Button className="view_btn" bsSize="large" onClick={ () => this.open()} active>
+=======
+					<Button className="view_btn" bsSize="large" onClick={() => this.duplicateAction()} >
+>>>>>>> Done duplicate trip
 						<Glyphicon className="duplicate" glyph="duplicate" /> DUPLICATE
 					</Button>
 					<Modal show={this.state.showModal} onHide={this.close}>
@@ -89,7 +98,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onUnLikeTrip(trip_id, user_id) {
     dispatch(unLikeTrip({trip_id: trip_id, user_id: user_id}))
-  }
+  },
+	onDuplicateTrip(trip, user_id) {
+		dispatch(duplicateTrip({trip: trip, user_id: user_id}))
+	}
 })
 
 TripViewInfo = connect(
