@@ -60,25 +60,9 @@ class TripViewInfo extends Component {
 						: <div><Glyphicon className="heart" glyph="heart-empty" /> LIKE</div>
 						}
 					</Button>
-<<<<<<< HEAD
-					<Button className="view_btn" bsSize="large" onClick={ () => this.open()} active>
-=======
 					<Button className="view_btn" bsSize="large" onClick={() => this.duplicateAction()} >
->>>>>>> Done duplicate trip
 						<Glyphicon className="duplicate" glyph="duplicate" /> DUPLICATE
 					</Button>
-					<Modal show={this.state.showModal} onHide={this.close}>
-            <Modal.Header closeButton>
-              <Modal.Title>DUPLICATE</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>keep it to my store ?</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button>OK</Button>
-              <Button onClick={this.close}>Close</Button>
-            </Modal.Footer>
-          </Modal>
 					<Button className="view_btn" bsSize="large" active>
 						<Glyphicon className="share" glyph="share-alt" /> SHARE
 					</Button>
