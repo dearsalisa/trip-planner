@@ -79,6 +79,33 @@ export const unLikeTrip = ({trip_id, user_id}) => {
 				}
 			})
 		})
+	}
+}
+
+export const duplicateTrip = ({ trip, user_id }) => {
+	return (dispatch) => {
+		dispatch({ type: "DUPLICATING_TRIPS"})
+		console.log(trip)
+		var fb = firebase.database().ref('trips')
+		var rawTrip = {
+			name: trip.name,
+			detail: trip.detail,
+      owner: user_id,
+			timeline: trip.timeline,
+			dup_id: trip.id,
+      createAt: firebase.database.ServerValue.TIMESTAMP
+		}
+
+		var newTrip = fb.push(rawTrip)
+		.then((newTrip) => {
+      rawTrip.key = newTrip.key
+			dispatch({ type: "DUPLICATE_TRIPS_SUCCESS"})
+      firebase.database().ref(`users/${user_id}/trips`).push(newTrip.key)
+		})
+    .catch((error) => {
+      console.log(error)
+			dispatch({ type: "DUPLICATE_TRIPS_FAIL"})
+    })
 
 	}
 }
