@@ -10,14 +10,25 @@ class Tripview extends Component {
     super(props);
     var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
     this.state = {
+      showModal: false,
       trip: trip === undefined ? {} : trip,
       trip_id: props.routeParams.tripKey
     }
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
       var trip = newProps.tripInfo.allTrips[this.props.routeParams.tripKey]
       this.setState({ trip: trip })
+  }
+
+  close() {
+    this.setState({ showModal: false, addingDay: -1 });
+  }
+
+  open() {
+    this.setState({ showModal: true });
   }
 
   render() {
@@ -31,19 +42,25 @@ class Tripview extends Component {
                 this.state.trip.timeline !== undefined ?
                 this.state.trip.timeline.map(input =>
                   <div key={input.day}>
-                    <h3 className="day" >Day {input.day}</h3>
+                    <h3 className="day"> Day {input.day}</h3>
                     {
                       this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
                       this.state.trip.timeline[parseInt(input.day)-1].travel
                         .sort( (i,j) => { return i.time > j.time})
                         .map((item,index) =>
                           <div className="event_box" key={input.day+item.name}>
-                            <h4><b>{item.time}</b> {item.name} </h4>
-                            {
-                              item.image !== undefined ?
-                              <img className="pic" role="presentation" src={item.image}/> : ""
-                            }
-                            <h5>{item.detail}</h5>
+                            <div className="name">
+                              <h4><span className="circle"></span><b>{item.time}</b> {item.name} </h4>
+                            </div>
+                            <div className="square">
+                              <div className="trip_text">
+                                {
+                                  item.image !== undefined ?
+                                  <img className="pic" role="presentation" src={item.image}/>: ""
+                                }
+                                <h5 className="detail">{item.detail}</h5>
+                              </div>
+                            </div>
                           </div>
                       ) : <div className="event_form"><h5>no event</h5></div>
                     }

@@ -5,7 +5,8 @@ import { reduxForm } from 'redux-form'
 import UserInfo from '../components/UserInfo'
 import TripBox from '../components/TripBox'
 import TripForm from '../components/TripForm'
-import { Button, Glyphicon, Tabs, Tab, Panel, Col } from 'react-bootstrap'
+import { Button, Glyphicon, Tabs, Tab, Modal, Col } from 'react-bootstrap'
+import { addTrip } from '../actions/tripAction'
 
 class Profile extends Component {
 
@@ -14,9 +15,12 @@ class Profile extends Component {
     var userId = props.routeParams.userId
     var user = userId === undefined ? props.user : (props.allUsers[userId] !== undefined ? props.allUsers[userId] : {})
     this.state = {
-      open: false,
+      showModal: false,
       user: user
     };
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
+    this.addTravel = this.addTravel.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
@@ -25,16 +29,29 @@ class Profile extends Component {
     this.setState({user: user})
   }
 
+  close() {
+    this.setState({ showModal: false, addingDay: -1 });
+  }
+
+  open() {
+    this.setState({ showModal: true });
+  }
+
+  addTravel() {
+    this.props.onSubmitTrip(this.refs.name.value, this.refs.detail.value, this.props.user.uid)
+    this.close()
+  }
+
   render() {
     console.log(this.state.user)
     var item = this.state.user.trips
     var trip = this.props.trips
     var isEdit = !(this.props.routeParams.userId !== undefined)
+
     if(item !== null && item !== undefined) {
       var triprow = Object.keys(item).map(function(key, index) {
         var tripId = item[key]
         if(tripId !== undefined && trip[tripId] !== undefined) {
-          console.log(trip[tripId])
           return(
             <Col sm={6} key={key} >
               <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } />
@@ -44,24 +61,59 @@ class Profile extends Component {
         return("")
       });
     }
+
+    item = this.state.user.like
+    if(item !== null && item !== undefined) {
+      var likerow = Object.keys(item).map(function(key, index) {
+        var tripId = item[key]
+        if(tripId !== undefined && trip[tripId] !== undefined) {
+          return(
+            <Col sm={6} key={key} >
+              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } />
+            </Col>
+          )
+        }
+        return("")
+      });
+    }
+
     return (
       <center className="bg" >
         <div className="page">
           <UserInfo {...this.state.user}/>
-          <Button className="new_trip" bsSize="large" onClick={ ()=> this.setState({ open: !this.state.open })} active>
+          <Button className="new_trip" bsSize="large" onClick={ () => this.open()} active>
             <Glyphicon glyph="plus" /> CREATE NEW TRIP
           </Button>
-          <Panel className="trip_form" collapsible expanded={this.state.open}>
-            <TripForm {...this.props} />
-          </Panel>
+          <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>NEW TRIP</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form className="timeline_form">
+                <label>Name </label>
+                <input placeholder="name" ref="name" /><br />
+                <label>Detail </label>
+                <input placeholder="detail" ref="detail" /><br />
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.addTravel}>Save</Button>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+
           <br/><br/><br/><br/>
             <div className="content">
               <Tabs className="tab_header" defaultActiveKey={1} id="uncontrolled-tab-example">
                 <Tab className="tab_content" eventKey={1} title="TRIPS">
                   {triprow}
                 </Tab>
-                <Tab className="tab_content" eventKey={2} title="STORE">STORE</Tab>
-                <Tab className="tab_content" eventKey={3} title="LIKES">LIKES</Tab>
+                <Tab className="tab_content" eventKey={2} title="STORE">
+                  STORE
+                </Tab>
+                <Tab className="tab_content" eventKey={3} title="LIKES">
+                  {likerow}
+                </Tab>
               </Tabs>
             </div>
         </div>
@@ -81,7 +133,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+  onSubmitTrip(name, detail, user) {
+    dispatch(addTrip({name: name, detail: detail, user: user}))
+  }
 })
 
 Profile = connect(

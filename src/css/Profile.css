@@ -100,3 +100,14 @@
 	-webkit-line-clamp: 4; /* number of lines to show */
 	-webkit-box-orient: vertical;
 }
+
+.remove_trip {
+	font-size: 0.75em;
+	margin-left: 1em;
+	color: gray;
+}
+
+.remove_trip:hover {
+	color: red;
+	cursor: pointer;
+}

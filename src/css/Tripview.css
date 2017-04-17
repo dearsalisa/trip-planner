@@ -6,7 +6,7 @@
   overflow: hidden;
 	max-width: 1200px;
 	height: 300px;
-	padding: 5em;
+	padding: 3em;
 }
 
 .trip_header:before {
@@ -40,9 +40,10 @@
 	margin: 1em 1em 0 1em;
 }
 
-.heart-empty {
+.heart {
 	color: red;
 	margin-right: 1em;
+	font-size: 1em;
 }
 
 .share {
@@ -59,13 +60,47 @@
 
 .event_box {
 	background-color: #E8E8E8;
-	padding: 0.5em 1em 0.5em 1em;
+	padding: 1em 1em 0 1em;
 }
 
-.event_box:hover {
-	background-color: #DADFE1;
+.day {
+
 }
 
 .pic {
   width: 100px;
+	margin: 0;
+	margin-left: 2em;
+	margin-bottom: 1em;
+}
+
+.circle:before {
+	color: #333;
+	content: ' \25CF';
+  font-size: 3em;
+	line-height: 1em;
+	margin-right: 0.3em;
+	margin-left: 0.25em;
+}
+
+.square {
+  border-left: solid 5px #333;
+	height: 100%;
+	margin-left: 1.9em;
+	margin-top: -4.3em;
+	padding-top: 4.3em;
+	padding-bottom: 1em;
+}
+
+.name {
+	margin-top: -2em;
+}
+
+.detail {
+	margin: 0;
+	margin-left: 2em;
+}
+
+.trip_text {
+	margin-left: 0.75em;
 }

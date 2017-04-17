@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import { push } from 'react-router-redux'
 
 const addTripSuccess = (dispatch, trip) => {
 	console.log("ADD TRIP SUCCESS")
@@ -9,14 +10,13 @@ const addTripFail = (dispatch) => {
 	dispatch({ type: "ADD_TRIP_FAIL" })
 }
 
-export const addTrip = ({ trip_name, trip_detail, user }) => {
+export const addTrip = ({name, detail, user}) => {
 	return (dispatch) => {
 		var fb = firebase.database().ref('trips')
-    console.log(`trip_name: ${trip_name.value}, trip_detail: ${trip_detail.value} owner: ${user.uid}`)
     var rawTrip = {
-			name: trip_name.value,
-			detail: trip_detail.value,
-      owner: user.uid,
+			name: name,
+			detail: detail,
+      owner: user,
       createAt: firebase.database.ServerValue.TIMESTAMP
 		}
 
@@ -24,7 +24,8 @@ export const addTrip = ({ trip_name, trip_detail, user }) => {
 		.then((newTrip) => {
       rawTrip.key = newTrip.key
 			addTripSuccess(dispatch,rawTrip)
-      firebase.database().ref(`users/${user.uid}/trips`).push(newTrip.key)
+      firebase.database().ref(`users/${user}/trips`).push(newTrip.key)
+			dispatch(push(`${newTrip.key}/edit/timeline`))
 		})
     .catch((error) => {
       console.log(error)
