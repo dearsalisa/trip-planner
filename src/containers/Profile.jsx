@@ -6,7 +6,7 @@ import UserInfo from '../components/UserInfo'
 import TripBox from '../components/TripBox'
 import TripForm from '../components/TripForm'
 import { Button, Glyphicon, Tabs, Tab, Modal, Col } from 'react-bootstrap'
-import { addTrip } from '../actions/tripAction'
+import { removeTrip, addTrip } from '../actions/tripAction'
 
 class Profile extends Component {
 
@@ -21,6 +21,7 @@ class Profile extends Component {
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
     this.addTravel = this.addTravel.bind(this)
+    this.removeTripAction = this.removeTripAction.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
@@ -42,11 +43,15 @@ class Profile extends Component {
     this.close()
   }
 
+  removeTripAction(trip_id) {
+		this.props.onRemoveTrips(trip_id, this.props.user.uid)
+	}
+
   render() {
-    console.log(this.state.user)
-    var item = this.state.user.trips
+    var item = this.props.myTrips
     var trip = this.props.trips
     var isEdit = !(this.props.routeParams.userId !== undefined)
+    var removeAction = this.removeTripAction
 
     if(item !== null && item !== undefined) {
       var triprow = Object.keys(item).map(function(key, index) {
@@ -54,7 +59,7 @@ class Profile extends Component {
         if(tripId !== undefined && trip[tripId] !== undefined) {
           return(
             <Col sm={6} key={key} >
-              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } />
+              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } removeAction={ () => removeAction(tripId)} />
             </Col>
           )
         }
@@ -129,13 +134,17 @@ Profile = reduxForm({
 const mapStateToProps = (state) => ({
   trips: state.trips.allTrips,
   user: state.auth.user,
-  allUsers: state.auth.allUsers
+  allUsers: state.auth.allUsers,
+  myTrips: state.trips.myTrips
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitTrip(name, detail, user) {
     dispatch(addTrip({name: name, detail: detail, user: user}))
-  }
+  },
+  onRemoveTrips(trip_id, user_id) {
+		dispatch(removeTrip({trip_id: trip_id, user_id: user_id }))
+	}
 })
 
 Profile = connect(

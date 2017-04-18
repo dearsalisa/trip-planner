@@ -1,6 +1,8 @@
 const initialState = {
   allTrips: {},
-  isListenAllTrips: false
+  myTrips: {},
+  isListenAllTrips: false,
+  isListenMyTrips: false
 }
 
 const trips = (state = initialState, action) => {
@@ -11,6 +13,16 @@ const trips = (state = initialState, action) => {
       return {
         ...state,
         isListenAllTrips: true
+      }
+    case "LISTEN_MY_TRIPS":
+      return {
+        ...state,
+        isListenMyTrips: true
+      }
+    case "MY_TRIPS_CHANGE":
+      return {
+        ...state,
+        myTrips: action.trips
       }
     case "TRIPS_CHANGE":
       return {

@@ -53,7 +53,6 @@ const auth = (state = initialState, action) => {
         isUserSignedIn: false
       }
     case "DONE_ALL_USER":
-    console.log(action.users)
       return {
         ...state,
         allUsers: action.users

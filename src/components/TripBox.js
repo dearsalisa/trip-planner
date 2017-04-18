@@ -3,7 +3,7 @@ import '../css/Profile.css';
 import { Media, Glyphicon  } from 'react-bootstrap'
 import { Link } from 'react-router'
 
-const TripBox = ({tripKey, trip, isEdit}) => {
+const TripBox = ({tripKey, trip, isEdit, removeAction}) => {
 	return (
 		<div className="bg_box">
 			<Media>
@@ -13,7 +13,7 @@ const TripBox = ({tripKey, trip, isEdit}) => {
 				<Media.Body>
 					<Media.Heading>
 						<Link to={ isEdit ? `/${tripKey}/edit/timeline`: `/${tripKey}/view`}>{trip.name}</Link>
-						<Glyphicon className="remove_trip" glyph="trash" />
+						<Glyphicon className="remove_trip" glyph="trash" onClick={ () => removeAction()}/>
 					</Media.Heading>
 					<p className="text">{trip.detail}</p>
 				</Media.Body>

@@ -55,6 +55,16 @@ export const listenAllTrips = () => {
 	}
 }
 
+export const listenMyTrips = ({user_id}) => {
+	return (dispatch) => {
+		dispatch({ type: "LISTEN_MY_TRIPS"})
+		firebase.database().ref(`users/${user_id}/trips`).on('value',function(dataSnapshot){
+			console.log("MY_TRIPS_CHANGE")
+			dispatch({ type: "MY_TRIPS_CHANGE", trips: dataSnapshot.val()})
+		})
+	}
+}
+
 export const likeTrip = ({trip_id, user_id}) => {
 	return (dispatch) => {
 		firebase.database().ref(`trips/${trip_id}/like`).push(user_id)
@@ -99,13 +109,27 @@ export const duplicateTrip = ({ trip, user_id }) => {
 		var newTrip = fb.push(rawTrip)
 		.then((newTrip) => {
       rawTrip.key = newTrip.key
-			dispatch({ type: "DUPLICATE_TRIPS_SUCCESS"})
       firebase.database().ref(`users/${user_id}/trips`).push(newTrip.key)
+			dispatch({ type: "DUPLICATE_TRIPS_SUCCESS", newTrip: newTrip})
 		})
     .catch((error) => {
       console.log(error)
 			dispatch({ type: "DUPLICATE_TRIPS_FAIL"})
     })
+	}
+}
 
+export const removeTrip = ({ trip_id, user_id }) => {
+	return (dispatch) => {
+			firebase.database().ref(`trips/${trip_id}`).remove()
+
+			firebase.database().ref(`users/${user_id}/trips`).once('value').then(function(snapshot) {
+				snapshot.forEach(function(childSnapshot) {
+					if(childSnapshot.val() === trip_id) {
+						firebase.database().ref(`users/${user_id}/trips`).child(childSnapshot.key).remove()
+					}
+				})
+			})
+			dispatch({ type: "REMOVE_TRIPS_SUCCESS", trip_id: trip_id })
 	}
 }
