@@ -101,7 +101,7 @@ export const duplicateTrip = ({ trip, user_id }) => {
 			name: trip.name,
 			detail: trip.detail,
       owner: user_id,
-			timeline: trip.timeline,
+			timeline: trip.timeline === undefined ? [] : trip.timeline,
 			dup_id: trip.id,
       createAt: firebase.database.ServerValue.TIMESTAMP
 		}

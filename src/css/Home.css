@@ -49,3 +49,9 @@
 	-webkit-line-clamp: 4; /* number of lines to show */
 	-webkit-box-orient: vertical;
 }
+
+.username {
+	color: green;
+	font-size: 0.8em;
+	font-style: italic;
+}

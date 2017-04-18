@@ -8,10 +8,13 @@ import { Link } from 'react-router'
 class Home extends Component {
 
 	render() {
+
 		var item = this.props.trips
+		var users = this.props.allUsers
 		if(item !== null) {
 			var triprow = Object.keys(item).map(function(key, index) {
-				if(item[key] !== undefined) {
+				var eiei = item[key].owner
+				if(item[key] !== undefined && users[eiei] !== undefined){
 					return(
 						<div key={key}>
 							<Col xs={4} md={3}>
@@ -19,6 +22,7 @@ class Home extends Component {
 									<Link className="link_trip" to={`/${key}/view`}>
 										<h4><b>{item[key].name}</b></h4>
 									</Link>
+									<p className="username">{users[eiei].displayName}</p>
 									<p className="text">{item[key].detail}</p>
 								</Thumbnail>
 							</Col>
@@ -46,7 +50,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.trips.allTrips
+  trips: state.trips.allTrips,
+	allUsers: state.auth.allUsers
 })
 
 const mapDispatchToProps = (dispatch) => ({

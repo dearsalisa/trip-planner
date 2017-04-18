@@ -123,7 +123,7 @@ class Timeline extends Component {
             this.state.trip.timeline !== undefined ?
             this.state.trip.timeline.map(input =>
               <div key={input.day}>
-                <h3 className="day" >Day {input.day}
+                <h3 className="tl_day" >Day {input.day}
                   <span onClick={this.removeDay.bind(this, input.day)}>
                     <Glyphicon className="remove" glyph="remove" />
                   </span>
@@ -133,7 +133,7 @@ class Timeline extends Component {
                   this.state.trip.timeline[parseInt(input.day)-1].travel
                     .sort( (i,j) => { return i.time > j.time})
                     .map((item,index) =>
-                      <div className="event_box" key={input.day+item.name}>
+                      <div className="tl_event_box" key={input.day+item.name}>
                         <h4>
                           <b>{item.time}</b>
                           <Edit {
@@ -151,7 +151,7 @@ class Timeline extends Component {
                         <h4>{item.name}</h4>
                         {
                           item.image !== undefined ?
-                          <img className="pic" role="presentation" src={item.image}/> : ""
+                          <img className="tl_pic" role="presentation" src={item.image}/> : ""
                         }
                         <h5>{item.detail}</h5>
                       </div>
