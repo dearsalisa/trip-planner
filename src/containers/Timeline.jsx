@@ -124,6 +124,12 @@ class Timeline extends Component {
                     <span onClick={this.removeDay.bind(this, input.day)}>
                       <Glyphicon className="remove" glyph="remove" />
                     </span>
+                    <span>
+                      <Glyphicon className="remove" glyph="chevron-up" />
+                    </span>
+                    <span>
+                      <Glyphicon className="remove" glyph="chevron-down" />
+                    </span>
                   </div>
                 }>
                 {
