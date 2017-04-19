@@ -79,7 +79,7 @@ class TripViewInfo extends Component {
 				<center className="trip_detail">
 					<h2>{this.props.trip.name}</h2>
 					<h4>{this.props.trip.detail}</h4>
-					<Button className="view_btn" bsSize="large" onClick={() => this.likeAction()} active>
+					<Button className="view_btn" bsSize="large" onClick={() => this.likeAction()} >
 						{
 							(this.isLike())?  <div><Glyphicon className="heart" glyph="heart" /> LIKE</div>
 						: <div><Glyphicon className="heart" glyph="heart-empty" /> LIKE</div>
