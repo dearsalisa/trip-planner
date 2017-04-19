@@ -1,10 +1,9 @@
-
 /*---- user info ----*/
 
 .bg_userinfo {
 	background-image: url('../images/bg_header.jpg');
-	color: white;
-	max-width: 1200px;
+	color: black;
+	width: 100%;
 	max-height: 400px;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -12,18 +11,16 @@
   padding: 3em;
 }
 
-.profile_btn.btn-default, .profile_btn.btn-default:hover {
-	background-color: Transparent;
-	border: solid 1px white;
-	color: white;
-	width: 10em;
-	margin: 1em 1em 0 1em;
+.email_text {
+	color: #666;
+	font-style: italic;
 }
 
 /*---- new trip ----*/
 
 .new_trip.btn-default.active, .new_trip.btn-default:active, .new_trip.open>.dropdown-toggle.btn-default {
-	background-color: #ECECEC;
+	background-color: #008C7E;
+	color: white;
 	border-radius: 0;
 	box-shadow: none;
 	margin-top: 2.5em;
@@ -31,17 +28,6 @@
 	position: absolute;
 	margin-left: 18em;
 	padding: 1em;
-}
-
-.trip_form.panel.panel-default {
-	width: 50%;
-	background-color: #F0F0F0;
-	border: none;
-	margin: 2em;
-}
-
-.form {
-	padding: 2em;
 }
 
 /*---- tab content ----*/
@@ -75,7 +61,7 @@
 	border-top: none;
 	padding: 2em;
 	padding-bottom: 0;
-	height: 500px;
+	height: 700px;
 }
 
 /*---- trip box ----*/

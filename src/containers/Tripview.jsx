@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Tripview.css'
 import TripInfoView from '../components/TripInfoView'
-import { Button, Glyphicon, Col } from 'react-bootstrap'
+import { Button, Glyphicon, Col, Panel } from 'react-bootstrap'
 
 class Tripview extends Component {
 
@@ -12,7 +12,8 @@ class Tripview extends Component {
     this.state = {
       showModal: false,
       trip: trip === undefined ? {} : trip,
-      trip_id: props.routeParams.tripKey
+      trip_id: props.routeParams.tripKey,
+      tripUrl: this.props.location.pathname
     }
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
@@ -35,14 +36,16 @@ class Tripview extends Component {
     return (
       <center className="bg">
         <div className="page">
-          <TripInfoView { ...this.state } />
+          <TripInfoView {...this.state}  />
             <Col className="left_box" md={4}>TRIP</Col>
             <Col className="right_box" md={8}>
               {
                 this.state.trip.timeline !== undefined ?
                 this.state.trip.timeline.map(input =>
-                  <div key={input.day}>
-                    <h3 className="day"> Day {input.day}</h3>
+                  <div className="day_box" key={input.day}>
+                    <Panel className="day" header={
+                      <div>Day {input.day}</div>
+                    }>
                     {
                       this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
                       this.state.trip.timeline[parseInt(input.day)-1].travel
@@ -64,6 +67,7 @@ class Tripview extends Component {
                           </div>
                       ) : <div className="event_form"><h5>no event</h5></div>
                     }
+                  </Panel>
                   </div>
                 ) : ""
               }

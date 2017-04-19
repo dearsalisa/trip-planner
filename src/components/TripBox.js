@@ -13,7 +13,9 @@ const TripBox = ({tripKey, trip, isEdit, removeAction}) => {
 				<Media.Body>
 					<Media.Heading>
 						<Link to={ isEdit ? `/${tripKey}/edit/timeline`: `/${tripKey}/view`}>{trip.name}</Link>
-						<Glyphicon className="remove_trip" glyph="trash" onClick={ () => removeAction()}/>
+						{
+							(removeAction !== undefined)? <Glyphicon className="remove_trip" glyph="trash" onClick={ () => removeAction()}/> : ""
+						}
 					</Media.Heading>
 					<p className="text">{trip.detail}</p>
 				</Media.Body>

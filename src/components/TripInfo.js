@@ -3,9 +3,9 @@ import '../css/Timeline.css';
 
 const TripInfo = ({tripInfo}) => {
 	return (
-		<div className="trip_header">
-			<div className="trip_detail">
-				<h2>{tripInfo.name}</h2>
+		<div className="tl_header">
+			<div className="tl_detail">
+				<h2>{tripInfo.name}</h2><br/>
 				<h4>{tripInfo.detail}</h4>
 			</div>
 		</div>

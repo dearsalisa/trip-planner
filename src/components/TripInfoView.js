@@ -3,6 +3,26 @@ import { connect } from 'react-redux'
 import '../css/Tripview.css';
 import { Button, Glyphicon, Modal } from 'react-bootstrap'
 import { duplicateTrip, likeTrip, unLikeTrip } from '../actions/tripAction'
+import {
+  ShareButtons,
+  ShareCounts,
+  generateShareIcon,
+} from 'react-share';
+
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  TwitterShareButton
+} = ShareButtons;
+
+const {
+  FacebookShareCount,
+  GooglePlusShareCount
+} = ShareCounts;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const GooglePlusIcon = generateShareIcon('google');
 
 class TripViewInfo extends Component {
 
@@ -49,12 +69,17 @@ class TripViewInfo extends Component {
 	}
 
 	render() {
+
+		const eiei = "http://localhost:3000"+this.props.tripUrl;
+		const shareUrl = "http://www.flatuicolorpicker.com/";
+    const title = this.props.trip.name;
+
 		return (
 			<div className="trip_header">
 				<center className="trip_detail">
 					<h2>{this.props.trip.name}</h2>
 					<h4>{this.props.trip.detail}</h4>
-					<Button className="view_btn" bsSize="large" onClick={() => this.likeAction()} active>
+					<Button className="view_btn" bsSize="large" onClick={() => this.likeAction()} >
 						{
 							(this.isLike())?  <div><Glyphicon className="heart" glyph="heart" /> LIKE</div>
 						: <div><Glyphicon className="heart" glyph="heart-empty" /> LIKE</div>
@@ -63,9 +88,38 @@ class TripViewInfo extends Component {
 					<Button className="view_btn" bsSize="large" onClick={() => this.duplicateAction()} >
 						<Glyphicon className="duplicate" glyph="duplicate" /> DUPLICATE
 					</Button>
-					<Button className="view_btn" bsSize="large" active>
-						<Glyphicon className="share" glyph="share-alt" /> SHARE
-					</Button>
+					<div className="Demo__container">
+		        <div className="share_icon">
+		          <FacebookShareButton
+		            url={shareUrl}
+		            title={title}
+								picture={`${String(window.location)}`}
+		            className="Demo__some-network__share-button">
+		            <FacebookIcon
+		              size={32}
+		              round />
+		          </FacebookShareButton>
+						</div>
+						<div className="share_icon">
+		          <TwitterShareButton
+		            url={shareUrl}
+		            title={title}
+		            className="Demo__some-network__share-button">
+		            <TwitterIcon
+		              size={32}
+		              round />
+		          </TwitterShareButton>
+						</div>
+						<div className="share_icon">
+		          <GooglePlusShareButton
+		            url={shareUrl}
+		            className="Demo__some-network__share-button">
+		            <GooglePlusIcon
+		              size={32}
+		              round />
+		          </GooglePlusShareButton>
+						</div>
+					</div>
 				</center>
 			</div>
 		)

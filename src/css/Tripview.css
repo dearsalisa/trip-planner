@@ -1,12 +1,21 @@
+.share_icon {
+	display: inline-block;
+	margin: 3em 2em 0 2em;
+	text-align: right;
+}
+
+.share_icon:hover { cursor: pointer;}
+
 /*---- header : show trip info & like/share button ----*/
 
 .trip_header {
 	position: relative;
   background: black;
   overflow: hidden;
-	max-width: 1200px;
-	height: 300px;
-	padding: 3em;
+	width: 100%;
+	max-height: 500px;
+	padding: 4em;
+	margin: 0;
 }
 
 .trip_header:before {
@@ -26,38 +35,38 @@
 }
 
 .trip_detail {
+	width: 1000px;
 	z-index: 2;
 	color: white;
 	position: relative;
+	font-style: normal;
 }
 
 .view_btn.btn-default, .view_btn.btn-default:hover {
-	background-color: #ECECEC;
-	border: solid 1px #333;
+	background-color: #001C1D;
+	border-radius: 0;
 	border: none;
-	color: #333;
+	color: white;
 	width: 10em;
 	margin: 1em 1em 0 1em;
 }
 
 .heart {
-	color: red;
+	color: pink;
 	margin-right: 1em;
 	font-size: 1em;
 }
 
-.share {
-	color: blue;
-	margin-right: 1em;
-}
-
 .duplicate {
-  color: gray;
+  color: #B885E8;
   margin-right: 1em;
 }
 
 /*----- content -----*/
 
+.day_box { margin-top: 2em; width: 800px;}
+/*.tl_event_box { padding: 1em 3em 1em 2em; }
+.tl_event_box:hover { background-color: #eee; }*/
 .event_box {
 	background-color: #E8E8E8;
 	padding: 1em 1em 0 1em;

@@ -32,17 +32,13 @@
 }
 
 body, html {
-  background-color: #ECECEC;
+  /*background-color: #ECECEC;*/
+  background-image: url('../images/content-bg.png');
   font-family: myFont;
 }
 
 .bg {
-  background-color: #ECECEC;
+  /*background-color: #ECECEC;*/
+  background-image: url('../images/content-bg.png');
   font-family: myFont;
-}
-
-.page {
-  background-color: #ECECEC;
-  font-family: myFont;
-  width: 1200px;
 }

@@ -56,10 +56,32 @@ class Profile extends Component {
     if(item !== null && item !== undefined) {
       var triprow = Object.keys(item).map(function(key, index) {
         var tripId = item[key]
-        if(tripId !== undefined && trip[tripId] !== undefined) {
+        if(tripId !== undefined && trip[tripId] !== undefined && trip[tripId].dup_id === undefined) {
           return(
             <Col sm={6} key={key} >
-              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } removeAction={ () => removeAction(tripId)} />
+              <TripBox className="trip_box"
+                tripKey={tripId}
+                trip={trip[tripId]}
+                isEdit={ isEdit }
+                removeAction={ () => removeAction(tripId)} />
+            </Col>
+          )
+        }
+        return("")
+      });
+    }
+
+    if(item !== null && item !== undefined) {
+      var duprow = Object.keys(item).map(function(key, index) {
+        var tripId = item[key]
+        if(tripId !== undefined && trip[tripId] !== undefined && trip[tripId].dup_id !== undefined) {
+          return(
+            <Col sm={6} key={key} >
+              <TripBox className="trip_box"
+                tripKey={tripId}
+                trip={trip[tripId]}
+                isEdit={ isEdit }
+                removeAction={ () => removeAction(tripId)} />
             </Col>
           )
         }
@@ -74,7 +96,10 @@ class Profile extends Component {
         if(tripId !== undefined && trip[tripId] !== undefined) {
           return(
             <Col sm={6} key={key} >
-              <TripBox className="trip_box"  tripKey={tripId} trip={trip[tripId]} isEdit={ isEdit } />
+              <TripBox className="trip_box"
+                tripKey={tripId}
+                trip={trip[tripId]}
+                isEdit={ isEdit } />
             </Col>
           )
         }
@@ -114,7 +139,7 @@ class Profile extends Component {
                   {triprow}
                 </Tab>
                 <Tab className="tab_content" eventKey={2} title="STORE">
-                  STORE
+                  {duprow}
                 </Tab>
                 <Tab className="tab_content" eventKey={3} title="LIKES">
                   {likerow}

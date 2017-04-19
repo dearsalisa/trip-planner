@@ -8,10 +8,13 @@ import { Link } from 'react-router'
 class Home extends Component {
 
 	render() {
+
 		var item = this.props.trips
+		var users = this.props.allUsers
 		if(item !== null) {
 			var triprow = Object.keys(item).map(function(key, index) {
-				if(item[key] !== undefined) {
+				var eiei = item[key].owner
+				if(item[key] !== undefined && users[eiei] !== undefined){
 					return(
 						<div key={key}>
 							<Col xs={4} md={3}>
@@ -19,6 +22,7 @@ class Home extends Component {
 									<Link className="link_trip" to={`/${key}/view`}>
 										<h4><b>{item[key].name}</b></h4>
 									</Link>
+									<p className="username">{users[eiei].displayName}</p>
 									<p className="text">{item[key].detail}</p>
 								</Thumbnail>
 							</Col>
@@ -33,12 +37,59 @@ class Home extends Component {
 			<center className="bg">
 				<div className="page">
 					<SlideShow />
-					<h1 className="topic"><b><hr/> ALL TRIPS <hr/></b></h1>
+					<h1 className="topic"><b> HOT TRIPS </b></h1>
+					<Grid>
+     				<Row>
+							<Col xs={4} md={4}>
+								<img width={150} height={100} role="presentation" src={require('../images/home06.jpg')}/>
+								<h4><b>LASTEST PLANS</b></h4>
+								<p>Lorem ipsum dolor sit amet consectetur adiing elit. In volutpat luctus eros ac placerat. Quisque erat metus facilisis non feu,aliquam hendrerit quam. Donec ut lectus vel dolor adipiscing tincnt.</p>
+							</Col>
+							<Col xs={4} md={4}>
+								<img width={150} height={100} role="presentation" src={require('../images/home06.jpg')}/>
+								<h4><b>LASTEST PLANS</b></h4>
+								<p>Lorem ipsum dolor sit amet consectetur adiing elit. In volutpat luctus eros ac placerat. Quisque erat metus facilisis non feu,aliquam hendrerit quam. Donec ut lectus vel dolor adipiscing tincnt.</p>
+							</Col>
+							<Col xs={4} md={4}>
+								<img width={150} height={100} role="presentation" src={require('../images/home06.jpg')}/>
+								<h4><b>LASTEST PLANS</b></h4>
+								<p>Lorem ipsum dolor sit amet consectetur adiing elit. In volutpat luctus eros ac placerat. Quisque erat metus facilisis non feu,aliquam hendrerit quam. Donec ut lectus vel dolor adipiscing tincnt.</p>
+							</Col>
+						</Row>
+					</Grid>
+					<h1 className="topic"><b> ALL TRIPS </b></h1>
 					<Grid>
      				<Row>
 						{triprow}
 						</Row>
 					</Grid>
+					<div className="footer">
+						<Grid>
+	     				<Row>
+								<Col xs={4} md={4}>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+								</Col>
+								<Col xs={4} md={4}>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+								</Col>
+								<Col xs={4} md={4}>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+									<p>description</p>
+								</Col>
+							</Row>
+						</Grid>
+					</div>
 				</div>
 			</center>
 		)
@@ -46,7 +97,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.trips.allTrips
+  trips: state.trips.allTrips,
+	allUsers: state.auth.allUsers
 })
 
 const mapDispatchToProps = (dispatch) => ({
