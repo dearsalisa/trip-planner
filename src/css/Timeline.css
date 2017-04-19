@@ -1,3 +1,6 @@
+
+
+
 /*----header : show trip info ----*/
 
 .tl_header {
@@ -26,12 +29,22 @@
 	background-repeat: no-repeat;
 }
 
-.tl_detail {
+.tl_info {
 	width: 1000px;
 	z-index: 2;
 	color: white;
 	position: relative;
-	font-style: normal;
+	font-family: font_sukhumvit;
+}
+
+.tl_name {
+	font-size: 3.5em;
+	font-weight: bold;
+}
+
+.tl_detail {
+	line-height: 1.5em;
+	margin-top: 1em;
 }
 
 /* content layout */

@@ -27,18 +27,21 @@
 
 
 @font-face {
-    font-family: myFont;
+    font-family: font_arial;
     src: url(../fonts/arial.ttf);
 }
 
+@font-face {
+    font-family: font_sukhumvit;
+    src: url(../fonts/SukhumvitSet.ttc);
+}
+
 body, html {
-  /*background-color: #ECECEC;*/
   background-image: url('../images/content-bg.png');
-  font-family: myFont;
+  font-family: font_arial;
 }
 
 .bg {
-  /*background-color: #ECECEC;*/
   background-image: url('../images/content-bg.png');
-  font-family: myFont;
+  font-family: font_arial;
 }

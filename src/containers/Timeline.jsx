@@ -11,7 +11,6 @@ class Timeline extends Component {
 
   constructor(props) {
     super(props);
-
     var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
     this.state = {
       showModal: false,
@@ -19,7 +18,6 @@ class Timeline extends Component {
       trip: trip === undefined ? {} : trip,
       value: "00:00"
     };
-
     this.updateTravel = this.updateTravel.bind(this)
     this.uploadImage = this.uploadImage.bind(this)
     this.addTravel = this.addTravel.bind(this)
@@ -59,11 +57,12 @@ class Timeline extends Component {
 
   addTravel() {
     var event_time = this.refs.hour.value+":"+this.refs.minute.value
-    console.log(event_time);
     var newList = {
       name: this.refs.name.value,
       time: event_time,
-      detail: this.refs.detail.value
+      detail: this.refs.detail.value,
+      link: this.refs.link.value,
+      mark: this.refs.mark.value
     }
     this.uploadImage(this.refs.myFile.files[0], newList, (obj) => {
       var day = this.state.addingDay
@@ -74,7 +73,9 @@ class Timeline extends Component {
       timeline[day-1].travel.push(obj)
       this.setState({trip: this.state.trip})
       this.refs.name.value = ""
-      this.refs.detail.value = "";
+      this.refs.detail.value = ""
+      this.refs.link.value = ""
+      this.refs.mark.value = ""
       this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
       this.close()
     })
@@ -82,7 +83,7 @@ class Timeline extends Component {
   }
 
   updateTravel(e) {
-    var updateList = {name: e.name, time: e.time, detail: e.detail}
+    var updateList = {name: e.name, time: e.time, detail: e.detail, link: e.link, mark: e.mark}
     this.uploadImage(e.image, updateList, (obj) => {
       this.state.trip.timeline[e.day-1].travel[e.index] = obj
       this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
@@ -103,10 +104,6 @@ class Timeline extends Component {
       return x
     })
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
-  }
-
-  handleChange(e) {
-    console.log(e);
   }
 
   render() {
@@ -137,14 +134,7 @@ class Timeline extends Component {
                       <div className="tl_event_box"  key={input.day+item.name}>
                         <h4>
                           <b>{item.time}</b>
-                          <Edit {
-                            ...{
-                              item: item,
-                              day: input.day,
-                              index: index,
-                              callBack: this.updateTravel
-                            }
-                          } />
+                          <Edit {...{item: item, day: input.day, index: index, callBack: this.updateTravel}} />
                           <span onClick={this.removeTravel.bind(this, input.day, index)}>
                             <Glyphicon className="remove" glyph="remove" />
                           </span>
@@ -155,6 +145,8 @@ class Timeline extends Component {
                           <img className="tl_pic" role="presentation" src={item.image}/> : ""
                         }
                         <h5>{item.detail}</h5>
+                        <a href={item.link}>{item.link}</a>
+                        <h5>{item.mark}</h5>
                       </div>
                   ) : ""
                 }
@@ -185,7 +177,18 @@ class Timeline extends Component {
                             <option value="10">10</option>
                             <option value="11">11</option>
                             <option value="12">12</option>
-                          </select> : 
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                          </select> :
                           <select ref="minute" placeholder="select time">
                             <option value="00">00</option>
                             <option value="15">15</option>
@@ -193,12 +196,12 @@ class Timeline extends Component {
                             <option value="45">45</option>
                           </select>
                         </div>
-                        <label>Name </label>
-                        <input placeholder="name" ref="name" /><br />
+                        <label>Name </label><input placeholder="name" ref="name" /><br />
                         <label>Comment</label><br />
                         <textarea ref="detail" rows="5"></textarea><br />
-                        <label>Select a picture to upload </label>
-                        <input type="file" ref="myFile" size="50" />
+                        <label>Link </label><input placeholder="link" ref="link" /><br />
+                        <label>Mark </label><input placeholder="mark" ref="mark" /><br />
+                        <label>Select a picture to upload </label><input type="file" ref="myFile" size="50" />
                       </form>
                     </Modal.Body>
                     <Modal.Footer>
