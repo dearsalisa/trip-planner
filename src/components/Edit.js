@@ -15,8 +15,9 @@ class Edit extends Component {
   }
 
   save() {
+    var event_time = this.refs.hour.value+":"+this.refs.minute.value
     this.props.callBack({
-      time : this.refs.time.value,
+      time : event_time,
       name : this.refs.name.value,
       detail : this.refs.detail.value,
       image : this.refs.myFile.files[0],
@@ -49,14 +50,29 @@ class Edit extends Component {
             <form>
               <div className="time" >
                 <label>Time</label>
-                <select  ref="time" placeholder="select time" defaultValue={this.props.item.time}>
-                  <option value="09:00">09:00</option>
-                  <option value="10:00">10:00</option>
-                  <option value="11:00">11:00</option>
-                  <option value="12:00">12:00</option>
+                <select ref="hour" placeholder="select time" defaultValue={this.props.item.time.substring(0, 2)}>
+                  <option value="00">00</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select> :
+                <select ref="minute" placeholder="select time" defaultValue={this.props.item.time.substring(3, 5)}>
+                  <option value="00">00</option>
+                  <option value="15">15</option>
+                  <option value="30">30</option>
+                  <option value="45">45</option>
                 </select>
               </div>
-              <label>Name</label><br />
+              <label>Name</label>
               <input placeholder="name" ref="name" defaultValue={this.props.item.name} /><br />
               <label>Comment</label><br />
               <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />

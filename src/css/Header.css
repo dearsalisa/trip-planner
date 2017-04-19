@@ -6,16 +6,16 @@ nav.navbar.navbar-inverse {
 	font-size: 1.2em;
 }
 
-.header.navbar-inverse .navbar-nav>.active>a,
-.header.navbar-inverse .navbar-nav>.active>a:focus,
-.header.navbar-inverse .navbar-nav>.active>a:hover {
-	color: white;
-	background-color: #008C7E;
-}
-
 .header.navbar-inverse .navbar-nav>li>a {
   color: #D2D7D3;
 	padding-left: 2em;
 	padding-right: 2em;
 	line-height: 2em;
+}
+
+.header.navbar-inverse .navbar-nav>li>a:hover,
+.header.navbar-inverse .navbar-nav>.active>a:focus,
+.header.navbar-inverse .navbar-nav>.active>a:hover {
+	color: white;
+	background-color: #008C7E;
 }
