@@ -1,18 +1,21 @@
 nav.navbar.navbar-inverse {
-	/*background-color: #2C3E50;*/
+	background-color: #001C1D;
 	margin: 0;
 	border-radius: 0;
 	border: none;
+	font-size: 1.2em;
 }
 
-.header.navbar-inverse .navbar-nav>li>a:focus,
-.header.navbar-inverse .navbar-nav>li>a:hover {
-	color: #A2DED0;
-	background-color: #333;
-	border-bottom: solid 3px #1BA39C;
+.header.navbar-inverse .navbar-nav>.active>a,
+.header.navbar-inverse .navbar-nav>.active>a:focus,
+.header.navbar-inverse .navbar-nav>.active>a:hover {
+	color: white;
+	background-color: #008C7E;
 }
 
 .header.navbar-inverse .navbar-nav>li>a {
   color: #D2D7D3;
-	border-bottom: solid 3px #222;
+	padding-left: 2em;
+	padding-right: 2em;
+	line-height: 2em;
 }

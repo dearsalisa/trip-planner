@@ -12,7 +12,8 @@ class Tripview extends Component {
     this.state = {
       showModal: false,
       trip: trip === undefined ? {} : trip,
-      trip_id: props.routeParams.tripKey
+      trip_id: props.routeParams.tripKey,
+      tripUrl: this.props.location.pathname
     }
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
@@ -35,7 +36,7 @@ class Tripview extends Component {
     return (
       <center className="bg">
         <div className="page">
-          <TripInfoView { ...this.state } />
+          <TripInfoView {...this.state}  />
             <Col className="left_box" md={4}>TRIP</Col>
             <Col className="right_box" md={8}>
               {

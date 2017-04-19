@@ -1,3 +1,9 @@
+.share_icon {
+	display: inline-block;
+	margin: 1.2em 1em 0 1em;
+	text-align: right;
+}
+
 /*---- header : show trip info & like/share button ----*/
 
 .trip_header {
