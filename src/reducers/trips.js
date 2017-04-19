@@ -1,12 +1,18 @@
 const initialState = {
   allTrips: {},
   myTrips: {},
+  likeTrips: {},
   isListenAllTrips: false,
   isListenMyTrips: false
 }
 
 const trips = (state = initialState, action) => {
   switch(action.type) {
+    case "LOGINED":
+      return {
+        ...state,
+        likeTrips: action.user.like
+      }
     case "ADD_TRIP_SUCCESS":
       return state
     case "LISTEN_ALL_TRIPS":
@@ -31,6 +37,20 @@ const trips = (state = initialState, action) => {
       }
     case "UPDATE_TRIP_SUCCESS":
       return state
+    case "LIKE_TRIP_SUCCESS":
+      var likeTrips = state.likeTrips
+      likeTrips[action.key] = action.trip_id
+      return {
+        ...state,
+        likeTrips: likeTrips
+      }
+    case "UNLIKE_TRIP_SUCCESS":
+      var likeTrips = state.likeTrips
+      delete likeTrips[action.key]
+      return {
+        ...state,
+        likeTrips: likeTrips
+      }
     default:
       return state
   }

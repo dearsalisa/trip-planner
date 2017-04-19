@@ -68,7 +68,9 @@ export const listenMyTrips = ({user_id}) => {
 export const likeTrip = ({trip_id, user_id}) => {
 	return (dispatch) => {
 		firebase.database().ref(`trips/${trip_id}/like`).push(user_id)
-		firebase.database().ref(`users/${user_id}/like`).push(trip_id)
+		firebase.database().ref(`users/${user_id}/like`).push(trip_id).then( (liked) => {
+			dispatch({ type: "LIKE_TRIP_SUCCESS", key: liked.key, trip_id: trip_id})
+		})
 	}
 }
 
@@ -86,6 +88,7 @@ export const unLikeTrip = ({trip_id, user_id}) => {
 			snapshot.forEach(function(childSnapshot) {
 				if(childSnapshot.val() === trip_id) {
 					firebase.database().ref(`users/${user_id}/like`).child(childSnapshot.key).remove()
+					dispatch({ type: "UNLIKE_TRIP_SUCCESS", key: childSnapshot.key })
 				}
 			})
 		})
