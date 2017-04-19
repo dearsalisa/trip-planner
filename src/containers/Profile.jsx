@@ -99,7 +99,7 @@ class Profile extends Component {
               <TripBox className="trip_box"
                 tripKey={tripId}
                 trip={trip[tripId]}
-                isEdit={ isEdit } />
+                isEdit={ false } />
             </Col>
           )
         }
@@ -160,7 +160,8 @@ const mapStateToProps = (state) => ({
   trips: state.trips.allTrips,
   user: state.auth.user,
   allUsers: state.auth.allUsers,
-  myTrips: state.trips.myTrips
+  myTrips: state.trips.myTrips,
+  likeTrips: state.trips.likeTrips
 })
 
 const mapDispatchToProps = (dispatch) => ({
