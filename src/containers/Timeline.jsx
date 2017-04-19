@@ -44,12 +44,22 @@ class Timeline extends Component {
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
-  uploadImage(image, obj, after) {
-    if(image !== undefined) {
-      this.props.onUploadImage(image).then((imageURL) => {
-        obj.image = imageURL
-        after(obj)
-      })
+  uploadImage(images, obj, after) {
+    if(images !== undefined) {
+      var imagesURL = []
+      var count = 0
+      for(var i = 0; i < images.length; i++) {
+        var image = images[i]
+        this.props.onUploadImage(image).then((imageURL) => {
+          imagesURL.push(imageURL)
+          count++
+          if(count === images.length) {
+            console.log("UPLOAD_DONE")
+            obj.image = imagesURL
+            after(obj)
+          }
+        })
+      }
     } else {
       after(obj)
     }
@@ -64,7 +74,7 @@ class Timeline extends Component {
       link: this.refs.link.value,
       mark: this.refs.mark.value
     }
-    this.uploadImage(this.refs.myFile.files[0], newList, (obj) => {
+    this.uploadImage(this.refs.myFile.files, newList, (obj) => {
       var day = this.state.addingDay
       var timeline = this.state.trip.timeline
       if(timeline[day-1].travel === undefined) {
@@ -148,7 +158,7 @@ class Timeline extends Component {
                         <h4>{item.name}</h4>
                         {
                           item.image !== undefined ?
-                          <img className="tl_pic" role="presentation" src={item.image}/> : ""
+                          <img className="tl_pic" role="presentation" src={item.image[0]}/> : ""
                         }
                         <h5>{item.detail}</h5>
                         <a href={item.link}>{item.link}</a>
@@ -207,7 +217,8 @@ class Timeline extends Component {
                         <textarea ref="detail" rows="5"></textarea><br />
                         <label>Link </label><input placeholder="link" ref="link" /><br />
                         <label>Mark </label><input placeholder="mark" ref="mark" /><br />
-                        <label>Select a picture to upload </label><input type="file" ref="myFile" size="50" />
+                        <label>Select a picture to upload </label>
+                        <input type="file" multiple="multiple" ref="myFile" size="50" />
                       </form>
                     </Modal.Body>
                     <Modal.Footer>
