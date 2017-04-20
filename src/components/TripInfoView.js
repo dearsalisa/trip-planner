@@ -76,18 +76,18 @@ class TripViewInfo extends Component {
 
 		return (
 			<div className="trip_header">
-				<center className="trip_detail">
-					<h2>{this.props.trip.name}</h2>
-					<h4>{this.props.trip.detail}</h4>
-					<Button className="view_btn" bsSize="large" onClick={() => this.likeAction()} >
+				<center className="trip_info">
+					<h2 className="tl_name">{this.props.trip.name}</h2>
+					<h4 className="tl_detail">{this.props.trip.detail}</h4>
+					<div className="view_btn" onClick={() => this.likeAction()} >
 						{
 							(this.isLike())?  <div><Glyphicon className="heart" glyph="heart" /> LIKE</div>
 						: <div><Glyphicon className="heart" glyph="heart-empty" /> LIKE</div>
 						}
-					</Button>
-					<Button className="view_btn" bsSize="large" onClick={() => this.duplicateAction()} >
+					</div>
+					<div className="view_btn" onClick={() => this.duplicateAction()} >
 						<Glyphicon className="duplicate" glyph="duplicate" /> DUPLICATE
-					</Button>
+					</div>
 					<div className="Demo__container">
 		        <div className="share_icon">
 		          <FacebookShareButton
