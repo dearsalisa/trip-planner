@@ -36,6 +36,8 @@
 
 .link_trip {
 	color: #008C7E;
+	font-family: font_sukhumvit;
+	font-weight: bold;
 }
 
 .link_trip:hover {

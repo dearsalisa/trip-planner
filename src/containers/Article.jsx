@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Article.css'
-import { Row, Col, Thumbnail, Grid } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 class Article extends Component {
 	render() {
     var articleKey = this.props.params.articleKey
-    console.log(this.props.allArt[articleKey])
     if(this.props.allArt[articleKey] === undefined){
       return (<h1></h1>)
     } else
