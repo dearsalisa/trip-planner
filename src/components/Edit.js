@@ -20,13 +20,9 @@ class Edit extends Component {
       time : event_time,
       name : this.refs.name.value,
       detail : this.refs.detail.value,
-<<<<<<< HEAD
       link : this.refs.link.value,
       mark : this.refs.mark.value,
-      image : this.refs.myFile.files[0],
-=======
       image : this.refs.myFile.files,
->>>>>>> Done multi files upload
       index : this.props.index,
       day : this.props.day
     })
