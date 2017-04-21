@@ -21,6 +21,7 @@ class Timeline extends Component {
     this.updateTravel = this.updateTravel.bind(this)
     this.uploadImage = this.uploadImage.bind(this)
     this.addTravel = this.addTravel.bind(this)
+    this.updateTripInfo = this.updateTripInfo.bind(this)
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
   }
@@ -33,7 +34,15 @@ class Timeline extends Component {
       this.setState({ trip: trip })
   }
 
-  appendInput() {
+  updateTripInfo(e) {
+    var trip = this.state.trip
+    trip.name = e.name
+    trip.detail = e.detail
+    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+    this.close()
+  }
+
+  addDay() {
     if(this.state.trip.timeline === undefined) {
       this.state.trip.timeline = []
     }
@@ -120,7 +129,7 @@ class Timeline extends Component {
     return (
       <center className="bg">
       <div>
-        <TripInfo tripInfo={this.state.trip} />
+        <TripInfo {...{tripInfo: this.state.trip, callBack: this.updateTripInfo}} />
         <Col className="left_box" md={4}>
           <br />TRIP TRIP TRIP<br />
         </Col>
@@ -232,7 +241,7 @@ class Timeline extends Component {
             ) : ""
           }
           <center>
-            <Button className="add_day" onClick={ () => this.appendInput() }>ADD DAY</Button>
+            <Button className="add_day" onClick={ () => this.addDay() }>ADD DAY</Button>
           </center>
         </Col>
       </div>
