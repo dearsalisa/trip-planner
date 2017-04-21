@@ -19,8 +19,10 @@ class Home extends Component {
 					return(
 						<div key={key}>
 							<Col xs={4} md={4}>
-								<img width={150} height={100} role="presentation" src={eiei.image}/>
-								<h4 className="link_trip">{eiei.name}</h4>
+								<img width={180} height={120} role="presentation" src={eiei.image}/>
+								<Link className="link_trip" to={`/${key}/article`}>
+									<h4><b>{eiei.name}</b></h4>
+								</Link>
 								<p>{eiei.text}</p>
 							</Col>
 						</div>
