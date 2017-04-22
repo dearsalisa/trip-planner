@@ -24,6 +24,7 @@ class Timeline extends Component {
     this.updateTripInfo = this.updateTripInfo.bind(this)
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
+    this.moveDay = this.moveDay.bind(this)
   }
 
   close() { this.setState({ showModal: false, addingDay: -1 }); }
@@ -55,6 +56,11 @@ class Timeline extends Component {
 
   uploadImage(images, obj, after) {
     if(images !== undefined) {
+      if(images.length == 0) {
+        after(obj)
+        return
+      }
+      console.log(obj.image)
       var imagesURL = []
       var count = 0
       for(var i = 0; i < images.length; i++) {
@@ -104,6 +110,15 @@ class Timeline extends Component {
   updateTravel(e) {
     var updateList = {name: e.name, time: e.time, detail: e.detail, link: e.link, mark: e.mark}
     this.uploadImage(e.image, updateList, (obj) => {
+      var image = this.state.trip.timeline[e.day-1].travel[e.index].image
+
+      if(image !== undefined && obj.image !== undefined) {
+        obj.image = image.concat(obj.image)
+      } else if (image === undefined && obj.image !== undefined) {
+        obj.image = obj.image
+      } else if (image !== undefined && obj.image === undefined) {
+        obj.image = image
+      }
       this.state.trip.timeline[e.day-1].travel[e.index] = obj
       this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
     })
@@ -122,6 +137,24 @@ class Timeline extends Component {
       x.day = index+1
       return x
     })
+    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+  }
+
+  moveDay(isUp, day) {
+    if(isUp && day === 1) return
+    if(!isUp && day === this.state.trip.timeline.length) return
+    var tmp = this.state.trip.timeline[day-1]
+    if(isUp) {
+      this.state.trip.timeline[day-1] = this.state.trip.timeline[day-2]
+      this.state.trip.timeline[day-1].day = day
+      this.state.trip.timeline[day-2] = tmp
+      this.state.trip.timeline[day-2].day = day-1
+    } else {
+      this.state.trip.timeline[day-1] = this.state.trip.timeline[day]
+      this.state.trip.timeline[day-1].day = day
+      this.state.trip.timeline[day] = tmp
+      this.state.trip.timeline[day].day = day+1
+    }
     this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
   }
 
@@ -144,10 +177,10 @@ class Timeline extends Component {
                       <Glyphicon className="remove" glyph="remove" />
                     </span>
                     <span>
-                      <Glyphicon className="remove" glyph="chevron-up" />
+                      <Glyphicon className="remove" glyph="chevron-up" onClick={() => this.moveDay(true, input.day)} />
                     </span>
                     <span>
-                      <Glyphicon className="remove" glyph="chevron-down" />
+                      <Glyphicon className="remove" glyph="chevron-down" onClick={() => this.moveDay(false, input.day)} />
                     </span>
                   </div>
                 }>
