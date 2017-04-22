@@ -25,8 +25,8 @@ class Header extends Component {
 		    </Navbar.Header>
 		    <Navbar.Collapse>
 		      <Nav>
-		        <NavItem eventKey={1} href="#">Link</NavItem>
-		        <NavItem eventKey={2} href="#">Link</NavItem>
+		        <NavItem eventKey={1} href="#">All Trips</NavItem>
+		        <NavItem eventKey={2} href="#">Articles</NavItem>
 		      </Nav>
 		      <Nav pullRight>
 		        <LinkContainer to='/profile'>

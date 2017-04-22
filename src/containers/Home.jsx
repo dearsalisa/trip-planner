@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/Home.css'
 import SlideShow from '../components/SlideShow'
+import Footer from '../components/Footer'
 import { Row, Col, Thumbnail, Grid } from 'react-bootstrap'
 import { Link } from 'react-router'
 
@@ -63,33 +64,7 @@ class Home extends Component {
 						{triprow}
 						</Row>
 					</Grid>
-					<div className="footer">
-						<Grid>
-	     				<Row>
-								<Col xs={4} md={4}>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-								</Col>
-								<Col xs={4} md={4}>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-								</Col>
-								<Col xs={4} md={4}>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-									<p>description</p>
-								</Col>
-							</Row>
-						</Grid>
-					</div>
+					<Footer />
 				</div>
 			</center>
 		)
