@@ -19,7 +19,9 @@ class Header extends Component {
 		  <Navbar inverse collapseOnSelect className="header">
 		    <Navbar.Header>
 		      <Navbar.Brand>
-		        <Link to='/home'>Trip Planner</Link>
+		        <Link to='/home'>
+              <img height={55} role="presentation" src={require('../images/logo2.png')}/>
+            </Link>
 		      </Navbar.Brand>
 		      <Navbar.Toggle />
 		    </Navbar.Header>
