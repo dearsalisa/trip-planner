@@ -6,6 +6,7 @@ import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
 import { uploadImage } from '../actions/firebaseAction'
+import { Link } from 'react-router'
 
 class Timeline extends Component {
 
@@ -163,6 +164,11 @@ class Timeline extends Component {
       <center className="bg">
       <div>
         <TripInfo {...{tripInfo: this.state.trip, callBack: this.updateTripInfo}} />
+        <Col md={12}>
+          <Link to={ `/${this.props.routeParams.tripKey}/mapview`}>
+            <Button className="map_view" bsSize="large" active>MAP VIEW</Button>
+          </Link>
+        </Col>
         <Col className="left_box" md={4}>
           <br />TRIP TRIP TRIP<br />
         </Col>

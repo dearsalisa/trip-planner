@@ -70,6 +70,10 @@
 	min-height: 500px;
 }
 
+.col-md-12 {
+	text-align: right;
+}
+
 /* add day button */
 
 .add_day.btn-default {
@@ -77,7 +81,19 @@
 	color: white;
 	border-radius: 0;
 	box-shadow: none;
-	margin-top: 2.5em;
+	width: 15em;
+	padding: 1em;
+}
+
+/* map button */
+
+.map_view.btn-default.active, .map_view.btn-default:active, .map_view.open>.dropdown-toggle.btn-default {
+	background-color: #008C7E;
+	color: white;
+	border-radius: 0;
+	box-shadow: none;
+	margin-top: 2em;
+	margin-bottom: 2em;
 	width: 15em;
 	padding: 1em;
 }
@@ -111,7 +127,7 @@ div.panel-title {
 div.panel-default>.panel-heading {
 	background-color: #001C1D;
 }
-.tl_day_box { margin-top: 2em; }
+.tl_day_box { margin-bottom: 2em; }
 .tl_event_box { padding: 1em 3em 1em 2em; }
 .tl_event_box:hover { background-color: #eee; }
 
