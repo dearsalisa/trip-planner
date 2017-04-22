@@ -1,3 +1,8 @@
 .map_box.col-md-12 {
   text-align: center;
 }
+
+.map {
+    width: 300px;
+    height: 300px;
+}

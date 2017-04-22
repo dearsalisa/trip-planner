@@ -24,7 +24,8 @@ class Edit extends Component {
       mark : this.refs.mark.value,
       image : this.refs.myFile.files,
       index : this.props.index,
-      day : this.props.day
+      day : this.props.day,
+      location : this.refs.location.value
     })
     this.close()
   }
@@ -85,6 +86,7 @@ class Edit extends Component {
               <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
               <label>Link </label><input ref="link" defaultValue={this.props.item.link} /><br />
               <label>Mark </label><input ref="mark" defaultValue={this.props.item.mark} /><br />
+              <label>Location </label><input ref="mark" defaultValue={this.props.item.location} /><br />
               <label>Select a file to upload </label>
               <input type="file" multiple="multiple" ref="myFile" size="50" />
             </form>

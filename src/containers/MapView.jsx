@@ -1,50 +1,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import shouldPureComponentUpdate from 'react-pure-render/function';
 import '../css/MapView.css'
-import { Button, Col, Modal, Glyphicon, Panel } from 'react-bootstrap'
-import TripInfo from '../components/TripInfo'
-import { Link } from 'react-router'
+import { loadLocation } from '../actions/mapAction'
+
+import GoogleMap from 'google-map-react';
 
 class MapView extends Component {
+  static propTypes = {
+    center: PropTypes.array,
+    zoom: PropTypes.number,
+    greatPlaceCoords: PropTypes.any
+  };
+
+  static defaultProps = {
+    center: [59.938043, 30.337157],
+    zoom: 9,
+    greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
+  };
+
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   constructor(props) {
     super(props);
-    var trip = props.tripInfo.allTrips[props.routeParams.tripKey]
-    this.state = {
-      trip: trip === undefined ? {} : trip,
-    };
-    this.updateTripInfo = this.updateTripInfo.bind(this)
-  }
-
-  componentWillReceiveProps(newProps) {
-      var trip = newProps.tripInfo.allTrips[this.props.routeParams.tripKey]
-      this.setState({ trip: trip })
-  }
-
-  updateTripInfo(e) {
-    var trip = this.state.trip
-    trip.name = e.name
-    trip.detail = e.detail
-    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
-    this.close()
+    props.onLoadLocation("ขอนแก่นวิทยายน")
   }
 
   render() {
+    console.log("RENDER")
     return (
-      <center className="bg">
-      <div>
-        <TripInfo {...{tripInfo: this.state.trip, callBack: this.updateTripInfo}} />
-        <Col md={12}>
-          <Link to={ `/${this.props.routeParams.tripKey}/edit/timeline`}>
-            <Button className="map_view" bsSize="large" active>TIMELINE VIEW</Button>
-          </Link>
-        </Col>
-        <Col className="map_box" md={12}>
-          <br />TRIP TRIP TRIP<br />
-        </Col>
+      <div className="map">
+         <GoogleMap
+          bootstrapURLKeys={{key: "AIzaSyC8kZ_UDgZx-oN1YbFTotUayZrSmbIrpBA"}}
+          center={this.props.center}
+          zoom={this.props.zoom}>
+        </GoogleMap>
       </div>
-      </center>
-    )
+    );
   }
 }
 
@@ -53,7 +46,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+  onLoadLocation(name) {
+    dispatch(loadLocation({name: name}))
+  }
 })
 
 MapView = connect(

@@ -7,6 +7,7 @@ import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
 import { uploadImage } from '../actions/firebaseAction'
 import { Link } from 'react-router'
+import MapView from './MapView'
 
 class Timeline extends Component {
 
@@ -17,7 +18,8 @@ class Timeline extends Component {
       showModal: false,
       addingDay: -1,
       trip: trip === undefined ? {} : trip,
-      value: "00:00"
+      value: "00:00",
+      isShowMap: false
     };
     this.updateTravel = this.updateTravel.bind(this)
     this.uploadImage = this.uploadImage.bind(this)
@@ -88,7 +90,8 @@ class Timeline extends Component {
       time: event_time,
       detail: this.refs.detail.value,
       link: this.refs.link.value,
-      mark: this.refs.mark.value
+      mark: this.refs.mark.value,
+      location: this.refs.location
     }
     this.uploadImage(this.refs.myFile.files, newList, (obj) => {
       var day = this.state.addingDay
@@ -109,7 +112,7 @@ class Timeline extends Component {
   }
 
   updateTravel(e) {
-    var updateList = {name: e.name, time: e.time, detail: e.detail, link: e.link, mark: e.mark}
+    var updateList = {name: e.name, time: e.time, detail: e.detail, link: e.link, mark: e.mark, location: e.location}
     this.uploadImage(e.image, updateList, (obj) => {
       var image = this.state.trip.timeline[e.day-1].travel[e.index].image
 
@@ -165,122 +168,121 @@ class Timeline extends Component {
       <div>
         <TripInfo {...{tripInfo: this.state.trip, callBack: this.updateTripInfo}} />
         <Col md={12}>
-          <Link to={ `/${this.props.routeParams.tripKey}/mapview`}>
-            <Button className="map_view" bsSize="large" active>MAP VIEW</Button>
-          </Link>
+            <Button className="map_view" bsSize="large" active onClick={ () => {this.setState({isShowMap: !this.state.isShowMap })} }>MAP VIEW</Button>
         </Col>
         <Col className="left_box" md={4}>
           <br />TRIP TRIP TRIP<br />
         </Col>
         <Col className="right_box" md={8}>
           {
-            this.state.trip.timeline !== undefined ?
-            this.state.trip.timeline.map(input =>
-              <div className="tl_day_box" key={input.day}>
-                <Panel className="tl_day" header={
-                  <div>Day {input.day}
-                    <span onClick={this.removeDay.bind(this, input.day)}>
-                      <Glyphicon className="remove" glyph="remove" />
-                    </span>
-                    <span>
-                      <Glyphicon className="remove" glyph="chevron-up" onClick={() => this.moveDay(true, input.day)} />
-                    </span>
-                    <span>
-                      <Glyphicon className="remove" glyph="chevron-down" onClick={() => this.moveDay(false, input.day)} />
-                    </span>
-                  </div>
-                }>
-                {
-                  this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
-                  this.state.trip.timeline[parseInt(input.day)-1].travel
-                    .sort( (i,j) => { return i.time > j.time})
-                    .map((item,index) =>
-                      <div className="tl_event_box"  key={input.day+item.name}>
-                        <h4>
-                          <b>{item.time}</b>
-                          <Edit {...{item: item, day: input.day, index: index, callBack: this.updateTravel}} />
-                          <span onClick={this.removeTravel.bind(this, input.day, index)}>
-                            <Glyphicon className="remove" glyph="remove" />
-                          </span>
-                        </h4>
-                        <h4>{item.name}</h4>
-                        {
-                          item.image !== undefined ?
-                          <img className="tl_pic" role="presentation" src={item.image[0]}/> : ""
-                        }
-                        <h5>{item.detail}</h5>
-                        <a href={item.link}>{item.link}</a>
-                        <h5>{item.mark}</h5>
-                      </div>
-                  ) : ""
-                }
-
-                <div>
-                  <div className="add_event">
-                    <Button className="add_event_btn" onClick={ () => this.open(input.day)} > NEW EVENT </Button>
-                  </div>
-                  <Modal show={this.state.showModal} onHide={this.close}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>ADD EVENT TO DAY {input.day} </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <form className="add_event_form">
-                        <div className="time">
-                          <label>Time </label>
-                          <select ref="hour" placeholder="select time">
-                            <option value="00">00</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                          </select> :
-                          <select ref="minute" placeholder="select time">
-                            <option value="00">00</option>
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                          </select>
+              this.state.isShowMap ? <MapView {...this.props} /> :
+              this.state.trip.timeline !== undefined ?
+              this.state.trip.timeline.map(input =>
+                <div className="tl_day_box" key={input.day}>
+                  <Panel className="tl_day" header={
+                    <div>Day {input.day}
+                      <span onClick={this.removeDay.bind(this, input.day)}>
+                        <Glyphicon className="remove" glyph="remove" />
+                      </span>
+                      <span>
+                        <Glyphicon className="remove" glyph="chevron-up" onClick={() => this.moveDay(true, input.day)} />
+                      </span>
+                      <span>
+                        <Glyphicon className="remove" glyph="chevron-down" onClick={() => this.moveDay(false, input.day)} />
+                      </span>
+                    </div>
+                  }>
+                  {
+                    this.state.trip.timeline[parseInt(input.day)-1].travel !== undefined ?
+                    this.state.trip.timeline[parseInt(input.day)-1].travel
+                      .sort( (i,j) => { return i.time > j.time})
+                      .map((item,index) =>
+                        <div className="tl_event_box"  key={input.day+item.name}>
+                          <h4>
+                            <b>{item.time}</b>
+                            <Edit {...{item: item, day: input.day, index: index, callBack: this.updateTravel}} />
+                            <span onClick={this.removeTravel.bind(this, input.day, index)}>
+                              <Glyphicon className="remove" glyph="remove" />
+                            </span>
+                          </h4>
+                          <h4>{item.name}</h4>
+                          {
+                            item.image !== undefined ?
+                            <img className="tl_pic" role="presentation" src={item.image[0]}/> : ""
+                          }
+                          <h5>{item.detail}</h5>
+                          <a href={item.link}>{item.link}</a>
+                          <h5>{item.mark}</h5>
                         </div>
-                        <label>Name </label><input placeholder="name" ref="name" /><br />
-                        <label>Comment</label><br />
-                        <textarea ref="detail" rows="5"></textarea><br />
-                        <label>Link </label><input placeholder="link" ref="link" /><br />
-                        <label>Mark </label><input placeholder="mark" ref="mark" /><br />
-                        <label>Select a picture to upload </label>
-                        <input type="file" multiple="multiple" ref="myFile" size="50" />
-                      </form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button onClick={this.addTravel}>Add</Button>
-                      <Button onClick={this.close}>Close</Button>
-                    </Modal.Footer>
-                  </Modal>
+                    ) : ""
+                  }
+                  <div>
+                    <div className="add_event">
+                      <Button className="add_event_btn" onClick={ () => this.open(input.day)} > NEW EVENT </Button>
+                    </div>
+                    <Modal show={this.state.showModal} onHide={this.close}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>ADD EVENT TO DAY {input.day} </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <form className="add_event_form">
+                          <div className="time">
+                            <label>Time </label>
+                            <select ref="hour" placeholder="select time">
+                              <option value="00">00</option>
+                              <option value="01">01</option>
+                              <option value="02">02</option>
+                              <option value="03">03</option>
+                              <option value="04">04</option>
+                              <option value="05">05</option>
+                              <option value="06">06</option>
+                              <option value="07">07</option>
+                              <option value="08">08</option>
+                              <option value="09">09</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                            </select> :
+                            <select ref="minute" placeholder="select time">
+                              <option value="00">00</option>
+                              <option value="15">15</option>
+                              <option value="30">30</option>
+                              <option value="45">45</option>
+                            </select>
+                          </div>
+                          <label>Name </label><input placeholder="name" ref="name" /><br />
+                          <label>Location </label><input placeholder="location" ref="location" /><br />
+                          <label>Comment</label><br />
+                          <textarea ref="detail" rows="5"></textarea><br />
+                          <label>Link </label><input placeholder="link" ref="link" /><br />
+                          <label>Mark </label><input placeholder="mark" ref="mark" /><br />
+                          <label>Select a picture to upload </label>
+                          <input type="file" multiple="multiple" ref="myFile" size="50" />
+                        </form>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button onClick={this.addTravel}>Add</Button>
+                        <Button onClick={this.close}>Close</Button>
+                      </Modal.Footer>
+                    </Modal>
+                  </div>
+                  </Panel>
                 </div>
-                </Panel>
-              </div>
-            ) : ""
+              ) : ""
           }
           <center>
-            <Button className="add_day" onClick={ () => this.addDay() }>ADD DAY</Button>
+            { this.state.isShowMap ? "" : <Button className="add_day" onClick={ () => this.addDay() }>ADD DAY</Button> }
           </center>
         </Col>
       </div>
