@@ -67,12 +67,3 @@
 	font-size: 0.8em;
 	font-style: italic;
 }
-
-/* footer */
-
-.footer {
-    background: #001C1D;
-    padding: 50px 0;
-		color: #ccc;
-		margin-top: 5em;
-}
