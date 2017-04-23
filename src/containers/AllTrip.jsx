@@ -48,7 +48,7 @@ class AllTrip extends Component {
 							}}/><br/>
             <Button className="search_btn" onClick={this.searchTrip}>SEARCH</Button>
           </div>
-					<h1 className="topic"><b> ALL TRIPS </b></h1>
+					<h1 className="topic"><b> TRIPS </b></h1>
 					<Grid>
      				<Row>
 							{

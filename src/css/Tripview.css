@@ -51,6 +51,7 @@
 	padding: 0.8em;
 	margin: 1em 1em 0 1em;
 	font-family: font_arial;
+	cursor: pointer;
 }
 
 .heart {
@@ -66,17 +67,19 @@
 
 /*----- content -----*/
 
+.tripview {
+	width: 60%;
+	text-align: left;
+}
+
 .day_box { margin-top: 2em; width: 800px;}
 /*.tl_event_box { padding: 1em 3em 1em 2em; }
 .tl_event_box:hover { background-color: #eee; }*/
 .event_box {
-	background-color: #E8E8E8;
+	background-color: #F8F8F8;
 	padding: 1em 1em 0 1em;
 }
-
-.day {
-
-}
+.event_box:hover { background-color: #F0F0F0; }
 
 .pic {
   width: 100px;

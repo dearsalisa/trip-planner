@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import '../css/Profile.css';
-import { Col, Thumbnail } from 'react-bootstrap'
+import '../css/Home.css';
+import { Col, Thumbnail, Glyphicon } from 'react-bootstrap'
 import { Link } from 'react-router'
 
 class TripRow extends Component {
@@ -14,7 +14,7 @@ class TripRow extends Component {
         return trips[key]
       })
     }
-    if(trips.length === 0) return (<div> </div>)
+    if(trips.length === 0) return (<div> No result </div>)
     return (
       <div>
       {
@@ -24,10 +24,14 @@ class TripRow extends Component {
               <div key={trip.key}>
                 <Col xs={4} md={3}>
                   <Thumbnail className="box" src={require('../images/home03.jpg')} alt="242x200">
+                    <div className="show_like">
+                      <Glyphicon className="heart" glyph="heart" />
+                      {(trip.like !== undefined) ? Object.keys(trip.like).length : "0"}
+                    </div>
                     <Link className="link_trip" to={`/${trip.key}/view`}>
                       <h4><b>{trip.name}</b></h4>
                     </Link>
-                    <p className="username">{trip.displayName}</p>
+                    <p className="username">{owner !== undefined ? owner.displayName : ""}</p>
                     <p className="text">{trip.detail}</p>
                   </Thumbnail>
                 </Col>

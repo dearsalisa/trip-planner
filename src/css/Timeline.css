@@ -63,7 +63,7 @@
 	height: 200px;
 }
 
-.right_box.col-md-8 {
+.right_box.col-md-12 {
 	background-color: none;
 	text-align: left;
 	padding-bottom: 5em;
@@ -72,6 +72,11 @@
 
 .col-md-12 {
 	text-align: right;
+}
+
+.timeline {
+	text-align: left;
+	width: 60%;
 }
 
 /* add day button */
@@ -101,6 +106,7 @@
 /* add event button and form */
 
 .add_event {
+	background-color: #F8F8F8;
 	text-align: center;
 	padding: 2em;
 }
@@ -113,7 +119,10 @@
 	padding: 1em 3em 1em 3em;
 }
 
-.add_event_btn.btn-default:hover { background-color: #E8E8E8; }
+.add_event_btn.btn-default:hover {
+	background-color: #E0E0E0;
+	border-color: inherit;
+}
 
 /* all about timeline */
 
@@ -127,9 +136,10 @@ div.panel-title {
 div.panel-default>.panel-heading {
 	background-color: #001C1D;
 }
-.tl_day_box { margin-bottom: 2em; }
-.tl_event_box { padding: 1em 3em 1em 2em; }
-.tl_event_box:hover { background-color: #eee; }
+
+.tl_day_box { margin-top: 2em; }
+.tl_event_box { padding: 1em 3em 1em 2em; background-color: #F8F8F8;}
+.tl_event_box:hover { background-color: #F0F0F0; }
 
 .event_name {
 	margin-left: 2em;

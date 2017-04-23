@@ -205,13 +205,12 @@ class Timeline extends Component {
       <center className="bg">
       <div>
         <TripInfo {...{tripInfo: this.state.trip, callBack: this.updateTripInfo}} />
+
         <Col md={12}>
             <Button className="map_view" bsSize="large" active onClick={ () => {this.setState({isShowMap: !this.state.isShowMap })} }>MAP VIEW</Button>
         </Col>
-        <Col className="left_box" md={4}>
-          <br />TRIP TRIP TRIP<br />
-        </Col>
-        <Col className="right_box" md={8}>
+
+        <div className="timeline">
           {
               this.state.isShowMap ? <MapView {...this.state} /> :
               this.state.trip.timeline !== undefined ?
@@ -325,7 +324,7 @@ class Timeline extends Component {
           <center>
             { this.state.isShowMap ? "" : <Button className="add_day" onClick={ () => this.addDay() }>ADD DAY</Button> }
           </center>
-        </Col>
+        </div>
       </div>
       </center>
     )

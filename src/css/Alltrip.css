@@ -13,6 +13,8 @@
 	padding: 1em;
 }
 
-.search_box.form-control {
-  width: 70%;
+.search_box {
+  width: 50%;
+  margin: 2em 1em 1em 1em;
+  padding: 1em;
 }
