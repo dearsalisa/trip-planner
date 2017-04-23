@@ -35,7 +35,7 @@ export default (store, history) => (
 				<route path=':tripKey/edit/timeline' component={Timeline} />
 				<route path=':tripKey/mapview' component={MapView} />
 				<route path=':tripKey/view' component={Tripview} />
-				<route path=':articleKey/view' component={Article} />
+				<route path=':articleKey/article' component={Article} />
 				<Redirect from='*' to='/' />
 		</Route>
 	</Router>

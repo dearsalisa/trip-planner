@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import { connect } from 'react-redux'
 import { listenAllTrips, listenMyTrips } from '../actions/tripAction'
 import { getAllUser } from '../actions/authAction'
+import { getArticle } from '../actions/articleAction'
 
 class App extends Component {
 
@@ -11,6 +12,7 @@ class App extends Component {
 		this.props.listenAllTrips()
 		this.props.loadAllUser()
 		this.props.listenMyTrips(this.props.user.uid)
+		this.props.getArticle()
 	}
 
 	render() {
@@ -37,6 +39,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	listenMyTrips(user_id) {
 		dispatch(listenMyTrips({user_id: user_id}))
+	},
+	getArticle() {
+		dispatch(getArticle())
 	}
 })
 

@@ -10,28 +10,36 @@ import TripRow from '../components/TripRow'
 class Home extends Component {
 
 	render() {
+		var article = this.props.allArt
+
+		if(article !== null) {
+			var articleRow = Object.keys(article).map(function(key) {
+				var eiei = article[key]
+				if(eiei.name !== undefined){
+					return(
+						<div key={key}>
+							<Col xs={4} md={4}>
+								<img width={180} height={120} role="presentation" src={eiei.image}/>
+								<Link className="link_trip" to={`/${key}/article`}>
+									<h4><b>{eiei.name}</b></h4>
+								</Link>
+								<p>{eiei.text}</p>
+							</Col>
+						</div>
+					)
+				}
+				return("")
+			})
+		}
+
 		return (
 			<center className="bg">
 				<div className="page">
 					<SlideShow />
-					<h1 className="topic"><b> HOT TRIPS </b></h1>
+					<h1 className="topic"><b> RECOMMENTED </b></h1>
 					<Grid>
      				<Row>
-							<Col xs={4} md={4}>
-								<img width={150} height={100} role="presentation" src={require('../images/home06.jpg')}/>
-								<h4><b>LASTEST PLANS</b></h4>
-								<p>Lorem ipsum dolor sit amet consectetur adiing elit. In volutpat luctus eros ac placerat. Quisque erat metus facilisis non feu,aliquam hendrerit quam. Donec ut lectus vel dolor adipiscing tincnt.</p>
-							</Col>
-							<Col xs={4} md={4}>
-								<img width={150} height={100} role="presentation" src={require('../images/home06.jpg')}/>
-								<h4><b>LASTEST PLANS</b></h4>
-								<p>Lorem ipsum dolor sit amet consectetur adiing elit. In volutpat luctus eros ac placerat. Quisque erat metus facilisis non feu,aliquam hendrerit quam. Donec ut lectus vel dolor adipiscing tincnt.</p>
-							</Col>
-							<Col xs={4} md={4}>
-								<img width={150} height={100} role="presentation" src={require('../images/home06.jpg')}/>
-								<h4><b>LASTEST PLANS</b></h4>
-								<p>Lorem ipsum dolor sit amet consectetur adiing elit. In volutpat luctus eros ac placerat. Quisque erat metus facilisis non feu,aliquam hendrerit quam. Donec ut lectus vel dolor adipiscing tincnt.</p>
-							</Col>
+							{articleRow}
 						</Row>
 					</Grid>
 					<h1 className="topic"><b> ALL TRIPS </b></h1>
@@ -49,7 +57,8 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
   trips: state.trips.allTrips,
-	allUsers: state.auth.allUsers
+	allUsers: state.auth.allUsers,
+	allArt: state.article.allArt
 })
 
 const mapDispatchToProps = (dispatch) => ({
