@@ -5,6 +5,7 @@
 .map {
     max-width: 800px;
     height: 500px;
+    margin-bottom: 7em;
 }
 
 .showday {
@@ -13,6 +14,7 @@
 
 .day_btn {
   padding: 0.5em 1em 0.5em 1em;
+  margin-right: 1em;
 }
 
 .markmap {

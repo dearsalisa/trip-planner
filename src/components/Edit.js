@@ -7,7 +7,8 @@ class Edit extends Component {
   constructor(props){
     super(props)
     this.state = {
-      showModal: false
+      showModal: false,
+      image: props.item.image === undefined ? [] : props.item.image.slice()
     };
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
@@ -23,14 +24,21 @@ class Edit extends Component {
       link : this.refs.link.value,
       mark : this.refs.mark.value,
       image : this.refs.myFile.files,
+      oldImage : this.state.image,
       index : this.props.index,
       day : this.props.day,
       location : this.refs.location.value
     })
-    this.close()
+    this.close(true)
   }
 
-  close() { this.setState({ showModal: false }) }
+  close(isSave) {
+    console.log(this.state)
+    if(!isSave) {
+      this.setState({ image: this.props.item.image === undefined ? [] : this.props.item.image })
+    }
+    this.setState({ showModal: false })
+  }
   open() { this.setState({ showModal: true }) }
 
   render() {
@@ -40,7 +48,7 @@ class Edit extends Component {
         <span onClick={this.open} >
           <Glyphicon className="glyph_edit" glyph="edit" />
         </span>
-        <Modal show={this.state.showModal} onHide={this.close}>
+        <Modal show={this.state.showModal} onHide={ () => this.close(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Edit</Modal.Title>
           </Modal.Header>
@@ -82,18 +90,31 @@ class Edit extends Component {
                 </select>
               </div>
               <label>Name</label><input ref="name" defaultValue={this.props.item.name} /><br />
+              <label>Location </label><input ref="location" defaultValue={this.props.item.location.name} /><br />
               <label>Comment</label><br />
               <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
               <label>Link </label><input ref="link" defaultValue={this.props.item.link} /><br />
               <label>Mark </label><input ref="mark" defaultValue={this.props.item.mark} /><br />
-              <label>Location </label><input ref="location" defaultValue={this.props.item.location.name} /><br />
               <label>Select a file to upload </label>
-              <input type="file" multiple="multiple" ref="myFile" size="50" />
+              <input type="file" multiple="multiple" ref="myFile" size="50" /><br />
+              {
+                this.state.image !== undefined ?
+                this.state.image.map((image, index) =>
+                  <span key={index}>
+                    <img className="tl_pic_edit" role="presentation" src={image}/>
+                    <Glyphicon className="remove_pic" glyph="remove" onClick={ () => {
+                        var image = this.state.image
+                        delete image[index]
+                        this.setState({image: image})
+                      }} />
+                  </span>
+                ) : ""
+              }
             </form>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.save}>Save</Button>
-            <Button onClick={this.close}>Close</Button>
+            <Button onClick={() => this.close(false)}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>

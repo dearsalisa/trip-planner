@@ -68,11 +68,11 @@
 /*----- content -----*/
 
 .tripview {
-	width: 60%;
 	text-align: left;
+	width: 60%;
 }
 
-.day_box { margin-top: 2em; width: 800px;}
+.day_box { margin-top: 2em; }
 /*.tl_event_box { padding: 1em 3em 1em 2em; }
 .tl_event_box:hover { background-color: #eee; }*/
 .event_box {
@@ -112,9 +112,8 @@
 
 .detail {
 	margin: 0;
-	margin-left: 2em;
 }
 
 .trip_text {
-	margin-left: 0.75em;
+	margin-left: 2em;
 }

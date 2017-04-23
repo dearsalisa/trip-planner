@@ -70,10 +70,6 @@
 	min-height: 500px;
 }
 
-.col-md-12 {
-	text-align: right;
-}
-
 .timeline {
 	text-align: left;
 	width: 60%;
@@ -88,9 +84,15 @@
 	box-shadow: none;
 	width: 15em;
 	padding: 1em;
+	margin-top: 1em;
+	margin-bottom: 5em;
 }
 
 /* map button */
+
+.map_box {
+	text-align: right;
+}
 
 .map_view.btn-default.active, .map_view.btn-default:active, .map_view.open>.dropdown-toggle.btn-default {
 	background-color: #008C7E;
@@ -98,7 +100,6 @@
 	border-radius: 0;
 	box-shadow: none;
 	margin-top: 2em;
-	margin-bottom: 2em;
 	width: 15em;
 	padding: 1em;
 }
@@ -137,12 +138,16 @@ div.panel-default>.panel-heading {
 	background-color: #001C1D;
 }
 
+.tl_reorder {
+	text-align: right;
+	margin-top: -1.5em;
+}
 .tl_day_box { margin-top: 2em; }
 .tl_event_box { padding: 1em 3em 1em 2em; background-color: #F8F8F8;}
 .tl_event_box:hover { background-color: #F0F0F0; }
 
 .event_name {
-	margin-left: 2em;
+	margin-left: 1em;
 }
 
 .remove {
@@ -175,10 +180,21 @@ div.panel-default>.panel-heading {
 	margin-left: 1em;
 }
 
-.add_event_form {
-
+.tl_pic {
+  height: 70px;
+	margin-right: 0.5em;
+	margin-top: 0.5em;
 }
 
-.tl_pic {
-  width: 100px;
+.tl_pic_edit {
+  height: 70px;
+	margin-right: 0;
+	margin-top: 0.5em;
+}
+
+/* edit modal */
+
+.remove_pic.glyphicon {
+	margin-right: 0.5em;
+	top: -1.8em;
 }
