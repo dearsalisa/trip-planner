@@ -34,19 +34,34 @@ export default class MapView extends Component {
       travel: location,
       showingDay: 0
     }
+
+    this.changeDay = this.changeDay.bind(this)
+  }
+
+  changeDay(index) {
+    if(index != this.state.showingDay) {
+        this.setState({ showingDay: index, center: this.state.allCenter[index] } )
+    }
   }
 
   render() {
     return (
-      <div className="map">
-         <GoogleMap
-          bootstrapURLKeys={{key: "AIzaSyC8kZ_UDgZx-oN1YbFTotUayZrSmbIrpBA"}}
-          center={this.state.center}
-          zoom={this.props.zoom}>
+      <div>
+        <div className="showday">
           {
-            this.state.travel[this.state.showingDay].map( (travel) => <Marker key={travel.location.lat} lat={travel.location.lat} lng={travel.location.lng} text={travel.location.name} /> )
+            this.state.travel.map( (day,index) => <button className="day_btn" onClick={ () => this.changeDay(index) }> {index+1} </button>)
           }
-        </GoogleMap>
+        </div>
+        <div className="map">
+           <GoogleMap
+            bootstrapURLKeys={{key: "AIzaSyC8kZ_UDgZx-oN1YbFTotUayZrSmbIrpBA"}}
+            center={this.state.center}
+            zoom={this.props.zoom}>
+            {
+              this.state.travel[this.state.showingDay].map( (travel) => <Marker key={travel.location.lat} lat={travel.location.lat} lng={travel.location.lng} text={travel.location.name} /> )
+            }
+          </GoogleMap>
+        </div>
       </div>
     );
   }

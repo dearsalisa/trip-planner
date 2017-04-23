@@ -131,6 +131,9 @@ div.panel-default>.panel-heading {
 .tl_event_box { padding: 1em 3em 1em 2em; }
 .tl_event_box:hover { background-color: #eee; }
 
+.event_name {
+	margin-left: 2em;
+}
 
 .remove {
 	font-size: 0.75em;
@@ -144,12 +147,16 @@ div.panel-default>.panel-heading {
 
 .glyph_edit {
 	font-size: 1em;
-	margin-left: 48em;
+	/*margin-left: 20em;*/
 }
 
 .glyph_edit:hover {
 	color: green;
 	cursor: pointer;
+}
+.edit_set {
+	text-align: right;
+	margin-top: -1.8em;
 }
 
 .edit {

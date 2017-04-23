@@ -238,12 +238,15 @@ class Timeline extends Component {
                         <div className="tl_event_box"  key={input.day+item.name}>
                           <h4>
                             <b>{item.time}</b>
+                            <b className="event_name">{item.name}</b>
+                          </h4>
+                          <h4 className="edit_set">
                             <Edit {...{item: item, day: input.day, index: index, callBack: this.updateTravel}} />
                             <span onClick={this.removeTravel.bind(this, input.day, index)}>
                               <Glyphicon className="remove" glyph="remove" />
                             </span>
                           </h4>
-                          <h4>{item.name}</h4>
+                          <h4>Location : {item.location.name}</h4>
                           {
                             item.image !== undefined ?
                             <img className="tl_pic" role="presentation" src={item.image[0]}/> : ""
