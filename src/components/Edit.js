@@ -82,13 +82,22 @@ class Edit extends Component {
                 </select>
               </div>
               <label>Name</label><input ref="name" defaultValue={this.props.item.name} /><br />
+              <label>Location </label><input ref="location" defaultValue={this.props.item.location.name} /><br />
               <label>Comment</label><br />
               <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
               <label>Link </label><input ref="link" defaultValue={this.props.item.link} /><br />
               <label>Mark </label><input ref="mark" defaultValue={this.props.item.mark} /><br />
-              <label>Location </label><input ref="location" defaultValue={this.props.item.location.name} /><br />
               <label>Select a file to upload </label>
-              <input type="file" multiple="multiple" ref="myFile" size="50" />
+              <input type="file" multiple="multiple" ref="myFile" size="50" /><br />
+              {
+                this.props.item.image !== undefined ?
+                this.props.item.image.map((image, index) =>
+                  <span key={index}>
+                    <img className="tl_pic_edit" role="presentation" src={image}/>
+                    <Glyphicon className="remove_pic" glyph="remove" />
+                  </span>
+                ) : ""
+              }
             </form>
           </Modal.Body>
           <Modal.Footer>

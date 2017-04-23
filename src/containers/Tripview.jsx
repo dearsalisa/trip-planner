@@ -56,11 +56,16 @@ class Tripview extends Component {
                             </div>
                             <div className="square">
                               <div className="trip_text">
+                                <h5>{item.location.name !== undefined ? "Location : "+item.location.name : ""}</h5>
                                 {
                                   item.image !== undefined ?
-                                  <img className="pic" role="presentation" src={item.image}/>: ""
+                                  item.image.map((image, index) =>
+                                    <img key={index} className="tl_pic" role="presentation" src={image}/>
+                                  ) : ""
                                 }
                                 <h5 className="detail">{item.detail}</h5>
+                                <a href={item.link}>{item.link}</a>
+                                <h5>{item.mark}</h5>
                               </div>
                             </div>
                           </div>

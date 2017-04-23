@@ -19,15 +19,20 @@ export default class MapView extends Component {
 
   constructor(props) {
     super(props);
-    var location = props.trip.timeline.map( (tl) => { return tl.travel.filter( (travel) => { return travel.location.lat !== undefined }) })
+    var location = props.trip.timeline.map( (tl) => {
+      if(tl.travel === undefined) return []
+      return tl.travel.filter( (travel) => { return travel.location.lat !== undefined })
+    })
     var center = location.map( (day) => {
       var local = day.filter( (sLocal) => { return sLocal.location.lat !== undefined })
       return [
         local.map( (l) => l.location.lat ).reduce((a, b) => a + b , 0) / local.length,
         local.map( (l) => l.location.lng ).reduce((a, b) => a + b, 0) / local.length
-      ]
+      ].map( (num) => {
+        return isNaN(num)  ? 0 : num
+      } )
     })
-
+    console.log(center)
     this.state = {
       allCenter: center,
       center: center[0],
@@ -49,7 +54,7 @@ export default class MapView extends Component {
       <div>
         <div className="showday">
           {
-            this.state.travel.map( (day,index) => <button className="day_btn" onClick={ () => this.changeDay(index) }> {index+1} </button>)
+            this.state.travel.map( (day,index) => <button key={index} className="day_btn" onClick={ () => this.changeDay(index) }> {index+1} </button>)
           }
         </div>
         <div className="map">
