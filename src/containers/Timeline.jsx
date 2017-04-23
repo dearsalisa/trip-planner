@@ -136,7 +136,7 @@ class Timeline extends Component {
   updateTravel(e) {
     var updateList = {name: e.name, time: e.time, detail: e.detail, link: e.link, mark: e.mark, location: e.location}
     this.uploadImage(e.image, updateList, (obj) => {
-      var image = this.state.trip.timeline[e.day-1].travel[e.index].image
+      var image = e.oldImage
 
       if(image !== undefined && obj.image !== undefined) {
         obj.image = image.concat(obj.image)

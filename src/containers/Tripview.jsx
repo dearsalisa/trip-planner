@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import '../css/Tripview.css'
 import TripInfoView from '../components/TripInfoView'
 import { Button, Glyphicon, Col, Panel } from 'react-bootstrap'
+import MapView from './MapView'
 
 class Tripview extends Component {
 
@@ -45,6 +46,7 @@ class Tripview extends Component {
               </Button>
             </div>
             {
+              this.state.isShowMap ? <MapView {...this.state} /> :
               this.state.trip.timeline !== undefined ?
               this.state.trip.timeline.map(input =>
                 <div className="day_box" key={input.day}>
