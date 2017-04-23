@@ -37,8 +37,7 @@ class Tripview extends Component {
       <center className="bg">
         <div className="page">
           <TripInfoView {...this.state}  />
-            <Col className="left_box" md={4}>TRIP</Col>
-            <Col className="right_box" md={8}>
+            <div className="tripview">
               {
                 this.state.trip.timeline !== undefined ?
                 this.state.trip.timeline.map(input =>
@@ -71,7 +70,7 @@ class Tripview extends Component {
                   </div>
                 ) : ""
               }
-            </Col>
+            </div>
         </div>
       </center>
     )

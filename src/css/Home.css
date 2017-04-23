@@ -24,8 +24,14 @@
 }
 
 .box {
-	height: 320px;
+	height: 325px;
 	box-shadow: 2px 3px 3px #ccc;
+}
+
+.show_like {
+	text-align: right;
+	margin-top: -0.2em;;
+	margin-bottom: -0.5em;
 }
 
 .link_trip {

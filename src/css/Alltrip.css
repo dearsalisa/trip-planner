@@ -1,0 +1,20 @@
+.search_form {
+  margin-top: 5em;
+  margin-bottom: 3em;
+}
+
+.search_btn.btn-default {
+	background-color: #008C7E;
+	color: white;
+	border-radius: 0;
+	box-shadow: none;
+  margin-top: 0.5em;
+	width: 15em;
+	padding: 1em;
+}
+
+.search_box {
+  width: 50%;
+  margin: 2em 1em 1em 1em;
+  padding: 1em;
+}
