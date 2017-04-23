@@ -30,13 +30,8 @@ class Profile extends Component {
     this.setState({user: user})
   }
 
-  close() {
-    this.setState({ showModal: false, addingDay: -1 });
-  }
-
-  open() {
-    this.setState({ showModal: true });
-  }
+  close() { this.setState({ showModal: false, addingDay: -1 }); }
+  open() { this.setState({ showModal: true }); }
 
   addTravel() {
     this.props.onSubmitTrip(this.refs.name.value, this.refs.detail.value, this.props.user.uid)

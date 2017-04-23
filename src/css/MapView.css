@@ -1,0 +1,29 @@
+.map_box.col-md-12 {
+  text-align: center;
+}
+
+.map {
+    max-width: 800px;
+    height: 500px;
+}
+
+.showday {
+  margin-bottom: 2em;
+}
+
+.day_btn {
+  padding: 0.5em 1em 0.5em 1em;
+}
+
+.markmap {
+  width: 40px;
+  height: 40px;
+  margin-left: -40px;
+  margin-top: -40px;
+}
+
+.location {
+  text-align: center;
+  width: 100px;
+  margin-left: -70px;
+}

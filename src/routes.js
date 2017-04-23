@@ -12,6 +12,7 @@ import Profile from './containers/Profile'
 import Timeline from './containers/Timeline'
 import Tripview from './containers/Tripview'
 import Article from './containers/Article'
+import MapView from './containers/MapView'
 import { isLogin } from './actions/authAction'
 
 export default (store, history) => (
@@ -30,6 +31,7 @@ export default (store, history) => (
 				<route path='profile' component={Profile} />
 				<route path="user/:userId" component={Profile} />
 				<route path=':tripKey/edit/timeline' component={Timeline} />
+				<route path=':tripKey/mapview' component={MapView} />
 				<route path=':tripKey/view' component={Tripview} />
 				<route path=':articleKey/view' component={Article} />
 				<Redirect from='*' to='/' />
