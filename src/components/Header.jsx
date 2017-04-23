@@ -27,7 +27,9 @@ class Header extends Component {
 		    </Navbar.Header>
 		    <Navbar.Collapse>
 		      <Nav>
-		        <NavItem eventKey={1} href="#">All Trips</NavItem>
+            <LinkContainer to = "/trips">
+		            <NavItem eventKey={1} href="#">All Trips</NavItem>
+            </LinkContainer>
 		        <NavItem eventKey={2} href="#">Articles</NavItem>
 		      </Nav>
 		      <Nav pullRight>

@@ -29,7 +29,7 @@ export default (store, history) => (
 					}
 				}>
 				<route path='home' component={Home} />
-				<route path='alltrips' component={AllTrip} />
+				<route path='trips' component={AllTrip} />
 				<route path='profile' component={Profile} />
 				<route path="user/:userId" component={Profile} />
 				<route path=':tripKey/edit/timeline' component={Timeline} />
