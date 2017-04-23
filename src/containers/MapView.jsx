@@ -1,59 +1,53 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import '../css/MapView.css'
-import { loadLocation } from '../actions/mapAction'
+import Marker from '../components/Marker'
 
 import GoogleMap from 'google-map-react';
 
-class MapView extends Component {
+export default class MapView extends Component {
   static propTypes = {
-    center: PropTypes.array,
     zoom: PropTypes.number,
-    greatPlaceCoords: PropTypes.any
   };
 
   static defaultProps = {
-    center: [59.938043, 30.337157],
     zoom: 9,
-    greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
   };
 
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   constructor(props) {
     super(props);
-    props.onLoadLocation("ขอนแก่นวิทยายน")
+    var location = props.trip.timeline.map( (tl) => { return tl.travel.filter( (travel) => { return travel.location.lat !== undefined }) })
+    var center = location.map( (day) => {
+      var local = day.filter( (sLocal) => { return sLocal.location.lat !== undefined })
+      return [
+        local.map( (l) => l.location.lat ).reduce((a, b) => a + b , 0) / local.length,
+        local.map( (l) => l.location.lng ).reduce((a, b) => a + b, 0) / local.length
+      ]
+    })
+
+    this.state = {
+      allCenter: center,
+      center: center[0],
+      travel: location,
+      showingDay: 0
+    }
   }
 
   render() {
-    console.log("RENDER")
     return (
       <div className="map">
          <GoogleMap
           bootstrapURLKeys={{key: "AIzaSyC8kZ_UDgZx-oN1YbFTotUayZrSmbIrpBA"}}
-          center={this.props.center}
+          center={this.state.center}
           zoom={this.props.zoom}>
+          {
+            this.state.travel[this.state.showingDay].map( (travel) => <Marker key={travel.location.lat} lat={travel.location.lat} lng={travel.location.lng} text={travel.location.name} /> )
+          }
         </GoogleMap>
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  tripInfo: state.trips
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadLocation(name) {
-    dispatch(loadLocation({name: name}))
-  }
-})
-
-MapView = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MapView)
-
-export default MapView

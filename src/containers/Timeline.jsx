@@ -6,6 +6,7 @@ import TripInfo from '../components/TripInfo'
 import Edit from '../components/Edit'
 import { updateTrip } from '../actions/tripAction'
 import { uploadImage } from '../actions/firebaseAction'
+import { loadLocation } from '../actions/mapAction'
 import { Link } from 'react-router'
 import MapView from './MapView'
 
@@ -91,7 +92,10 @@ class Timeline extends Component {
       detail: this.refs.detail.value,
       link: this.refs.link.value,
       mark: this.refs.mark.value,
-      location: this.refs.location
+      location: {
+        name: this.refs.location.value,
+        isLoaded: this.refs.location.value === undefined ? undefined : false
+      }
     }
     this.uploadImage(this.refs.myFile.files, newList, (obj) => {
       var day = this.state.addingDay
@@ -99,16 +103,33 @@ class Timeline extends Component {
       if(timeline[day-1].travel === undefined) {
         timeline[day-1].travel = []
       }
-      timeline[day-1].travel.push(obj)
-      this.setState({trip: this.state.trip})
-      this.refs.name.value = ""
-      this.refs.detail.value = ""
-      this.refs.link.value = ""
-      this.refs.mark.value = ""
-      this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
-      this.close()
+      if(obj.location.name !== undefined) {
+        this.props.onLoadLocation(obj.location.name).then( (location) => {
+          obj.location.isLoaded = true
+          obj.location.lat = location.lat
+          obj.location.lng = location.lng
+          timeline[day-1].travel.push(obj)
+          this.setState({trip: this.state.trip})
+          this.refs.name.value = ""
+          this.refs.detail.value = ""
+          this.refs.link.value = ""
+          this.refs.mark.value = ""
+          this.refs.location.vale = ""
+          this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+          this.close()
+        })
+      } else {
+        timeline[day-1].travel.push(obj)
+        this.setState({trip: this.state.trip})
+        this.refs.name.value = ""
+        this.refs.detail.value = ""
+        this.refs.link.value = ""
+        this.refs.mark.value = ""
+        this.refs.location.vale = ""
+        this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+        this.close()
+      }
     })
-
   }
 
   updateTravel(e) {
@@ -123,8 +144,25 @@ class Timeline extends Component {
       } else if (image !== undefined && obj.image === undefined) {
         obj.image = image
       }
-      this.state.trip.timeline[e.day-1].travel[e.index] = obj
-      this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+
+      var location = this.state.trip.timeline[e.day-1].travel[e.index].location
+      if(obj.location.name !== location.name) {
+        this.props.onLoadLocation(obj.location).then( (newLocation) => {
+          console.log(newLocation)
+          obj.location = {
+            isLoaded: true,
+            lat: newLocation.lat,
+            lng: newLocation.lng,
+            name: obj.location
+          }
+          this.state.trip.timeline[e.day-1].travel[e.index] = obj
+          this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+        })
+      } else {
+        obj.location = location
+        this.state.trip.timeline[e.day-1].travel[e.index] = obj
+        this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+      }
     })
   }
 
@@ -175,7 +213,7 @@ class Timeline extends Component {
         </Col>
         <Col className="right_box" md={8}>
           {
-              this.state.isShowMap ? <MapView {...this.props} /> :
+              this.state.isShowMap ? <MapView {...this.state} /> :
               this.state.trip.timeline !== undefined ?
               this.state.trip.timeline.map(input =>
                 <div className="tl_day_box" key={input.day}>
@@ -302,6 +340,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onUploadImage(file) {
     return dispatch(uploadImage({file: file}))
+  },
+
+  onLoadLocation(name) {
+    return dispatch(loadLocation({name: name}))
   }
 })
 
