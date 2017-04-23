@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../css/Home.css'
-import SlideShow from '../components/SlideShow'
-import Footer from '../components/Footer'
-import { Row, Col, Thumbnail, Grid } from 'react-bootstrap'
+import '../css/Article.css'
+import { Row, Col, Thumbnail, Grid, Button, FormGroup, FormControl } from 'react-bootstrap'
 import { Link } from 'react-router'
-import TripRow from '../components/TripRow'
+import Footer from '../components/Footer'
 
-class Home extends Component {
+class AllArticle extends Component {
 
 	render() {
-		var article = this.props.allArt
+    var article = this.props.allArt
 		if(article !== null) {
 			var articleRow = Object.keys(article).map(function(key) {
 				var eiei = article[key]
@@ -33,21 +31,12 @@ class Home extends Component {
 
 		return (
 			<center className="bg">
-				<div className="page">
-					<SlideShow />
-					<h1 className="topic"><b> RECOMMENTED </b></h1>
-					<Grid>
-     				<Row>
-							{articleRow}
-						</Row>
-					</Grid>
-					<h1 className="topic"><b> ALL TRIPS </b></h1>
-					<Grid>
-     				<Row>
-							<TripRow trips={this.props.trips} allUsers={this.props.allUsers} />
-						</Row>
-					</Grid>
-					<Footer />
+				<div>
+					<h1 className="topic"><b> ARTICLES </b></h1>
+          <Row>
+            {articleRow}
+          </Row>
+          <Footer />
 				</div>
 			</center>
 		)
@@ -55,18 +44,16 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.trips.allTrips,
-	allUsers: state.auth.allUsers,
-	allArt: state.article.allArt
+  allArt: state.article.allArt
 })
 
 const mapDispatchToProps = (dispatch) => ({
 
 })
 
-Home = connect(
+AllArticle = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home)
+)(AllArticle)
 
-export default Home
+export default AllArticle

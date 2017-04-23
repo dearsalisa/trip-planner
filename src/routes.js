@@ -12,6 +12,7 @@ import Profile from './containers/Profile'
 import Timeline from './containers/Timeline'
 import Tripview from './containers/Tripview'
 import Article from './containers/Article'
+import AllArticle from './containers/AllArticle'
 import MapView from './containers/MapView'
 import AllTrip from './containers/AllTrip'
 import { isLogin } from './actions/authAction'
@@ -30,6 +31,7 @@ export default (store, history) => (
 				}>
 				<route path='home' component={Home} />
 				<route path='trips' component={AllTrip} />
+				<route path='articles' component={AllArticle} />
 				<route path='profile' component={Profile} />
 				<route path="user/:userId" component={Profile} />
 				<route path=':tripKey/edit/timeline' component={Timeline} />
