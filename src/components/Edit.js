@@ -50,10 +50,10 @@ class Edit extends Component {
         </span>
         <Modal show={this.state.showModal} onHide={ () => this.close(false)}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit</Modal.Title>
+            <Modal.Title>Edit Event</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form>
+            <form className="edit_form" >
               <div className="time" >
                 <label>Time</label>
                 <select ref="hour" placeholder="select time" defaultValue={this.props.item.time.substring(0, 2)}>
@@ -91,11 +91,11 @@ class Edit extends Component {
               </div>
               <label>Name</label><input ref="name" defaultValue={this.props.item.name} /><br />
               <label>Location </label><input ref="location" defaultValue={this.props.item.location.name} /><br />
-              <label>Comment</label><br />
+              <label>Comment</label>
               <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
               <label>Link </label><input ref="link" defaultValue={this.props.item.link} /><br />
               <label>Mark </label><input ref="mark" defaultValue={this.props.item.mark} /><br />
-              <label>Select a file to upload </label>
+              <label className="upload_pic">Select a file to upload </label>
               <input type="file" multiple="multiple" ref="myFile" size="50" /><br />
               {
                 this.state.image !== undefined ?

@@ -257,8 +257,8 @@ class Timeline extends Component {
                           ) : ""
                         }
                         <h5>{item.detail}</h5>
+                        <h5 className="tl_mark">{item.mark}</h5>
                         <a href={item.link}>{item.link}</a>
-                        <h5>{item.mark}</h5>
                       </div>
                   ) : ""
                 }

@@ -150,6 +150,11 @@ div.panel-default>.panel-heading {
 	margin-left: 1em;
 }
 
+.tl_mark {
+	font-weight: bold;
+	color: red;
+}
+
 .remove {
 	font-size: 0.75em;
 	margin-left: 1em;
@@ -197,4 +202,20 @@ div.panel-default>.panel-heading {
 .remove_pic.glyphicon {
 	margin-right: 0.5em;
 	top: -1.8em;
+}
+
+.edit_form {
+	margin-left: 2em;
+}
+
+label {
+	width: 5em;
+}
+
+input, textarea {
+	width: 50%;
+}
+
+.upload_pic {
+	width: 15em;
 }
