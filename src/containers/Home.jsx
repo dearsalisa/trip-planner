@@ -35,13 +35,13 @@ class Home extends Component {
 			<center className="bg">
 				<div className="page">
 					<SlideShow />
-					<h1 className="topic"><b> RECOMMENTED </b></h1>
+					<h1 className="topic"><b> TRAVELING SPECIALS </b></h1>
 					<Grid>
      				<Row>
 							{articleRow}
 						</Row>
 					</Grid>
-					<h1 className="topic"><b> ALL TRIPS </b></h1>
+					<h1 className="topic"><b> HOT TRIPS </b></h1>
 					<Grid>
      				<Row>
 							<TripRow trips={this.props.trips} allUsers={this.props.allUsers} />

@@ -8,7 +8,7 @@ const TripBox = ({tripKey, trip, isEdit, removeAction}) => {
 		<div className="bg_box">
 			<Media>
 			 <Media.Left>
-					<img width={150} height={100} role="presentation" src={require('../images/trip01.jpg')}/>
+					<img width={150} height={100} role="presentation" src={ trip.image !== undefined ? trip.image : require('../images/trip01.jpg')}/>
 				</Media.Left>
 				<Media.Body>
 					<Media.Heading>

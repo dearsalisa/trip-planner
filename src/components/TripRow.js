@@ -23,7 +23,7 @@ class TripRow extends Component {
               return (
               <div key={trip.key}>
                 <Col xs={4} md={3}>
-                  <Thumbnail className="box" src={require('../images/home03.jpg')} alt="242x200">
+                  <Thumbnail className="box" src={ trip.image !== undefined ? trip.image : require('../images/home03.jpg')} alt="242x100">
                     <div className="show_like">
                       <Glyphicon className="heart" glyph="heart" />
                       {(trip.like !== undefined) ? Object.keys(trip.like).length : "0"}
