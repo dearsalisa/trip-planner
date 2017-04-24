@@ -64,7 +64,7 @@ class Tripview extends Component {
                           </div>
                           <div className="square">
                             <div className="trip_text">
-                              <h5>{item.location.name !== undefined ? "Location : "+item.location.name : ""}</h5>
+                              <h5>{ (item.location.name !== "" && item.location.name !== undefined) ? "Location : "+item.location.name : ""}</h5>
                               {
                                 item.image !== undefined ?
                                 item.image.map((image, index) =>

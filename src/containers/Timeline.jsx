@@ -249,7 +249,7 @@ class Timeline extends Component {
                             <Glyphicon className="remove" glyph="remove" />
                           </span>
                         </h4>
-                        <h5>{item.location.name !== undefined ? "Location : "+item.location.name : ""}</h5>
+                        <h5>{ (item.location.name !== "" && item.location.name !== undefined) ? "Location : "+item.location.name : ""}</h5>
                         {
                           item.image !== undefined ?
                           item.image.map((image, index) =>
