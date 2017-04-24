@@ -45,12 +45,12 @@ class TripViewInfo extends Component {
 		this.setState({ showModal: true });
 	}
 
-	isLike() {
+  isLike() {
     var trip = this.props.trip.like
     if(trip === undefined) return false
     var likes = Object.keys(trip).map( (key) => {
-      return trip[key]
-    })
+      return trip[key] == this.props.user.uid
+    }).filter( (like) => like == true)
     return likes.length > 0
   }
 
