@@ -32,7 +32,7 @@ class TripInfo extends Component {
 					<h1 className="tl_name">{this.props.tripInfo.name}</h1>
 					<h4 className="tl_detail">{this.props.tripInfo.detail}</h4>
 					<span onClick={this.open} >
-	          <span className="info_edit"><Glyphicon glyph="edit" /> แก้ไข </span>
+	          <span className="info_edit"><Glyphicon glyph="edit" /> EDIT </span>
 	        </span>
 					<Modal show={this.state.showModal} onHide={this.close}>
 	          <Modal.Header closeButton>

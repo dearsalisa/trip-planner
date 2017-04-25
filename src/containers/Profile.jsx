@@ -144,7 +144,7 @@ class Profile extends Component {
         <div className="page">
           <UserInfo {...this.state.user}/>
           <Button className="new_trip" bsSize="large" onClick={ () => this.open()} active>
-            <Glyphicon glyph="plus" /> CREATE NEW TRIP
+            <Glyphicon glyph="plus" /> NEW TRIP
           </Button>
           <Modal show={this.state.showModal} onHide={this.close}>
             <Modal.Header closeButton>

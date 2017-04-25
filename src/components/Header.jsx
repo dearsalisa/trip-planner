@@ -31,7 +31,7 @@ class Header extends Component {
 		            <NavItem eventKey={1} >Trips</NavItem>
             </LinkContainer>
             <LinkContainer to = "/articles">
-		            <NavItem eventKey={2} >Articles</NavItem>
+		            <NavItem eventKey={2} >Traveling</NavItem>
             </LinkContainer>
 		      </Nav>
 		      <Nav pullRight>

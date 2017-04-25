@@ -1,6 +1,6 @@
 .share_icon {
 	display: inline-block;
-	margin: 3em 2em 0 2em;
+	margin: 2em 1em 0 1em;
 	text-align: right;
 }
 
@@ -49,7 +49,7 @@
 	margin-top: -1em;
 }
 
-.view_btn, .view_btn:hover, .view_btn:focus, .view_btn:active {
+.view_btn, .view_btn:focus, .view_btn:active {
 	background-color: #001C1D;
 	color: white;
 	font-size: 1.2em;
@@ -59,6 +59,11 @@
 	margin: 1em 1em 0 1em;
 	font-family: font_arial;
 	cursor: pointer;
+}
+
+.view_btn:hover {
+		color: white;
+		background-color: #1a1b23;
 }
 
 .heart {
