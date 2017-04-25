@@ -4,9 +4,9 @@ import '../css/Profile.css'
 import { reduxForm } from 'redux-form'
 import UserInfo from '../components/UserInfo'
 import TripBox from '../components/TripBox'
-import TripForm from '../components/TripForm'
 import { Button, Glyphicon, Tabs, Tab, Modal, Col } from 'react-bootstrap'
 import { removeTrip, addTrip } from '../actions/tripAction'
+import { uploadImage } from '../actions/firebaseAction'
 
 class Profile extends Component {
 
@@ -21,6 +21,7 @@ class Profile extends Component {
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
     this.addTravel = this.addTravel.bind(this)
+    this.uploadImage = this.uploadImage.bind(this)
     this.removeTripAction = this.removeTripAction.bind(this)
   }
 
@@ -33,9 +34,42 @@ class Profile extends Component {
   close() { this.setState({ showModal: false, addingDay: -1 }); }
   open() { this.setState({ showModal: true }); }
 
+  uploadImage(images, obj, after) {
+    if(images !== undefined) {
+      if(images.length == 0) {
+        after(obj)
+        return
+      }
+      console.log(obj.image)
+      var imagesURL = []
+      var count = 0
+      for(var i = 0; i < images.length; i++) {
+        var image = images[i]
+        this.props.onUploadImage(image).then((imageURL) => {
+          imagesURL.push(imageURL)
+          count++
+          if(count === images.length) {
+            console.log("UPLOAD_DONE")
+            obj.image = imagesURL
+            after(obj)
+          }
+        })
+      }
+    } else {
+      after(obj)
+    }
+  }
+
   addTravel() {
-    this.props.onSubmitTrip(this.refs.name.value, this.refs.detail.value, this.props.user.uid)
-    this.close()
+    var newList = {
+      name: this.refs.name.value,
+      detail: this.refs.detail.value
+    }
+    this.uploadImage(this.refs.myFile.files, newList, (obj) => {
+      this.props.onSubmitTrip(newList, this.props.user.uid)
+      this.close()
+    })
+    //console.log(newList);
   }
 
   removeTripAction(trip_id) {
@@ -122,6 +156,8 @@ class Profile extends Component {
                 <input placeholder="name" ref="name" /><br />
                 <label>Detail </label>
                 <input placeholder="detail" ref="detail" /><br />
+                <label className="upload_pic">Select a file to upload </label>
+                <input type="file" ref="myFile" size="50" /><br />
               </form>
             </Modal.Body>
             <Modal.Footer>
@@ -163,12 +199,15 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmitTrip(name, detail, user) {
-    dispatch(addTrip({name: name, detail: detail, user: user}))
+  onSubmitTrip(trip, user) {
+    dispatch(addTrip({trip: trip, user: user}))
   },
   onRemoveTrips(trip_id, user_id) {
 		dispatch(removeTrip({trip_id: trip_id, user_id: user_id }))
-	}
+	},
+  onUploadImage(file) {
+    return dispatch(uploadImage({file: file}))
+  },
 })
 
 Profile = connect(

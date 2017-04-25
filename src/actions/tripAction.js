@@ -10,12 +10,13 @@ const addTripFail = (dispatch) => {
 	dispatch({ type: "ADD_TRIP_FAIL" })
 }
 
-export const addTrip = ({name, detail, user}) => {
+export const addTrip = ({trip, user}) => {
 	return (dispatch) => {
 		var fb = firebase.database().ref('trips')
     var rawTrip = {
-			name: name,
-			detail: detail,
+			name: trip.name,
+			detail: trip.detail,
+			image: trip.image[0],
       owner: user,
       createAt: firebase.database.ServerValue.TIMESTAMP
 		}
