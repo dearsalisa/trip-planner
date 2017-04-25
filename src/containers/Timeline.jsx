@@ -316,7 +316,7 @@ class Timeline extends Component {
                         <label>Name </label><input placeholder="name" ref="name" /><br />
                         <label>Location </label><input placeholder="location" ref="location" /><br />
                         <label>Comment</label>
-                        <textarea ref="detail" rows="5"></textarea><br />
+                        <textarea className="comment" ref="detail" rows="5"></textarea><br />
                         <label>Link </label><input placeholder="link" ref="link" /><br />
                         <label>Mark </label><input placeholder="mark" ref="mark" /><br />
                         <label className="upload_pic">Select a picture to upload </label>

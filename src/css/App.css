@@ -36,6 +36,10 @@
     src: url(../fonts/SukhumvitSet.ttc);
 }
 
+@font-face {
+    font-family: font_georgina;
+    src: url(../fonts/Georgina.ttf);
+}
 body, html {
   background-image: url('../images/content-bg.png');
   font-family: font_arial;

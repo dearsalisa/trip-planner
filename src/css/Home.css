@@ -1,6 +1,6 @@
 .box.thumbnail a>img, .box.thumbnail>img {
-	width: 242px;
-	height: 170px;
+	width: 250px;
+	height: 150px;
 }
 
 .home_content {
@@ -17,6 +17,7 @@
 
 div.carousel-caption {
 	text-shadow: 4px 2px 4px rgba(0,0,0,.6);
+	font-weight: bold;
 }
 
 .slide_show {
@@ -28,8 +29,10 @@ div.carousel-caption {
 /*---- content ----*/
 
 .topic {
-	padding-top: 1em;
-	padding-bottom: 1em;
+	font-size: 5em;
+	padding-top: 0.7em;
+	padding-bottom: 0.4em;
+	font-family: font_georgina;
 }
 
 .box {

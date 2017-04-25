@@ -56,6 +56,13 @@
 	margin-bottom: 1.5em;
 }
 
+textarea.comment {
+	display: block;
+	margin-left: 70px;
+	margin-top: -25px;
+	margin-bottom: -17px;
+}
+
 .tl_location {
 	color: gray;
 }

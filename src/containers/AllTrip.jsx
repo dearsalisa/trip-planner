@@ -38,7 +38,7 @@ class AllTrip extends Component {
 			<center className="bg">
 				<div>
           <div className="search_form">
-            <h1><b>SEARCH TRIP</b></h1>
+            <h1 className="topic">SEARCH TRIP</h1>
             <input className="search_box" ref="text" type="text" placeholder="Enter text" onChange={(e)=> {
 								this.searchTrip()
 							}} onKeyPress={(e) => {
@@ -48,7 +48,7 @@ class AllTrip extends Component {
 							}}/><br/>
             <Button className="search_btn" onClick={this.searchTrip}>SEARCH</Button>
           </div>
-					<h1 className="topic"><b> TRIPS </b></h1>
+					<h1 className="topic">TRIPS</h1>
 					<Grid>
      				<Row>
 							{

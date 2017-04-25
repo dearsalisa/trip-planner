@@ -94,7 +94,7 @@ class Edit extends Component {
               <label>Name</label><input ref="name" defaultValue={this.props.item.name} /><br />
               <label>Location </label><input ref="location" defaultValue={this.props.item.location.name} /><br />
               <label>Comment</label>
-              <textarea ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
+              <textarea className="comment" ref="detail" defaultValue={this.props.item.detail} rows="5"></textarea><br />
               <label>Link </label><input ref="link" defaultValue={this.props.item.link} /><br />
               <label>Mark </label><input ref="mark" defaultValue={this.props.item.mark} /><br />
               <label className="upload_pic">Select a file to upload </label>

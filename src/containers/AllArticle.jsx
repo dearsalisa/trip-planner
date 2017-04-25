@@ -32,7 +32,7 @@ class AllArticle extends Component {
 		return (
 			<center className="bg">
 				<div>
-					<h1 className="topic"><b> ARTICLES </b></h1>
+					<h1 className="topic">TRAVELING</h1>
           <Row>
             {articleRow}
           </Row>
