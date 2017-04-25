@@ -79,6 +79,7 @@ class TripViewInfo extends Component {
 				<center className="trip_info">
 					<h2 className="tl_name">{this.props.trip.name}</h2>
 					<h4 className="tl_detail">{this.props.trip.detail}</h4>
+          <p className="tl_owner">by {this.props.user.displayName}</p>
 					<div className="view_btn" onClick={() => this.likeAction()} >
 						{
 							(this.isLike())?  <div><Glyphicon className="heart" glyph="heart" /> LIKE</div>

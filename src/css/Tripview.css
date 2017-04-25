@@ -42,6 +42,13 @@
 	font-family: font_sukhumvit;
 }
 
+.tl_owner {
+	color: #bbb;
+	margin: 1em;
+	font-style: italic;
+	margin-top: -1em;
+}
+
 .view_btn, .view_btn:hover, .view_btn:focus, .view_btn:active {
 	background-color: #001C1D;
 	color: white;

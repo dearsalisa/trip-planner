@@ -56,6 +56,10 @@
 	margin-bottom: 1.5em;
 }
 
+.tl_location {
+	color: gray;
+}
+
 /* content layout */
 
 .left_box.col-md-4 {
@@ -189,6 +193,7 @@ div.panel-default>.panel-heading {
   height: 70px;
 	margin-right: 0.5em;
 	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 .tl_pic_edit {
