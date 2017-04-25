@@ -39,7 +39,10 @@ class Profile extends Component {
   }
 
   removeTripAction(trip_id) {
-		this.props.onRemoveTrips(trip_id, this.props.user.uid)
+    var r = confirm("ต้องการลบ Trip นี้ ?");
+    if (r == true) {
+  		this.props.onRemoveTrips(trip_id, this.props.user.uid)
+    }
 	}
 
   render() {

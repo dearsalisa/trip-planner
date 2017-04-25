@@ -168,19 +168,25 @@ class Timeline extends Component {
   }
 
   removeTravel(day, index) {
-    delete this.state.trip.timeline[day-1].travel[index]
-    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+    var r = confirm("ต้องการลบ event นี้ ?");
+    if (r == true) {
+      delete this.state.trip.timeline[day-1].travel[index]
+      this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+    }
   }
 
   removeDay(day) {
-    delete this.state.trip.timeline[day-1]
-    this.state.trip.timeline = this.state.trip.timeline
-    .filter( (x) => {return x !== undefined})
-    .map( (x,index) => {
-      x.day = index+1
-      return x
-    })
-    this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+    var r = confirm("ต้องการลบ day นี้ ?");
+    if (r == true) {
+      delete this.state.trip.timeline[day-1]
+      this.state.trip.timeline = this.state.trip.timeline
+      .filter( (x) => {return x !== undefined})
+      .map( (x,index) => {
+        x.day = index+1
+        return x
+      })
+      this.props.onUpdateTrip(this.state.trip, this.props.routeParams.tripKey)
+    }
   }
 
   moveDay(isUp, day) {

@@ -87,10 +87,15 @@
 	-webkit-box-orient: vertical;
 }
 
+div.media-body {
+	padding-top: 0.5em;
+}
+
 .remove_trip {
 	font-size: 0.75em;
-	margin-left: 1em;
 	color: gray;
+	text-align: right;
+	margin-left: 1.5em;
 }
 
 .remove_trip:hover {
