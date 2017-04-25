@@ -56,7 +56,8 @@ class Edit extends Component {
             <form className="edit_form" >
               <div className="time" >
                 <label>Time</label>
-                <select ref="hour" placeholder="select time" defaultValue={this.props.item.time.substring(0, 2)}>
+                <select ref="hour" placeholder="select time"
+                  defaultValue={ this.props.item.time !== undefined ? this.props.item.time.substring(0, 2) : "00"}>
                   <option value="00">00</option>
                   <option value="01">01</option>
                   <option value="02">02</option>
@@ -82,7 +83,8 @@ class Edit extends Component {
                   <option value="22">22</option>
                   <option value="23">23</option>
                 </select> :
-                <select ref="minute" placeholder="select time" defaultValue={this.props.item.time.substring(3, 5)}>
+                <select ref="minute" placeholder="select time"
+                  defaultValue={  this.props.item.time !== undefined ? this.props.item.time.substring(3, 5) : "00" }>
                   <option value="00">00</option>
                   <option value="15">15</option>
                   <option value="30">30</option>

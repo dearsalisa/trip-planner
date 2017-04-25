@@ -271,7 +271,7 @@ class Timeline extends Component {
                       <Modal.Title>ADD EVENT TO DAY {input.day} </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      <form className="add_event_form">
+                      <form className="edit_form" >
                         <div className="time">
                           <label>Time </label>
                           <select ref="hour" placeholder="select time">
@@ -309,11 +309,11 @@ class Timeline extends Component {
                         </div>
                         <label>Name </label><input placeholder="name" ref="name" /><br />
                         <label>Location </label><input placeholder="location" ref="location" /><br />
-                        <label>Comment</label><br />
+                        <label>Comment</label>
                         <textarea ref="detail" rows="5"></textarea><br />
                         <label>Link </label><input placeholder="link" ref="link" /><br />
                         <label>Mark </label><input placeholder="mark" ref="mark" /><br />
-                        <label>Select a picture to upload </label>
+                        <label className="upload_pic">Select a picture to upload </label>
                         <input type="file" multiple="multiple" ref="myFile" size="50" />
                       </form>
                     </Modal.Body>

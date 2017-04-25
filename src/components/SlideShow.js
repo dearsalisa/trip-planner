@@ -9,20 +9,22 @@ const SlideShow = () => {
 			<Carousel.Item>
 				<img className="slide_show" role="presentation" src={require('../images/view01.jpg')}/>
 				<Carousel.Caption>
+					<h1>TRIPS BLOG</h1>
+					<h3>มาร่วมแบ่งปันประสบการณ์การท่องเที่ยวในแบบต่างๆกับเรา</h3>
 				</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
 				<img className="slide_show" role="presentation" src={require('../images/view02.jpg')}/>
 				<Carousel.Caption>
-				<h3>Second slide label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<h1>TRIPS SEARCH</h1>
+					<h3>ค้นหาไอเดียในการจัดทริปสนุกๆมากมาย</h3>
 				</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
 				<img className="slide_show" role="presentation" src={require('../images/view03.jpg')}/>
 				<Carousel.Caption>
-				<h3>Third slide label</h3>
-				<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+					<h1>SHARE YOUR TRIP</h1>
+					<h3>แบ่งปันทริปสนุกๆของคุณให้กับเพื่อนๆ</h3>
 				</Carousel.Caption>
 			</Carousel.Item>
 		</Carousel>

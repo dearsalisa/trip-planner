@@ -41,7 +41,7 @@ class TripInfo extends Component {
 	          <Modal.Body>
 	            <form>
 	              <label>Name</label><input ref="name" defaultValue={this.props.tripInfo.name} /><br />
-	              <label>Detail</label><br />
+	              <label>Detail</label>
 	              <textarea ref="detail" defaultValue={this.props.tripInfo.detail} rows="5"></textarea><br />
 	            </form>
 	          </Modal.Body>
