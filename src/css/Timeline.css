@@ -166,13 +166,18 @@ div.panel-default>.panel-heading {
 	color: red;
 }
 
-.remove {
+.remove, .chevron {
 	font-size: 0.75em;
 	margin-left: 1em;
 }
 
 .remove:hover {
 	color: red;
+	cursor: pointer;
+}
+
+.chevron:hover {
+	color: orange;
 	cursor: pointer;
 }
 

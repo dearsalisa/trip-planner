@@ -215,9 +215,12 @@ class Timeline extends Component {
 
         <div className="timeline">
           <div className="map_box">
-            <Button className="map_view" bsSize="large" active onClick={ () => {this.setState({isShowMap: !this.state.isShowMap })} }>
-              { this.state.isShowMap ? "TIMELINE VIEW" : "MAP VIEW"}
-            </Button>
+            {
+              (this.state.trip.timeline !== undefined && this.state.trip.timeline.lenght !== 0) ?
+                <Button className="map_view" bsSize="large" active onClick={ () => {this.setState({isShowMap: !this.state.isShowMap })} }>
+                  { this.state.isShowMap ? "TIMELINE VIEW" : "MAP VIEW"}
+                </Button> : ""
+            }
           </div>
           {
             this.state.isShowMap ? <MapView {...this.state} /> :
@@ -228,10 +231,10 @@ class Timeline extends Component {
                   <div> Day {input.day}
                     <div className="tl_reorder">
                       <span>
-                        <Glyphicon className="remove" glyph="chevron-up" onClick={() => this.moveDay(true, input.day)} />
+                        <Glyphicon className="chevron" glyph="chevron-up" onClick={() => this.moveDay(true, input.day)} />
                       </span>
                       <span>
-                        <Glyphicon className="remove" glyph="chevron-down" onClick={() => this.moveDay(false, input.day)} />
+                        <Glyphicon className="chevron" glyph="chevron-down" onClick={() => this.moveDay(false, input.day)} />
                       </span>
                       <span onClick={this.removeDay.bind(this, input.day)}>
                         <Glyphicon className="remove" glyph="remove" />
